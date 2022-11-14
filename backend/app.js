@@ -1,7 +1,10 @@
 const express = require('express');
-
+const debug = require('debug');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('./models/User');
+
+
 
 const cors = require('cors');
 const csurf = require('csurf');
@@ -40,5 +43,26 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/bindings', bindingsRouter);
 app.use('/api/csrf', csrfRouter);
+
+
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.statusCode = 404;
+    next(err);
+});
+
+const serverErrorLogger = debug('backend:error');
+
+app.use((err, req, res, next) => {
+    serverErrorLogger(err);
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode);
+    res.json({
+        message: err.message,
+        statusCode,
+        errors: err.errors
+    })
+});
+
 
 module.exports = app;
