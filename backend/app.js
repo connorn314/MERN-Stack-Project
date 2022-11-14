@@ -3,7 +3,9 @@ const debug = require('debug');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('./models/User');
+require('./config/passport'); 
 
+const passport = require('passport');
 
 
 const cors = require('cors');
@@ -22,6 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 if (!isProduction) {
     // Enable CORS only in development because React will be on the React
@@ -33,9 +36,9 @@ if (!isProduction) {
 app.use(
     csurf({
         cookie: {
-        secure: isProduction,
-        sameSite: isProduction && "Lax",
-        httpOnly: true
+            secure: isProduction,
+            sameSite: isProduction && "Lax",
+            httpOnly: true
         }
     })
 );
