@@ -3,6 +3,7 @@ const debug = require('debug');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('./models/User');
+require('./models/Game');
 require('./config/passport'); 
 
 const passport = require('passport');
@@ -15,6 +16,7 @@ const { isProduction } = require('./config/keys');
 
 const usersRouter = require('./routes/api/users');
 const bindingsRouter = require('./routes/api/bindings');
+const gamesRouter = require('./routes/api/games');
 const csrfRouter = require('./routes/api/csrf');
 
 
@@ -45,6 +47,7 @@ app.use(
 
 app.use('/api/users', usersRouter);
 app.use('/api/bindings', bindingsRouter);
+app.use('/api/games', gamesRouter)
 app.use('/api/csrf', csrfRouter);
 
 
