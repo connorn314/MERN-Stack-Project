@@ -39,8 +39,7 @@
 }
 
 .game-information-text-container{
-  grid-column-start: 3;
-  grid-row-start: 3;
+  margin-top: 10%;
   min-height: 300px;
 }
 
@@ -61,5 +60,12 @@
 }
 
 .game-description-text{
-  color: black
+  color: black;
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+.banner-button-main-container{
+
 }
