@@ -1,0 +1,65 @@
+.main-banner-container_0 {
+  background-image: url('pink-blue.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-banner-container_1{
+  background-image: url('league-backgorund.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-banner-container_2 {
+  background-image: url('pink-blue.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-information-main-container{
+  width: 40%;
+}
+
+.game-information-text-container{
+  grid-column-start: 3;
+  grid-row-start: 3;
+  min-height: 300px;
+}
+
+.gamebanner_0 {
+  height: 200px;
+  content: url('rocket-league-removebg-preview.png');
+}
+
+.gamebanner_1 {
+  height: 200px;
+  content: url('league-removebg-preview.png');
+}
+
+
+.gamebanner_2 {
+  height: 200px;
+  content: url('Super-Smash-Bros.-Logo.png');
+}
+
+.game-description-text{
+  color: black
+}
