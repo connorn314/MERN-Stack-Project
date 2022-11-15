@@ -9,6 +9,7 @@ if (!isProduction) {
     // server endpoints in Postman.
     router.get("/restore", (req, res) => {
         const csrfToken = req.csrfToken();
+        console.log(csrfToken)
         res.status(200).json({
             'CSRF-Token': csrfToken
         });

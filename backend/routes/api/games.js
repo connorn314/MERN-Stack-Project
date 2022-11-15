@@ -4,11 +4,28 @@ const mongoose = require('mongoose');
 
 const Game = mongoose.model('Game')
 
-router.get('/', function(req, res, next) {
-    res.json({
-        message: "GET /api/games"
-    });
+router.get('/', async function(req, res, next) {
+    try {
+        const games = await Game.find()
+        return res.json(games);
+    }
+    catch(err) {
+        return res.json([]);
+    }
+    // res.json({
+    //     message: "GET /api/games"
+    // });
 });
+
+router.get('/:id', async function(req, res, next) {
+    try {
+        const game = await Game.findById(req.params.id);
+        return res.json(game)
+    }
+    catch(err){
+        return res.json([]);
+    }
+})
 
 router.post('/new', async function(req, res, next) {
     const game = await Game.findOne({
@@ -32,7 +49,8 @@ router.post('/new', async function(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         compatibility: req.body.compatibility,
-        developer: req.body.developer
+        developer: req.body.developer,
+        validMovements: req.body.validMovements
     })
 
     if (newGame && newGame.save()) {
@@ -41,6 +59,17 @@ router.post('/new', async function(req, res, next) {
         throw res
     }
 })
+
+router.delete('/:id', async function(req, res, next) {
+    try {
+        const game = await Game.findByIdAndDelete(req.params.id);
+        console.log("success")
+        return res.json(game);
+    }
+    catch(err){
+        return res.json([]);
+    }
+});
 
 
 module.exports = router;
