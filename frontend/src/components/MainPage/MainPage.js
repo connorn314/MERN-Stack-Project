@@ -6,9 +6,11 @@ function MainPage() {
     <>
       <div className="main-mainpage-container">
         <video className='background-video' autoPlay loop muted id='video' src={backgroundVideo} />
-        <div className='text-box-container'>
-          <p>hello</p>
-        </div>
+        {/* <div id='overlay'> */}
+          <div className='text-box-container'>
+            <p className='splash-text'>hello</p>
+          </div>
+        {/* </div> */}
       </div>
     </>
   );
