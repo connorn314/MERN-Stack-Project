@@ -1,0 +1,14 @@
+
+.background-video{
+  width: 100%;
+  height: 100%;
+  position: sticky;
+}
+
+.main-page-container{
+  position: relative;
+}
+
+.text-box-container{
+  position: absolute;
+}
