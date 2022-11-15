@@ -1,0 +1,33 @@
+
+.main_header_container{
+  background-color: black;
+  display: flex;
+  height: 100px;
+}
+
+.signup-link{
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #999;
+}
+
+.signup-link:hover {
+  text-decoration: none;
+  color: #49FB35;
+}
+
+.links-auth{
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-title{
+  font-size: 20px;
+  color: #49FB35;
+  margin-right: 10%;
+  text-align: center;
+  text-decoration: none;
+}

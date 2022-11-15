@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import './NavBar.css';
 import { logout } from '../../store/session';
+import './NavBar.css'
 
 function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -25,8 +25,9 @@ function NavBar() {
     } else {
       return (
         <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+          <Link className='signup-link' to={'/signup'}>Signup</Link>
+          <Link className='signup-link' to={'/login'}>Login</Link>
+          <Link className='signup-link' to={'/games'}>Games</Link>
         </div>
       );
     }
@@ -34,8 +35,10 @@ function NavBar() {
 
   return (
     <>
-      <h1>KeyWi</h1>
+    <header className='main_header_container'>
+      <Link to='/' className='logo-title'>KeyWi</Link>
       {getLinks()}
+    </header>
     </>
   );
 }
