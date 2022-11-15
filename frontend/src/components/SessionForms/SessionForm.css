@@ -82,12 +82,32 @@
   text-transform: uppercase;
   text-decoration: none;
   overflow: hidden;
+  animation: glowing 2000ms infinite;
+}
+
+
+@keyframes glowing {
+  0% {
+    background-color: #2ba805;
+    box-shadow: 0 0 3px #2ba805;
+  }
+
+  50% {
+    background-color: #49FB35;
+    box-shadow: 0 0 10px #49FB35;
+  }
+
+  100% {
+    background-color: #2ba805;
+    box-shadow: 0 0 3px #2ba805;
+  }
 }
 
 .submit-button:hover {
-  color: #111;
+  color: #2E294E;
   background: #49FB35;
   box-shadow: 0 0 50px #49FB35;
+  animation: none;
 }
 
 .background-div{
