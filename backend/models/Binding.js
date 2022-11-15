@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bindingSchema = Schema({
-    user: mongoose.isObjectIdOrHexString,
-    game: mongoose.isObjectIdOrHexString,
-    controls: {
+    user: Schema.Types.ObjectId,
+    game: Schema.Types.ObjectId,
+    controller: {
+        type: String,
+        required: true
+    },
+    keyBinds: {
         
     }
     }, {

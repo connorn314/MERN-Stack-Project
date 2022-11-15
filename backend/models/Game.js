@@ -17,6 +17,10 @@ const gameSchema = Schema({
     developer: {
         type: String,
         required: true
+    },
+    validMovements: {
+        type: [String],
+        required: true
     }}, {
     timestamps: true
 });
