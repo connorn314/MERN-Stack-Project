@@ -1,25 +1,99 @@
-.session-form>label {
+.signup-text-container{
+  margin-right: 41px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-text{
+  margin-right: 41px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signup-text-container>label {
   width: 100%;
   padding: 4px 0;
   text-align: right;
+  margin-bottom: 30px;
 }
 
-.session-form>label>span {
+.signup-text-container>label>span {
   display: inline-block;
+  font-size: 16px;
   padding: 0 10px;
+  color: #49FB35;
 }
 
-.session-form>input {
+.signup-text-container>input {
   width: 200px;
 }
 
-.session-form>input[type="submit"] {
+/* .signup-text-container>input[type="submit"] {
   width: 100%;
+} */
+
+.session-form>h2{
+  font-size: 40px;
+  margin-bottom: 10px;
+  color:  #49FB35;
 }
 
 .session-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
+  height: 320px;
+  left: 25%;
+  width: 50%;
+  border: #49FB35 dotted 5px;
+    /* box-shadow: 0 0 50px #39ff14; */
+  position: absolute;
+  top: calc(var(--nav-height) + 19%);
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 220px;
+  /* width: fit-content; */
+  left: 25%;
+  width: 50%;
+  border: #49FB35 dotted 5px;
+  /* box-shadow: 0 0 50px #39ff14; */
+  position: absolute;
+  top: calc(var(--nav-height) + 19%);
+}
+
+.submit-button{
+  margin-top: 25px;
+  width: 20%;
+  border-radius: 3px;
+  font-family: 'Common Pixel', sans-serif;
+  padding: 10px 10px;
+  display: inline-block;
+  color: black;
+  letter-spacing: 2px;
+  background-color: rgb(180, 180, 180);
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.submit-button:hover {
+  color: #111;
+  background: #49FB35;
+  box-shadow: 0 0 50px #49FB35;
+}
+
+.background-div{
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./darkpurple.jpeg');
 }

@@ -36,7 +36,7 @@ function NavBar() {
   return (
     <>
     <header className='main_header_container'>
-      <h1 className='logo-title'>KeyWi</h1>
+      <Link to='/' className='logo-title'>KeyWi</Link>
       {getLinks()}
     </header>
     </>

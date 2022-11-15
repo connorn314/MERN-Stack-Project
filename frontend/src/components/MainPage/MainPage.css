@@ -10,38 +10,32 @@
 }
 
 .splash-text{
-  color: white;
+  color: #49FB35;
+  /* font-family: 'Acumin Pro', sans-serif; */
   font-size: 100px;
+  text-align: center;
+  line-height: 110px;
+  margin: 20% 0;
 }
 .text-box-container{
-  border: white 3px solid;
+  border:#49FB35 3px solid;
+  border-radius: 10%;
   width: 50%;
   height: 50%;
   top: calc(var(--nav-height) + 19%);
   left: 25%;
   background-color: rgb(0, 0, 0, .5);
   position: absolute;
+  animation: MoveUpDown 5s linear infinite;
 }
 
-#overlay{
-  position: fixed;
-    /* Sit on top of the page content */
-    /* display: none; */
-    /* Hidden by default */
-    width: 100%;
-    /* Full width (cover the whole page) */
-    margin-top: 10%;
-    margin-left: 20%;
-    margin-right: 20%;
-    /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Black background with opacity */
-    z-index: 2;
-    /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer;
-    /* Add a pointer on hover */
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
