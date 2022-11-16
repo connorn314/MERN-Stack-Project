@@ -11,18 +11,21 @@ export default function Keyboard ({currentKey}){
   const [selectedKey, setSelectedKey] = useState()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    document.addEventListener("keypress",(e) => {
-      if(currentKey !== ''){
-        
-        setBinding({[currentKey]: e.key})
-        
-      }
-    })
-
+  useEffect(()=>{
+    if (selectedKey !== undefined) {
+      dispatch(addBinding({ [currentKey]: selectedKey }))
+    }
   },[currentKey])
-  // dispatch(addBinding(binding))
-  console.log(binding)
+  
+
+document.addEventListener("keypress", (e) => {
+  if (currentKey !== '') {
+    setSelectedKey(e.key)
+    setBinding({ [currentKey]: e.key })
+  }
+})
+
+
 
   const handleMouseOver = (e) => {
   const fillColor = "#2E294E"
