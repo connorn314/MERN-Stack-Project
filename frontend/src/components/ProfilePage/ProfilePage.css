@@ -1,6 +1,7 @@
-.background-div {
+.background-div-profile {
   background-image: url('../SessionForms/darkpurple.jpeg');
   height: 100%;
+  padding-bottom: 300px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

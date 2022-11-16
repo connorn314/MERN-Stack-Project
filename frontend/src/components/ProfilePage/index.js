@@ -28,7 +28,7 @@ export default function ProfilePage(){
 
     tags.map(tag => {
         tag.addEventListener("mouseover", () => {
-            tag.style.backgroundColor = '#2E294E' 
+            tag.style.backgroundColor = '#2E294E'
         })
         tag.addEventListener("mouseleave", () => {
             tag.style.backgroundColor = 'transparent'
@@ -44,7 +44,7 @@ export default function ProfilePage(){
 
     return(
         <>
-        <div className="background-div">
+        <div className="background-div-profile">
             <div id="dropdown-container">
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>
@@ -63,14 +63,14 @@ export default function ProfilePage(){
                         <div className="move-set-title-name">Moves</div>
                         <div className="move-set-title-binding">Bindings</div>
                     </div>
-                    {moves.map((move, i) =>
-                        <>
-                            <div className="individual-set-container">
-                                <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                <div className="move-binding" id={`${move}-${i}`}> </div>
-                            </div>
-                        </>
-                    )}
+                        {moves.map((move, i) =>
+                            <>
+                                <div className="individual-set-container">
+                                    <div className='move-name' id={move} onClick={handleMove}>{move}</div>
+                                    <div className="move-binding" id={`${move}-${i}`}> </div>
+                                </div>
+                            </>
+                        )}
                 </div>
             </div>
         </div>
