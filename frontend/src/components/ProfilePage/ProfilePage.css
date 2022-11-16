@@ -4,24 +4,52 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('../SessionForms/darkpurple.jpeg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .move-name{
   font-size: 20px;
+  padding: 5px;
+  width: 75%;
+  border-right: black solid 2px;
 }
 
 .move-set-container{
   margin-top: 100px;
   width: 40%;
   border: solid black 2px;
+  border-bottom: none;
 }
 
 .individual-set-container{
   display: flex;
   justify-content: space-between;
+  border-bottom: solid black 2px;
 }
 
-.move-set-title{
+.individual-set-container1{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid black 2px
+}
+
+.move-set-title-name{
   font-size: 30px;
   font-weight: 500;
+}
+
+.move-set-title-binding {
+  font-size: 30px;
+  font-weight: 500;
+  width: 30%;
+  text-align: center;
+}
+
+.move-binding{
+  width: 30%;
+  text-align: center;
 }
