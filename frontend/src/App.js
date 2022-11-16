@@ -28,6 +28,7 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <AuthRoute exact path="/games" component={GameIndex} />
+        <AuthRoute path="/profile" component={ProfilePage} />
         <AuthRoute path="/test" component={XboxController}/>
       </Switch>
     </>
