@@ -21,7 +21,7 @@ export default function Keyboard ({currentKey}){
     })
 
   },[currentKey])
-  dispatch(addBinding(binding))
+  // dispatch(addBinding(binding))
   console.log(binding)
 
   const handleMouseOver = (e) => {
