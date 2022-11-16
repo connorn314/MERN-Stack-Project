@@ -14,7 +14,7 @@ const bindingSchema = Schema({
     controller: {
         type: String,
         enum: {
-            values: ["pc", "xbox one", "game cube"],
+            values: ["pc", "xbox-one", "game-cube"],
             message: 'This controller is not supported by key-wi'
         }
     },
