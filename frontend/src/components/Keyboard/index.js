@@ -15,7 +15,6 @@ class Icon extends React.Component {
         const tags = Array.from(document.getElementsByClassName("key" ))
     
         tags.forEach(tag => {
-            console.log(tag)
            // tag.setAttribute("style","fill: red; fill-opacity:1;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
         //     tag.addEventListener("mouseover",() =>{
         //         tag.setAttribute("style","fill: red; fill-opacity:1;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
