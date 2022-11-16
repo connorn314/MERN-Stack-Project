@@ -15,8 +15,6 @@ export default function ProfilePage(){
     useEffect(()=>{
         dispatch(fetchGames())
     },[])
-
-    const moveSet = ['move1', 'move2','move3', 'move4', 'move5']
       
     const handleMove = (move,i) => (e) => {
         setCurrentKey(e.target.id)
