@@ -2,8 +2,8 @@ const { validationResult } = require("express-validator");
 
 // handleValidationErrors is an Express middleware used with the `check`
 // middleware to format the validation errors. 
-const handleValidationErrors = (req, res, next) => {
-    const validationErrors = validationResult(req);
+const handleValidationErrors = async (req, res, next) => {
+    const validationErrors = await validationResult(req);
 
     if (!validationErrors.isEmpty()) {
         const errorFormatter = ({ msg }) => msg;
