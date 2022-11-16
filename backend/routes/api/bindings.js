@@ -6,7 +6,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Binding = mongoose.model('Binding');
 
-const validateBindingInput = require('../../validations/createBinding')
+const validateBindingInput = require('../../validations/createBinding');
 
 /* GET bindings listing. */
 router.get('/', async function(req, res, next) {
