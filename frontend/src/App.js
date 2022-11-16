@@ -12,6 +12,7 @@ import GameIndex from './components/GamesIndex/GamesIndex';
 import Keyboard from './components/Keyboard'
 import { getCurrentUser } from './store/session';
 import XboxController from './components/XboxController';
+import { Route } from 'react-router-dom';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,12 +25,13 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
+        <Route exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-        <AuthRoute exact path="/games" component={GameIndex} />
-        <AuthRoute path="/profile" component={ProfilePage} />
         <AuthRoute path="/test" component={XboxController}/>
+
+        <ProtectedRoute path="/profile" component={ProfilePage} />
+        <ProtectedRoute exact path="/games" component={GameIndex} />
       </Switch>
     </>
   );

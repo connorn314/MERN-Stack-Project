@@ -17,11 +17,13 @@ export default function ProfilePage(){
         dispatch(fetchGames())
     },[])
       
-    const handleMove = (move,i) => (e) => {
+    const handleMove = (e) => {
         setCurrentKey(e.target.id)
-        document.getElementById(`${move}-${i}`).style.innerHTML = currentKey
+        // console.log(currentKey)
+        // document.getElementById(`${move}-${i}`).style.innerHTML = currentKey
     }
 
+    const moveSet = ['a', 'b', 'c']
     
     
     const tags = Array.from(document.getElementsByClassName("individual-set-container"))
