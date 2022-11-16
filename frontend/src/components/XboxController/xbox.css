@@ -1,0 +1,13 @@
+#xbox-container {
+    display: flex;
+    height: 10%;
+    width: 20%;
+    justify-content: center;
+    margin-left: 40%;
+    padding: 50px;
+}
+
+svg {
+    width: 125%;
+    height: 100%;
+}

@@ -5,6 +5,7 @@ import { fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import './ProfilePage.css'
 
+
 export default function ProfilePage(){
     const dispatch = useDispatch();
     const bindingForm = {}
