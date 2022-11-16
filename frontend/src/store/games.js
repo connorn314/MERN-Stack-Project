@@ -2,7 +2,16 @@ import jwtFetch from './jwt';
 
 const RECEIVE_GAMES = "games/RECEIVE_GAMES";
 const RECEIVE_GAME = "tweets/RECEIVE_GAME";
+const ADD_BINDING = "games/ADD_BINDING"
 
+export const addBinding = binding => ({
+  type: ADD_BINDING,
+  binding
+})
+
+export const getBindings =  state => {
+  return state.games
+}
 const receiveGames = games => ({
   type: RECEIVE_GAMES,
   games
@@ -34,6 +43,8 @@ export const gameReducer = (state = {}, action) => {
       return {...action.games}
     case RECEIVE_GAME:
       return {...nextState, [action.game.id]: action.game}
+      case ADD_BINDING:
+        return {...nextState, ...action.binding}
     default:
       return state;
   }

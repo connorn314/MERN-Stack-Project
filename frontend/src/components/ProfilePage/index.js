@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Keyboard from "../Keyboard";
 import './ProfilePage.css'
+
+
 export default function ProfilePage(){
 
     // const [bindingForm,setBindingForm] = useState({});
