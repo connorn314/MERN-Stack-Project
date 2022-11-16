@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
+import { useHistory } from "react-router-dom";
 import './ProfilePage.css'
 
 
@@ -12,10 +13,19 @@ export default function ProfilePage(){
     const [currentKey, setCurrentKey] = useState('');
     const games = useSelector(state => Object.values(state.games))
     const [moves, setMoves] = useState([])
-
+    const history = useHistory()
     useEffect(()=>{
         dispatch(fetchGames())
+
     },[])
+    document.addEventListener("keypress",(e) => {
+        if(currentKey !== ''){
+   
+
+        }
+    })
+
+
       
     const handleMove = (e) => {
         setCurrentKey(e.target.id)
@@ -38,8 +48,10 @@ export default function ProfilePage(){
     })
 
     const handleClick = e => {
+        history.push(`profile/${e.target.id}`)
         const gameObject = games[e.target.id]
         setMoves(gameObject.validMovements)
+        
         document.getElementById('profile-main-container').style.display = 'flex'
         // document.getElementById('dropdown-container').style.display = 'none'
     }
@@ -69,7 +81,7 @@ export default function ProfilePage(){
                             <>
                                 <div className="individual-set-container">
                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                    <div className="move-binding" id={`${move}-${i}`}> </div>
+                                    <div className="move-binding" id={`${move}-selection`}> </div>
                                 </div>
                             </>
                         )}

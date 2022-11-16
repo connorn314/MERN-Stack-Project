@@ -31,6 +31,7 @@ function App() {
         <AuthRoute path="/test" component={XboxController}/>
 
         <ProtectedRoute path="/profile" component={ProfilePage} />
+        <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
         <ProtectedRoute exact path="/games" component={GameIndex} />
       </Switch>
     </>
