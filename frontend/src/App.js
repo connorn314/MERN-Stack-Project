@@ -11,6 +11,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 import GameIndex from './components/GamesIndex/GamesIndex';
 import Keyboard from './components/Keyboard'
 import { getCurrentUser } from './store/session';
+import XboxController from './components/XboxController';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +28,7 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <AuthRoute exact path="/games" component={GameIndex} />
-        <AuthRoute path="/test" component={ProfilePage}/>
+        <AuthRoute path="/test" component={XboxController}/>
       </Switch>
     </>
   );
