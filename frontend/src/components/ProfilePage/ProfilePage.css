@@ -1,0 +1,27 @@
+
+.profile-main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.move-name{
+  font-size: 20px;
+}
+
+.move-set-container{
+  margin-top: 100px;
+  width: 40%;
+  border: solid black 2px;
+}
+
+.individual-set-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.move-set-title{
+  font-size: 30px;
+  font-weight: 500;
+}
