@@ -15,7 +15,7 @@ function NavBar() {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
+        <div className="links-auth">
           <Link className='signup-link' to={'/games'}>Games</Link>
           <Link className='signup-link' to={'/profile'}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>

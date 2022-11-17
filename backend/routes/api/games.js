@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+const Binding = mongoose.model('Binding');
 const Game = mongoose.model('Game')
 
 router.get('/', async function(req, res, next) {
@@ -70,6 +70,19 @@ router.delete('/:id', async function(req, res, next) {
         return res.json([]);
     }
 });
+
+router.get('/bindings/:gameId', async function (req, res, next) {
+    try {
+        const game = await Game.findById(req.params.gameId);
+        const bindings = await Binding.find({ game: game })
+        return res.json(bindings)
+    }
+    catch (err) {
+        return res.json([]);
+    }
+})
+
+
 
 
 module.exports = router;

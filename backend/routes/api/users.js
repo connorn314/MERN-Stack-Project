@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-
 const mongoose = require('mongoose');
+const Binding = mongoose.model('Binding');
 const User = mongoose.model('User');
 const passport = require('passport');
 
@@ -94,5 +94,26 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     return res.json(await loginUser(user));
   })(req, res, next);
 });
+
+router.get('/:userId', async function (req, res, next) {
+  try {
+    const user = await User.findById(req.params.userId);
+    return res.json(user)
+  }
+  catch (err) {
+    return res.json([])
+  }
+});
+
+router.get('/bindings/:userId', async function (req, res, next) {
+  try {
+    const user = await User.findById(req.params.userId);
+    const bindings = await Binding.find({ user: user })
+    return res.json(bindings)
+  }
+  catch (err) {
+    return res.json([]);
+  }
+})
 
 module.exports = router;

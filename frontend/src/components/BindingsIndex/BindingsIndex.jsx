@@ -7,10 +7,9 @@ import BindingIndexItem from '../BindingsIndexItem/BindingsIndexItem.jsx';
 const BindingIndex = () => {
     const dispatch = useDispatch();
     const bindings = useSelector(state => Object.values(state.bindings))
-    console.log(bindings)
-    useEffect(() => {
-        dispatch(bindingActions.populateBindings())
-    },[])
+    // useEffect(() => {
+    //     dispatch(bindingActions.populateBindings())
+    // },[])
     return (
         <>
             <div id="bindings-index-container">
@@ -18,7 +17,7 @@ const BindingIndex = () => {
                     <div id="bindings-index-outline">
                         {bindings.map(binding => {
                             return (
-                                <div><BindingIndexItem binding={binding} /></div>
+                                <div key={binding._id}><BindingIndexItem binding={binding} key={binding}/></div>
                             )
                         })
                         }
