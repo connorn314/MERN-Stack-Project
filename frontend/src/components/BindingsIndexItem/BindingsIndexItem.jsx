@@ -21,10 +21,6 @@ const BindingIndexItem = ({binding}) => {
     return (
         <>
         <div className='main-individual-binding-container'>
-            <div className='toggle-menu'>Hello
-            
-            </div>
-
             <div id="binding-item-container">
                 <div id="game-mini-thumbnail-container">
                     <div id='actual-mini-thumbnail'>
@@ -49,6 +45,10 @@ const BindingIndexItem = ({binding}) => {
                     <div id='controller-icon-container'>
                         <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
                     </div>
+                </div>
+                <div className='toggle-menu'>
+                    Hello
+            
                 </div>
             </div>
 
