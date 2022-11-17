@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 100px;
 }
 
 .move-name{
@@ -23,7 +24,7 @@
 }
 
 .move-set-container{
-  margin-top: 100px;
+  margin-top: 40px;
   width: 40%;
   border: solid #49FB35 2px;
   border-bottom: none;
@@ -33,6 +34,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: solid #49FB35 2px;
+  cursor: pointer;
 }
 
 .individual-set-container1{
@@ -58,7 +60,8 @@
 .move-binding{
   width: 30%;
   text-align: center;
-  color: #49FB35
+  color: #49FB35;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 ul li ul {
@@ -176,4 +179,23 @@ ul li ul li:hover{
 
 .binding-container-profile{
   margin-left: 17%;
+}
+
+.profile-game-title{
+  font-size: 40px;
+  color: #49FB35;
+  margin-bottom: 40px;
+
+}
+
+.x-positioning{
+  position: absolute;
+  top: calc(var(--nav-height) + 5%);
+  right: 20%;
+}
+
+.x-positioning img{
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
 }
