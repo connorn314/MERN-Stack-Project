@@ -3,8 +3,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGames } from "../../store/games";
 import { createBinding } from "../../store/bindings";
+import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
+import BindingIndex from "../BindingsIndex/BindingsIndex";
+import x from './green-X.png'
 import './ProfilePage.css'
 
 
@@ -35,7 +38,6 @@ export default function ProfilePage(){
                 controller: controller,
                 keyBinds: keybind
             }
-            console.log(binding)
             dispatch(createBinding(binding))
             alert('you did it')   
         }
@@ -44,7 +46,11 @@ export default function ProfilePage(){
 
       
     const handleMove = (e) => {
+        if (currentKey !== ''){
+            document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
+        }
         setCurrentKey(e.target.id)
+        document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
 
     
@@ -53,14 +59,25 @@ export default function ProfilePage(){
 
     tags.map(tag => {
         tag.addEventListener("mouseover", () => {
-            tag.style.backgroundColor = '#2E294E'
+            if (tag.id === `${currentKey}-container`){
+                tag.style.backgroundColor = '#2E294E'
+            }else{
+                tag.style.backgroundColor = '#2E294E'
+            }
+
         })
         tag.addEventListener("mouseleave", () => {
-            tag.style.backgroundColor = 'transparent'
+            if (tag.id === `${currentKey}-container`) {
+                tag.style.backgroundColor = 'red'
+            } else {
+                tag.style.backgroundColor = 'transparent'
+            }
         })
+
     })
 
     const handleClick = (i) => e => {
+        e.preventDefault();
         const gameObject = games[e.target.id]
     
         setSelectedGame(gameObject)
@@ -74,7 +91,21 @@ export default function ProfilePage(){
             setController('game-cube')
         }
         document.getElementById('profile-main-container').style.display = 'flex'
-        // document.getElementById('dropdown-container').style.display = 'none'
+        document.getElementById('dropdown-container').style.display = 'none'
+    }
+
+    const handleClose = e => {
+        e.preventDefault();
+        document.getElementById('profile-main-container').style.display = 'none'
+        document.getElementById('dropdown-container').style.display = 'block'
+        dispatch(clearCurrentBindings())
+        // selectedGame.validMovements.map(move => {
+        //     const selectionTag = document.getElementById(`${move}-selection`)
+        //     let currentText = selectionTag.innerText
+        //     selectionTag.innerText = ''
+        // })
+        // console.log(currentKey)
+        window.location.reload(false)
     }
 
     return(
@@ -92,6 +123,8 @@ export default function ProfilePage(){
                 </ul>
             </div>
             <div id="profile-main-container">
+                    <div className="x-positioning"><img onClick={handleClose} src={x}/></div>
+                <h1 className="profile-game-title">{selectedGame.title}</h1>
                 <Keyboard currentKey={currentKey} />
                 <div className="move-set-container">
                     <div className="individual-set-container1">
@@ -100,14 +133,17 @@ export default function ProfilePage(){
                     </div>
                         {moves.map((move, i) =>
                             <>
-                                <div className="individual-set-container">
+                                <div id={`${move}-container`} className="individual-set-container">
                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
                                     <div className="move-binding" id={`${move}-selection`}> </div>
                                 </div>
                             </>
                         )}
                 </div>
-                <button onClick={handleCreate}>Create</button>
+                <button className='create-button' onClick={handleCreate}>Create</button>
+            </div>
+            <div className="binding-container-profile">
+                <BindingIndex />
             </div>
         </div>
         </>

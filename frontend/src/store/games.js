@@ -4,6 +4,7 @@ const RECEIVE_GAMES = "games/RECEIVE_GAMES";
 const RECEIVE_GAME = "games/RECEIVE_GAME";
 const ADD_BINDING = "games/ADD_BINDING";
 const RECEIVE_BINDING = "bindings/RECEIVE_BINDING"
+const CLEAR_CURRENT_BINDINGS = "bindings/CLEAR_CURRENT_BINDINGS"
 
 export const addBinding = binding => ({
   type: ADD_BINDING,
@@ -22,6 +23,10 @@ const receiveGames = games => ({
 const receiveGame = game => ({
   type: RECEIVE_GAME,
   game
+});
+
+export const clearCurrentBindings = () => ({
+  type: CLEAR_CURRENT_BINDINGS
 });
 
 export const fetchGames = () => async dispatch => {
@@ -64,6 +69,10 @@ export const BindingsReducer = (state = {}, action) => {
       return {...state, ...action.binding}
     // case RECEIVE_BINDING:
     //   return { ...nextState, [action.binding.id]: action.binding }
+    // case RECEIVE_BINDING:
+    //   return { ...nextState, [action.binding.id]: action.binding }
+    case CLEAR_CURRENT_BINDINGS:
+      return {}
     default: 
       return state
   }

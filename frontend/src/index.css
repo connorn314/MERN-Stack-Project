@@ -137,7 +137,7 @@ table {
 
  a,
  a:hover,
- a:focus,
+ /* a:focus, */
  a:active {
    text-decoration: none;
    color: inherit;
@@ -158,3 +158,4 @@ form>.errors {
 body {
 font-family: 'Common Pixel', sans-serif;
 }
+
