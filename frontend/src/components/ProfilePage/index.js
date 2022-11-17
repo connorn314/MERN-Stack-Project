@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCurrentBindings, createBinding, fetchGames } from "../../store/games";
+import { fetchGames } from "../../store/games";
+import { createBinding } from "../../store/bindings";
+import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
