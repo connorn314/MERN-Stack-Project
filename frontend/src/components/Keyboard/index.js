@@ -18,8 +18,8 @@ export default function Keyboard ({currentKey}){
     let selectionTag
     document.addEventListener("keypress", (e) => {
       if (currentKey !== '') {
-        setSelectedKey(e.key)
-        setBinding({ [currentKey]: e.key })
+        setSelectedKey(e.code)
+        setBinding({ [currentKey]: e.code })
       }
     })
     if(selectedKey !== undefined && currentKey !== ''){

@@ -1,39 +1,51 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGames } from "../../store/games";
+import { createBinding, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
 import './ProfilePage.css'
 
 
+
 export default function ProfilePage(){
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const bindingForm = {}
     const [currentKey, setCurrentKey] = useState('');
-    const games = useSelector(state => Object.values(state.games))
+    const games = useSelector(state => Object.values(state.games));
+    const [selectedGame, setSelectedGame] = useState('');
     const [moves, setMoves] = useState([])
+    // const [keyBind, setKeyBind] = useState('')
+    const [controller, setController] = useState('')
     const history = useHistory()
+    const keybind = useSelector(state => state.currentBindings)
+    
     useEffect(()=>{
         dispatch(fetchGames())
-
-    },[])
-    document.addEventListener("keypress",(e) => {
-        if(currentKey !== ''){
-   
-
+    },[dispatch, keybind])
+    
+    const handleCreate = (e) => {
+ 
+        if (Object.values(keybind).length > 0){
+            let binding = {
+                user: user._id,
+                game: selectedGame._id,
+                controller: controller,
+                keyBinds: keybind
+            }
+            console.log(binding)
+            dispatch(createBinding(binding))
+            alert('you did it')   
         }
-    })
+    }
 
 
       
     const handleMove = (e) => {
         setCurrentKey(e.target.id)
-        // console.log(currentKey)
-        // document.getElementById(`${move}-${i}`).style.innerHTML = currentKey
     }
 
-    const moveSet = ['a', 'b', 'c']
     
     
     const tags = Array.from(document.getElementsByClassName("individual-set-container"))
@@ -47,11 +59,19 @@ export default function ProfilePage(){
         })
     })
 
-    const handleClick = e => {
-        history.push(`profile/${e.target.id}`)
+    const handleClick = (i) => e => {
         const gameObject = games[e.target.id]
+    
+        setSelectedGame(gameObject)
         setMoves(gameObject.validMovements)
-        
+
+        if (i === 0){
+            setController('xbox-one')
+        }else if (i === 1){
+            setController('pc')
+        } else if (i === 2){
+            setController('game-cube')
+        }
         document.getElementById('profile-main-container').style.display = 'flex'
         // document.getElementById('dropdown-container').style.display = 'none'
     }
@@ -64,7 +84,7 @@ export default function ProfilePage(){
                     <li><button className="add-keybind-button">Add Keybindings</button>
                         <ul class="dropdown">
                             {games.map((game, i)=>
-                                <li id={i} onClick={handleClick}>{game.title}</li>
+                                <li id={i} onClick={handleClick(i)}>{game.title}</li>
                                 )}
                         </ul>
                     </li>
@@ -86,6 +106,7 @@ export default function ProfilePage(){
                             </>
                         )}
                 </div>
+                <button onClick={handleCreate}>Create</button>
             </div>
         </div>
         </>
