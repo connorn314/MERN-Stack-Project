@@ -1,0 +1,29 @@
+#binding-item-container {
+    background-color: black;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 5% 20% 50% 20% 5%;
+    border-radius: 10px;
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+
+#game-mini-thumbnail-container {
+    grid-column-start: 2;
+}
+
+#actual-mini-thumbnail {
+    background-color: aquamarine;
+    color: black;
+    border-radius: 5px;
+    height: 120px;
+}
+
+#binding-detail-container {
+    grid-column-start: 3;
+    padding-left: 15px;
+}
+
+#controller-mini-thumbnail {
+    grid-column-start: 4;
+}
