@@ -19,7 +19,7 @@ export default function Keyboard ({currentKey}){
     document.addEventListener("keypress", (e) => {
       if (currentKey !== '') {
         setSelectedKey(e.code)
-        setBinding({ [currentKey]: e.code })
+        setBinding({ [currentKey]: e.key })
       }
     })
     if(selectedKey !== undefined && currentKey !== ''){
@@ -37,19 +37,6 @@ export default function Keyboard ({currentKey}){
 
 
   
-
-
-
-
-
-  const handleMouseOver = (e) => {
-  const fillColor = "#2E294E"
-    // e.target.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
-  }
-  const handleMouseLeave = (e) => {
-    // e.target.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
-  }
-
 
 
   const tags = Array.from(document.getElementsByClassName("key" ))
@@ -173,8 +160,7 @@ export default function Keyboard ({currentKey}){
   <g>
   <path
   id="~"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   
   className="key"
   fill="#fff"
@@ -191,8 +177,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="!"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -207,8 +192,7 @@ export default function Keyboard ({currentKey}){
   d="M60 0h60v60H60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -223,8 +207,7 @@ export default function Keyboard ({currentKey}){
   d="M120 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -239,8 +222,7 @@ export default function Keyboard ({currentKey}){
   d="M180 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -255,8 +237,7 @@ export default function Keyboard ({currentKey}){
   d="M240 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -271,8 +252,7 @@ export default function Keyboard ({currentKey}){
   d="M300 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -287,8 +267,7 @@ export default function Keyboard ({currentKey}){
   d="M360 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -303,8 +282,7 @@ export default function Keyboard ({currentKey}){
   d="M420 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -319,8 +297,7 @@ export default function Keyboard ({currentKey}){
   d="M480 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -335,8 +312,7 @@ export default function Keyboard ({currentKey}){
   d="M540 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -351,8 +327,7 @@ export default function Keyboard ({currentKey}){
   d="M600 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -367,8 +342,7 @@ export default function Keyboard ({currentKey}){
   d="M660 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -383,8 +357,7 @@ export default function Keyboard ({currentKey}){
   d="M720 0h60v60h-60V0z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -400,8 +373,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -417,8 +389,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
    id="q"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -434,8 +405,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="w"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -451,8 +421,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="e"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -468,8 +437,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="r"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -485,8 +453,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="t"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -502,8 +469,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
     id="y"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -519,8 +485,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="u"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -536,8 +501,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="i"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -553,8 +517,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="o"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -570,8 +533,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="p"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -587,8 +549,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -604,8 +565,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -621,8 +581,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -638,8 +597,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -655,8 +613,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="a"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -672,8 +629,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="s"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -689,8 +645,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="d"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -706,8 +661,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="f"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -723,8 +677,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="g"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -740,8 +693,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="h"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -757,8 +709,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="j"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -774,8 +725,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="k"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -791,8 +741,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="l"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -808,8 +757,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id=";"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -825,8 +773,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="'"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -842,8 +789,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="enter"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -859,8 +805,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="shift"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -876,8 +821,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="z"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -893,8 +837,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="x"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -910,8 +853,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
       id="c"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -927,8 +869,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="v"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -944,8 +885,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="b"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -961,8 +901,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="n"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -978,8 +917,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="m"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -995,8 +933,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id=","
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -1012,8 +949,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="."
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -1029,8 +965,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
    id="/"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -1046,8 +981,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
         id="shift-r"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -1063,8 +997,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
     id="ctrl-l"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -1080,8 +1013,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   id="ctrl-r"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -1097,8 +1029,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
  
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -1114,8 +1045,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -1131,8 +1061,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
        id="space"
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -1147,8 +1076,7 @@ export default function Keyboard ({currentKey}){
   d="M240 240h360v60H240v-60z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#efefef"
   fillOpacity="0"
@@ -1163,8 +1091,7 @@ export default function Keyboard ({currentKey}){
   d="M90 240h60v60H90v-60z"
   ></path>
   <path
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#efefef"
   fillOpacity="0"
@@ -1180,8 +1107,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
   
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   fill="#efefef"
   fillOpacity="0"
@@ -1197,8 +1123,7 @@ export default function Keyboard ({currentKey}){
   ></path>
   <path
 
-  onMouseEnter={(e) => handleMouseOver(e)}
-  onMouseLeave={(e) => handleMouseLeave(e)}
+
   className="key"
   style={{
     WebkitTextAlign: "center",
