@@ -2,10 +2,11 @@ import jwtFetch from "./jwt";
 
 const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
 const RECEIVE_ONE_BINDING = "bindings/RECEIVE_ONE_BINDING"
+const RECEIVE_BINDINGS = "bindings/RECEIVE_BINDINGS"
 
 
 export const receiveBindings = (bindings) => ({
-    type: POPULATE_BINDINGS,
+    type: RECEIVE_BINDINGS,
     bindings
 })
 
@@ -47,13 +48,35 @@ export const createBinding = (binding) => async dispatch => {
     }
 }
 
+export const getUserBindings = (userId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/bindings/${userId}`)
+    const bindings = await res.json();
+    if (res.ok) {
+        dispatch(receiveBindings(bindings))
+        return bindings
+    } else {
+        return res
+    }
+}
+
+export const getGameBindings = (gameId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/games/bindings/${gameId}`)
+    const bindings = await res.json();
+    if (res.ok) {
+        dispatch(receiveBindings(bindings))
+        return bindings
+    } else {
+        return res
+    }
+}
+
 
 const bindingReducer = (state = {}, action) => {
     Object.freeze(state);
     let nextState = { ...state }
     switch (action.type){
-        case POPULATE_BINDINGS:
-            nextState = { ...action.bindings }
+        case RECEIVE_BINDINGS:
+            nextState = { ...nextState, ...action.bindings }
             return nextState;
         case RECEIVE_ONE_BINDING:
             nextState = { ...nextState, ...Object.values(action.binding) }
