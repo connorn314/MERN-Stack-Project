@@ -1,10 +1,61 @@
 import './xbox.css'
-import React from "react";
+import React, { useEffect } from "react";
+import { useState, useParams, useDispatch } from 'react';
+export default function XboxController({currentKey}){
+  console.log(currentKey)
+  // const {game_id} = useParams()
 
-export default function XboxController(){
+  const dummyId = 0
+  const [binding, setBinding] = useState({})
+  const [selectedKey, setSelectedKey] = useState()
+  // const dispatch = useDispatch()
+  // const userId = dispatch(receiveCurrentUser)
+  // const [selectionTag, setSelectionTag] = useState()
+  // useEffect(()=>{
+  //   let selectionTag
+    // document.addEventListener("keypress", (e) => {
+    //   if (currentKey !== '') {
+    //     setSelectedKey(e.code)
+    //     setBinding({ [currentKey]: e.key })
+    //   }
+    // })
+    // if(selectedKey !== undefined && currentKey !== ''){
+    
+    //   const selectionTag = document.getElementById(`${currentKey}-selection`)
+
+    //   let currentText = selectionTag.innerText
+    //   console.log(currentText)
+    //   selectionTag.innerText = selectedKey
+    //   dispatch(addBinding({ [currentKey]: selectedKey }))
  
+    // }
+  
+  // },[currentKey,selectedKey])
+
+  const tags = Array.from(document.getElementsByClassName("key" ))
+
+  tags.forEach(tag => {
+
+    if(binding[currentKey] === tag.id){
+      const fillColor = "red"
+      tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+    }else{
+      tag.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
+    }
+
+  })
+
+  useEffect(() => {
+    console.log(binding)
+  },[currentKey])
+
     const handleClick = (e) => {
-        console.log(e.target.id)
+      if (currentKey !== '') {
+        setSelectedKey(e.code)
+        setBinding({ [currentKey]: e.target.id })
+        console.log({ [currentKey]: e.target.id })
+      }
+  
     }
   return (
 
@@ -77,7 +128,7 @@ export default function XboxController(){
           ></path>
           <ellipse cx="14817" cy="8352" fill="#49FB35" rx="615" ry="210"></ellipse>
         
-          <circle cx="8209" cy="15200" r="1772" fill="#49FB35" id="l-analog" ></circle>
+          <circle         className='controllerButton' cx="8209" cy="15200" r="1772" fill="#49FB35" id="l-analog" ></circle>
       
      
           <circle cx="22386" cy="20546" r="1772" fill="#49FB35"></circle>
@@ -92,6 +143,7 @@ export default function XboxController(){
           <circle cx="29909" cy="14975" r="1217" fill="none" id="b" stroke='#49FB35'
             onClick={(e) => handleClick(e)}></circle>
           <path
+          className='controllerButton'
       id="x"
       onClick={(e) => handleClick(e)}
             fill="#49FB35"
@@ -99,6 +151,7 @@ export default function XboxController(){
             d="M24428 15816l510-676-450-631h210l240 346c45 60 75 120 105 150 31-45 61-90 91-135l270-361h195l-465 631 495 676h-210l-330-466c-30-14-46-45-61-75-30 45-45 75-60 90l-330 451h-210 0z"
           ></path>
           <path
+                    className='controllerButton'
              id="x"
              onClick={(e) => handleClick(e)}
             fill="none"
@@ -106,12 +159,14 @@ export default function XboxController(){
             d="M24428 15816l510-676-450-631h210l240 346c45 60 75 120 105 150 31-45 61-90 91-135l270-361h195l-465 631 495 676h-210l-330-466c-30-14-46-45-61-75-30 45-45 75-60 90l-330 451h-210z"
           ></path>
           <path
+                    className='controllerButton'
                  id="y"
                  onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M27446 13533v-556l-510-750h210l255 405c45 75 90 135 135 211 46-61 91-136 150-226l256-390h195l-525 750v556h-166 0z"
           ></path>
           <path
+                    className='controllerButton'
                   id="y"
                   onClick={(e) => handleClick(e)}
             fill="none"
@@ -119,12 +174,14 @@ export default function XboxController(){
             d="M27446 13533v-556l-510-750h210l255 405c45 75 90 135 135 211 46-61 91-136 150-226l256-390h195l-525 750v556h-166 0z"
           ></path>
           <path
+                    className='controllerButton'
               id="b"
               onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M29503 15635v-1306h496c90 0 180 15 240 30 61 30 106 76 136 120 29 60 44 120 44 181 0 59-15 104-44 150-30 60-75 90-136 120 91 30 151 75 180 120 46 60 76 120 76 195s-15 120-46 180c-30 45-59 91-89 121-45 30-91 45-151 60s-120 29-210 29h-496 0zm166-765h285c75 0 135 0 165-15 45-15 75-30 105-60 15-31 30-76 30-120 0-45-15-76-30-106-15-45-45-60-90-75-29-15-105-15-195-15h-270v391h0zm0 615h330c60 0 90-15 120-15 45 0 75-15 105-30 15-15 45-45 61-75 15-29 30-75 30-105 0-60-15-105-46-135-15-30-60-60-105-75s-105-30-180-30h-315v465h0z"
           ></path>
           <path
+                    className='controllerButton'
                        id="b"
                        onClick={(e) => handleClick(e)}
             fill="none"
@@ -132,12 +189,14 @@ export default function XboxController(){
             d="M29503 15635v-1306h496c90 0 180 15 240 30 61 30 106 76 136 120 29 60 44 120 44 181 0 59-15 104-44 150-30 60-75 90-136 120 91 30 151 75 180 120 46 60 76 120 76 195s-15 120-46 180c-30 45-59 91-89 121-45 30-91 45-151 60s-120 29-210 29h-496 0zm166-765h285c75 0 135 0 165-15 45-15 75-30 105-60 15-31 30-76 30-120 0-45-15-76-30-106-15-45-45-60-90-75-29-15-105-15-195-15h-270v391h0zm0 615h330c60 0 90-15 120-15 45 0 75-15 105-30 15-15 45-45 61-75 15-29 30-75 30-105 0-60-15-105-46-135-15-30-60-60-105-75s-105-30-180-30h-315v465h0z"
           ></path>
           <path
+                className='controllerButton'
                        id="a"
                        onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M26815 17948l496-1306h195l541 1306h-195l-166-390h-540l-150 390h-181 0zm376-525h451l-136-376c-45-105-75-195-105-270-15 90-30 165-60 255l-150 391z"
           ></path>
           <path
+                className='controllerButton'
                      id="a"
                      onClick={(e) => handleClick(e)}
             fill="none"
@@ -145,6 +204,7 @@ export default function XboxController(){
             d="M26815 17948l496-1306h195l541 1306h-195l-166-390h-540l-150 390h-181 0zm376-525h451l-136-376c-45-105-75-195-105-270-15 90-30 165-60 255l-150 391z"
           ></path>
           <path
+                    className='controllerButton'
                      id="a"
                      onClick={(e) => handleClick(e)}
             fill="none"

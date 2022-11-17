@@ -40,10 +40,6 @@ export default function Keyboard ({currentKey}){
   
 
 
-
-
-
-
   const tags = Array.from(document.getElementsByClassName("key" ))
 
   tags.forEach(tag => {
