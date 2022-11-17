@@ -4,7 +4,8 @@ import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
 
 const BindingIndexItem = ({binding}) => {
-    
+    const moveSet = binding.keyBinds;
+
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
             return xboxController
@@ -18,21 +19,41 @@ const BindingIndexItem = ({binding}) => {
     }
 
     return (
-        <div id="binding-item-container">
-            <div id="game-mini-thumbnail-container">
-                <div id='actual-mini-thumbnail'>
-                    GAME IMG
+        <>
+        <div className='main-individual-binding-container'>
+            <div className='toggle-menu'>Hello
+            
+            </div>
+
+            <div id="binding-item-container">
+                <div id="game-mini-thumbnail-container">
+                    <div id='actual-mini-thumbnail'>
+                        GAME IMG
+                    </div>
+                </div>
+                <div id='binding-detail-container'>
+                    <div className="binding-set-container">
+                        <div className="bindpage-move-title-name">Moves</div>
+                        <div className="bindpage-move-title-binding">Bindings</div>
+                    </div>
+                    {Object.keys(moveSet).map(move =>
+                        <>
+                            <div className="individual-set-container">
+                                <div className='move-name'>{move}</div>
+                                <div className="move-binding">{moveSet[move]}</div>
+                            </div>
+                        </>
+                    )}            
+                </div>
+                <div id='controller-mini-thumbnail'>
+                    <div id='controller-icon-container'>
+                        <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
+                    </div>
                 </div>
             </div>
-            <div id='binding-detail-container'>
-                Binding Name
-            </div>
-            <div id='controller-mini-thumbnail'>
-                <div id='controller-icon-container'>
-                    <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
-                </div>
-            </div>
+
         </div>
+        </>
     )
 }
 
