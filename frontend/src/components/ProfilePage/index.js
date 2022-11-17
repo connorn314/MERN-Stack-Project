@@ -26,6 +26,7 @@ export default function ProfilePage(){
     
     useEffect(()=>{
         dispatch(fetchGames())
+        dispatch()
     },[dispatch, keybind])
     
     const handleCreate = (e) => {

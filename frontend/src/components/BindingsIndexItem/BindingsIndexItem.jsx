@@ -2,9 +2,12 @@ import './BindingsIndexItem.css';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
+import { useDispatch, useSelector } from 'react-redux';
 
 const BindingIndexItem = ({binding}) => {
     const moveSet = binding.keyBinds;
+    const user = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
 
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
@@ -15,6 +18,19 @@ const BindingIndexItem = ({binding}) => {
             return gamecubeController
         } else {
             return null
+        }
+    }
+
+    const openUpdate = e => {
+        e.preventDefault();
+    }
+
+    const deleteBinding = e => {
+        e.preventDefault();
+        console.log(binding.user)
+        console.log(user)
+        if (user._id === binding.user){
+            dispatch(deleteBinding)
         }
     }
 
@@ -47,8 +63,8 @@ const BindingIndexItem = ({binding}) => {
                     </div>
                 </div>
                 <div className='toggle-menu'>
-                    Hello
-            
+                    <div onClick={openUpdate}>update</div>
+                    <div onClick={deleteBinding}>delete</div>
                 </div>
             </div>
 
