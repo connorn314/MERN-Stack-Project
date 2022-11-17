@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGames } from "../../store/games";
 import { createBinding } from "../../store/bindings";
 import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
