@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGame } from "../../store/games";
 import { useParams } from "react-router-dom";
 import './GameShowPage.css'
+import BindingIndex from "../BindingsIndex/BindingsIndex";
 
 const GameShowPage = () => {
     const { gameId } = useParams();
@@ -12,14 +13,6 @@ const GameShowPage = () => {
     useEffect(() => {
         dispatch(fetchGame(gameId))
     }, [])
-
-    // let compat = (game && game.compatibility.split(" ").length > 1) ? (
-    //     <div>
-    //         {game.compatibility.split(" ").forEach(element => {
-    //             <div key={element}>{element}</div>
-    //         })}
-    //     </div>
-    // ) : null
 
     return (
         <div id="game-show-page-container">
@@ -61,6 +54,7 @@ const GameShowPage = () => {
                     </>
                 )}
             </div>
+            <BindingIndex />
         </div>
     )
 }

@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import games from './games';
+import bindings from './bindings';
 
 const rootReducer = combineReducers({
   session,
   games,
+  bindings,
   errors
 });
 
