@@ -3,6 +3,7 @@ import jwtFetch from "./jwt";
 const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
 const RECEIVE_ONE_BINDING = "bindings/RECEIVE_ONE_BINDING"
 const RECEIVE_BINDINGS = "bindings/RECEIVE_BINDINGS"
+const REMOVE_BINDING = "bindings/REMOVE_BINDING"
 
 
 export const receiveBindings = (bindings) => ({
@@ -13,6 +14,11 @@ export const receiveBindings = (bindings) => ({
 export const receiveOneBinding = (binding) => ({
     type: RECEIVE_ONE_BINDING,
     binding
+})
+
+export const removeBinding = (bindingId) => ({
+    type: REMOVE_BINDING,
+    bindingId
 })
 
 export const populateBindings = () => async (dispatch) => {
@@ -70,6 +76,28 @@ export const getGameBindings = (gameId) => async (dispatch) => {
     }
 }
 
+export const updateBinding = (binding) => async dispatch => {
+    const res = await jwtFetch(`/api/bindings/${binding._id}/edit`, {
+        method: 'PATCH',
+        body: JSON.stringify(binding),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    if (res.ok) {
+        const updatedBinding = await res.json();
+        dispatch(receiveOneBinding(updatedBinding))
+    }
+}
+
+export const deleteBinding = (binding) => async dispatch => {
+    const res = await jwtFetch(`/api/bindings/${binding._id}`, {
+        method: 'DELETE'
+    })
+    dispatch(removeBinding(binding))
+}
+
 
 const bindingReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -80,6 +108,9 @@ const bindingReducer = (state = {}, action) => {
             return nextState;
         case RECEIVE_ONE_BINDING:
             nextState = { ...nextState, ...Object.values(action.binding) }
+            return nextState;
+        case REMOVE_BINDING:
+            delete nextState[action.bindingId];
             return nextState;
         default:
             return state;
