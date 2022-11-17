@@ -1,14 +1,17 @@
 import './BindingsIndexItem.css';
+import * as userActions from '../../store/users';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const BindingIndexItem = ({binding}) => {
     const moveSet = binding.keyBinds;
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-
+    const author = useSelector(state => state.users[binding.user])
+    
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
             return xboxController
@@ -20,6 +23,10 @@ const BindingIndexItem = ({binding}) => {
             return null
         }
     }
+
+    useEffect(() => {
+        dispatch(userActions.getOneUser(binding.user))
+    }, [])
 
     const openUpdate = e => {
         e.preventDefault();
@@ -40,7 +47,10 @@ const BindingIndexItem = ({binding}) => {
             <div id="binding-item-container">
                 <div id="game-mini-thumbnail-container">
                     <div id='actual-mini-thumbnail'>
-                        GAME IMG
+                        <div id='author-div'>By:</div>
+                        {author && (
+                            <div id='author-div'>{author.username}</div>
+                        )}
                     </div>
                 </div>
                 <div id='binding-detail-container'>
