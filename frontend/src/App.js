@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/games" component={GameIndex} />
         <Route exact path="/games/:gameId" component={GameShowPage}/>
 
-        <AuthRoute path="/test" component={XboxController}/>
+        <Route path="/test" component={XboxController}/>
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
 

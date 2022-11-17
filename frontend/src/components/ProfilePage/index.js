@@ -44,6 +44,7 @@ export default function ProfilePage(){
       
     const handleMove = (e) => {
         setCurrentKey(e.target.id)
+
     }
 
     
@@ -61,7 +62,7 @@ export default function ProfilePage(){
 
     const handleClick = (i) => e => {
         const gameObject = games[e.target.id]
-    
+
         setSelectedGame(gameObject)
         setMoves(gameObject.validMovements)
 
