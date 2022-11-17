@@ -17,6 +17,11 @@
   color: #49FB35;
 }
 
+.signup-link:link{
+  text-decoration: none;
+  color: #999;
+}
+
 .links-auth{
   display: flex;
   width: 20%;

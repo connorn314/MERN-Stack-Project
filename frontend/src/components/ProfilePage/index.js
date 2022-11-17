@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBinding, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
+import BindingIndex from "../BindingsIndex/BindingsIndex";
 import './ProfilePage.css'
 
 
@@ -43,7 +44,11 @@ export default function ProfilePage(){
 
       
     const handleMove = (e) => {
+        if (currentKey !== ''){
+            document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
+        }
         setCurrentKey(e.target.id)
+        document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
 
     
@@ -52,11 +57,23 @@ export default function ProfilePage(){
 
     tags.map(tag => {
         tag.addEventListener("mouseover", () => {
-            tag.style.backgroundColor = '#2E294E'
+            console.log(tag.id)
+            console.log(currentKey)
+            if (tag.id === `${currentKey}-container`){
+                tag.style.backgroundColor = '#2E294E'
+            }else{
+                tag.style.backgroundColor = '#2E294E'
+            }
+
         })
         tag.addEventListener("mouseleave", () => {
-            tag.style.backgroundColor = 'transparent'
+            if (tag.id === `${currentKey}-container`) {
+                tag.style.backgroundColor = 'red'
+            } else {
+                tag.style.backgroundColor = 'transparent'
+            }
         })
+
     })
 
     const handleClick = (i) => e => {
@@ -99,14 +116,17 @@ export default function ProfilePage(){
                     </div>
                         {moves.map((move, i) =>
                             <>
-                                <div className="individual-set-container">
+                                <div id={`${move}-container`} className="individual-set-container">
                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
                                     <div className="move-binding" id={`${move}-selection`}> </div>
                                 </div>
                             </>
                         )}
                 </div>
-                <button onClick={handleCreate}>Create</button>
+                <button className='create-button' onClick={handleCreate}>Create</button>
+            </div>
+            <div className="binding-container-profile">
+                <BindingIndex />
             </div>
         </div>
         </>
