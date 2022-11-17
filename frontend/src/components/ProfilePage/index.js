@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBinding, fetchGames } from "../../store/games";
+import { fetchGames } from "../../store/games";
+import { createBinding } from "../../store/bindings";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
 import './ProfilePage.css'

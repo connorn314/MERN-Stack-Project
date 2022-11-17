@@ -14,10 +14,6 @@ export const getBindings = state => {
   return state.games
 }
 
-export const receiveBinding = binding => ({
-  type: RECEIVE_BINDING,
-  binding
-})
 const receiveGames = games => ({
   type: RECEIVE_GAMES,
   games
@@ -40,20 +36,10 @@ export const fetchGame = (gameId) => async dispatch => {
   dispatch(receiveGame(game))
 }
 
-export const createBinding = (binding) => async dispatch => {
-  const res = await jwtFetch('/api/bindings/new', {
-    method: 'POST',
-    body: JSON.stringify(binding)
-  });
-  const newBinding = await res.json();
-  if (newBinding){
-    dispatch(receiveBinding(newBinding));
-  }
-}
-
 const initialState = {
   keyBindings: undefined
 }
+
 export const gameReducer = (state = {}, action) => {
   Object.freeze(state);
   const nextState = { ...state };
@@ -63,7 +49,6 @@ export const gameReducer = (state = {}, action) => {
       return {...action.games}
     case RECEIVE_GAME:
       return {...nextState, [action.game.id]: action.game}
-
     default:
       return state;
   }
@@ -77,9 +62,9 @@ export const BindingsReducer = (state = {}, action) => {
   switch(action.type){
     case ADD_BINDING:
       return {...state, ...action.binding}
-    case RECEIVE_BINDING:
-      return { ...nextState, [action.binding.id]: action.binding }
-      default: 
+    // case RECEIVE_BINDING:
+    //   return { ...nextState, [action.binding.id]: action.binding }
+    default: 
       return state
   }
 }
