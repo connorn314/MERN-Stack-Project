@@ -17,8 +17,6 @@
 }
 
 
-
-
 .move-name{
   font-size: 20px;
   padding: 5px;
@@ -164,6 +162,9 @@ ul li ul li:hover{
         box-shadow: 0 0 3px #2ba805;
       }
     }
+  ul li{
+    width: fit-content;
+  }
     
 .add-keybind-button{
   display: inline-block;
@@ -175,6 +176,7 @@ ul li ul li:hover{
   color: #2E294E;
   font-size: 24px;
   cursor: pointer;
+  width: fit-content;
 }
 
 #dropdown-container{

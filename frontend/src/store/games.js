@@ -3,7 +3,6 @@ import jwtFetch from './jwt';
 const RECEIVE_GAMES = "games/RECEIVE_GAMES";
 const RECEIVE_GAME = "games/RECEIVE_GAME";
 const ADD_BINDING = "games/ADD_BINDING";
-const RECEIVE_BINDING = "bindings/RECEIVE_BINDING"
 const CLEAR_CURRENT_BINDINGS = "bindings/CLEAR_CURRENT_BINDINGS"
 
 export const addBinding = binding => ({
@@ -67,10 +66,6 @@ export const BindingsReducer = (state = {}, action) => {
   switch(action.type){
     case ADD_BINDING:
       return {...state, ...action.binding}
-    // case RECEIVE_BINDING:
-    //   return { ...nextState, [action.binding.id]: action.binding }
-    // case RECEIVE_BINDING:
-    //   return { ...nextState, [action.binding.id]: action.binding }
     case CLEAR_CURRENT_BINDINGS:
       return {}
     default: 
