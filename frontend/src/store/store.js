@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
+import users from './users';
 import errors from './errors';
 import games from './games';
 import bindings from './bindings';
@@ -8,6 +9,7 @@ import { BindingsReducer } from './games';
 
 const rootReducer = combineReducers({
   session,
+  users,
   games,
   bindings,
   errors,

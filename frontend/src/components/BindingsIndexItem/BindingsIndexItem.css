@@ -21,11 +21,15 @@
 }
 
 #actual-mini-thumbnail {
-    background-color: aquamarine;
-    color: black;
+    color: aquamarine;
     border-radius: 5px;
+    border: 2px solid aquamarine;
     margin-top: 17px;
     height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #binding-detail-container {
@@ -104,4 +108,10 @@
 
 .toggle-menu div{
     color: white
+}
+
+#author-div {
+    padding: 5px 0px;
+    font-weight: 900;
+    font-size: 35px;
 }
