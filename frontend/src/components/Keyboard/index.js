@@ -27,7 +27,6 @@ export default function Keyboard ({currentKey}){
       const selectionTag = document.getElementById(`${currentKey}-selection`)
 
       let currentText = selectionTag.innerText
-      console.log(currentText)
       selectionTag.innerText = selectedKey
       dispatch(addBinding({ [currentKey]: selectedKey }))
  
