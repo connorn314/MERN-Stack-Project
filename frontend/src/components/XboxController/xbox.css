@@ -1,13 +1,15 @@
 #xbox-container {
     display: flex;
-    height: 10%;
-    width: 20%;
+    background-image: url('../SessionForms/darkpurple.jpeg');
+    height: 100%;
+    width: 100%;
     justify-content: center;
-    margin-left: 40%;
+   
     padding: 50px;
 }
 
-/* svg {
-    width: 125%;
-    height: 100%;
-} */
+#xbox-container svg {
+    width: 50%;
+    height: 0%;
+    background-color: transparent;
+}
