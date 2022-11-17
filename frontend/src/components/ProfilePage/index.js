@@ -80,7 +80,7 @@ export default function ProfilePage(){
     const handleClick = (i) => e => {
         e.preventDefault();
         const gameObject = games[e.target.id]
-    
+
         setSelectedGame(gameObject)
         setMoves(gameObject.validMovements)
 
