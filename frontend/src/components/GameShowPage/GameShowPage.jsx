@@ -4,6 +4,7 @@ import { fetchGame } from "../../store/games";
 import { useParams } from "react-router-dom";
 import './GameShowPage.css'
 import BindingIndex from "../BindingsIndex/BindingsIndex";
+import { getGameBindings } from "../../store/bindings";
 
 const GameShowPage = () => {
     const { gameId } = useParams();
@@ -12,6 +13,7 @@ const GameShowPage = () => {
     let game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == gameId)
     useEffect(() => {
         dispatch(fetchGame(gameId))
+        dispatch(getGameBindings(gameId))
     }, [])
 
     return (

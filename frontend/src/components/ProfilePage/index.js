@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBinding } from "../../store/bindings";
+import { createBinding, getUserBindings } from "../../store/bindings";
 import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
@@ -23,10 +23,11 @@ export default function ProfilePage(){
     const [controller, setController] = useState('')
     const history = useHistory()
     const keybind = useSelector(state => state.currentBindings)
+    const bindings = useSelector(state => state.bindings)
     
     useEffect(()=>{
         dispatch(fetchGames())
-        dispatch()
+        dispatch(getUserBindings(user._id))
     },[dispatch, keybind])
     
     const handleCreate = (e) => {
