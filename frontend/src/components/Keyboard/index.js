@@ -3,7 +3,7 @@ import { useState } from "react";
 import {useDispatch}  from "react-redux"
 import { useParams } from "react-router-dom";
 import {addBinding} from '../../store/games'
-
+import { receiveCurrentUser } from "../../store/session";
 
 export default function Keyboard ({currentKey}){
   const {game_id} = useParams()
@@ -12,6 +12,7 @@ export default function Keyboard ({currentKey}){
   const [binding, setBinding] = useState({})
   const [selectedKey, setSelectedKey] = useState()
   const dispatch = useDispatch()
+  // const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
   useEffect(()=>{
     let selectionTag
