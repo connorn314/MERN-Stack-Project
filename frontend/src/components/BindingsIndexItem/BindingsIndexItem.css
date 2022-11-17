@@ -1,6 +1,4 @@
-.main-individual-binding-container{
-    /* display: flex; */
-}
+
 #binding-item-container {
     background-color: black;
     transition: box-shadow .2s;
