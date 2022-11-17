@@ -1,35 +1,53 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {useDispatch}  from "react-redux"
+import { useParams } from "react-router-dom";
 import {addBinding} from '../../store/games'
 
 
 export default function Keyboard ({currentKey}){
+  const {game_id} = useParams()
 
   const dummyId = 0
   const [binding, setBinding] = useState({})
   const [selectedKey, setSelectedKey] = useState()
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    document.addEventListener("keypress",(e) => {
-      if(currentKey !== ''){
-        
-        setBinding({[currentKey]: e.key})
-        
+  const [selectionTag, setSelectionTag] = useState()
+  useEffect(()=>{
+    let selectionTag
+    document.addEventListener("keypress", (e) => {
+      if (currentKey !== '') {
+        setSelectedKey(e.key)
+        setBinding({ [currentKey]: e.key })
       }
     })
+    if(selectedKey !== undefined && currentKey !== ''){
+    
+      const selectionTag = document.getElementById(`${currentKey}-selection`)
 
-  },[currentKey])
-  // dispatch(addBinding(binding))
-  console.log(binding)
+      let currentText = selectionTag.innerText
+      console.log(currentText)
+      selectionTag.innerText = selectedKey
+      dispatch(addBinding({ [currentKey]: selectedKey }))
+ 
+    }
+  
+  },[currentKey,selectedKey])
+
+
+
+  
+
+
+
+
 
   const handleMouseOver = (e) => {
   const fillColor = "#2E294E"
-    e.target.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+    // e.target.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
   }
   const handleMouseLeave = (e) => {
-    e.target.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
+    // e.target.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
   }
 
 

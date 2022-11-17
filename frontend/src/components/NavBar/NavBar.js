@@ -16,9 +16,8 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <Link to={'/'}>Builds</Link>
-          <Link to={'/'}>Friends</Link>
-          <Link to={'/'}>Profile</Link>
+          <Link className='signup-link' to={'/games'}>Games</Link>
+          <Link className='signup-link' to={'/profile'}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
