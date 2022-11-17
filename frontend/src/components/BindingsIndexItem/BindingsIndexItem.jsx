@@ -3,11 +3,15 @@ import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteBinding } from '../../store/bindings';
+import Keyboard from '../Keyboard';
+import { useState } from 'react';
 
-const BindingIndexItem = ({binding}) => {
+const BindingIndexItem = ({binding ,currentKey}) => {
     const moveSet = binding.keyBinds;
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const [game, setGame] = useState('')
 
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
@@ -22,15 +26,21 @@ const BindingIndexItem = ({binding}) => {
     }
 
     const openUpdate = e => {
-        e.preventDefault();
+        if (user._id === binding.user) {
+            document.getElementById(binding._id).style.display = 'block'
+
+        }    
     }
 
-    const deleteBinding = e => {
-        e.preventDefault();
-        console.log(binding.user)
-        console.log(user)
+    const controller = {
+        'pc': <Keyboard currentKey={currentKey} />,
+
+
+    }
+
+    const deleteBind = e => {
         if (user._id === binding.user){
-            dispatch(deleteBinding)
+            dispatch(deleteBinding(binding))
         }
     }
 
@@ -64,10 +74,12 @@ const BindingIndexItem = ({binding}) => {
                 </div>
                 <div className='toggle-menu'>
                     <div onClick={openUpdate}>update</div>
-                    <div onClick={deleteBinding}>delete</div>
+                    <div onClick={deleteBind}>delete</div>
                 </div>
             </div>
-
+            <div id={binding._id} className='update-binding'>
+                {controller[binding.controller]}
+            </div>
         </div>
         </>
     )
