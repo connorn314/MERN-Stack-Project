@@ -12,6 +12,7 @@ import GameIndex from './components/GamesIndex/GamesIndex';
 import Keyboard from './components/Keyboard'
 import { getCurrentUser } from './store/session';
 import XboxController from './components/XboxController';
+import GameShowPage from './components/GameShowPage/GameShowPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,6 +29,7 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <AuthRoute exact path="/games" component={GameIndex} />
+        <AuthRoute exact path="/games/:gameId" component={GameShowPage}/>
         <AuthRoute path="/profile" component={ProfilePage} />
         <AuthRoute path="/test" component={XboxController}/>
       </Switch>
