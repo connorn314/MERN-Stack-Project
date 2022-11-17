@@ -34,6 +34,9 @@ export const fetchGame = (gameId) => async dispatch => {
   dispatch(receiveGame(game))
 }
 
+const initialState = {
+  keyBindings: undefined
+}
 export const gameReducer = (state = {}, action) => {
   Object.freeze(state);
   const nextState = { ...state };
@@ -43,10 +46,20 @@ export const gameReducer = (state = {}, action) => {
       return {...action.games}
     case RECEIVE_GAME:
       return {...nextState, [action.game.id]: action.game}
-      case ADD_BINDING:
-        return {...nextState, ...action.binding}
+
     default:
       return state;
+  }
+}
+
+
+const initialStateBindings = {bindings: undefined}
+export const BindingsReducer = (state = {}, action) => {
+  switch(action.type){
+    case ADD_BINDING:
+      return {...state, ...action.binding}
+      default: 
+      return state
   }
 }
 

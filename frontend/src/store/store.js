@@ -4,12 +4,14 @@ import session from './session';
 import errors from './errors';
 import games from './games';
 import bindings from './bindings';
+import { BindingsReducer } from './games';
 
 const rootReducer = combineReducers({
   session,
   games,
   bindings,
-  errors
+  errors,
+  currentBindings: BindingsReducer
 });
 
 let enhancer;
