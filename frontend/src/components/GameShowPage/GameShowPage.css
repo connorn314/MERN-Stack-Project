@@ -1,0 +1,80 @@
+#game-show-page-container {
+    background: radial-gradient(rgb(58, 0, 112), rgb(146, 55, 231));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #49FB35;
+}
+
+#temp-cont {
+    height: 100%;
+    padding: 10%;
+    color: aquamarine;
+}
+
+#game-details-container {
+    width: 85%;
+    padding: 6% 6%;
+    background: radial-gradient( rgb(36, 36, 36), rgb(0, 0, 0));
+    border-radius: 20px;
+}
+
+#details-title-container {
+    font-weight: 900;
+    font-size: 60px;
+    padding-bottom: 15px;
+}
+
+#game-img-container {
+    height: 400px;
+    width: 100%;
+    color: black;
+    background-color: antiquewhite;
+}
+
+#details-content-container {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+#right-side-title {
+    font-size: 30px;
+}
+
+#description-cont {
+    padding-top: 20px;
+}
+
+#dev-title {
+    font-weight: 900;
+}
+
+#details-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20%;
+    border-radius: 15px;
+    border: 2px solid #49FB35;
+}
+
+#right-side-title {
+    padding: 20% 0% ;
+}
+
+#right-side-dev {
+    background-color: #222222;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#compatability-container {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #49FB35;
+}

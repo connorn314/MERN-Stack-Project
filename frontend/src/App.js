@@ -12,6 +12,7 @@ import GameIndex from './components/GamesIndex/GamesIndex';
 import Keyboard from './components/Keyboard'
 import { getCurrentUser } from './store/session';
 import XboxController from './components/XboxController';
+import GameShowPage from './components/GameShowPage/GameShowPage';
 import { Route } from 'react-router-dom';
 
 function App() {
@@ -28,11 +29,13 @@ function App() {
         <Route exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-        <AuthRoute path="/test" component={XboxController}/>
+        <Route exact path="/games" component={GameIndex} />
+        <Route exact path="/games/:gameId" component={GameShowPage}/>
 
+        <AuthRoute path="/test" component={XboxController}/>
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
-        <ProtectedRoute exact path="/games" component={GameIndex} />
+
       </Switch>
     </>
   );
