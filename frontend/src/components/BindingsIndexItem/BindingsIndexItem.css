@@ -13,7 +13,7 @@
 
 #binding-item-container:hover {
     cursor: pointer;
-    box-shadow: 0 0 15px #49FB35; 
+    box-shadow: 0 0 30px #49FB35; 
 }
 
 #game-mini-thumbnail-container {
@@ -21,11 +21,15 @@
 }
 
 #actual-mini-thumbnail {
-    background-color: aquamarine;
-    color: black;
+    color: aquamarine;
     border-radius: 5px;
+    border: 2px solid aquamarine;
     margin-top: 17px;
     height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
 }
 
 #binding-detail-container {
@@ -116,5 +120,13 @@
     justify-content: center;
     align-items: center;
     padding-top: 100px;
+}
+
+#author-div {
+    padding: 5px 0px;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 10px;
 
 }

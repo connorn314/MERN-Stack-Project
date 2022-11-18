@@ -1,11 +1,10 @@
 #xbox-container {
     display: flex;
-    background-image: url('../SessionForms/darkpurple.jpeg');
     height: 100%;
     width: 100%;
     justify-content: center;
    
-    padding: 50px;
+    padding: 20px;
 }
 
 #xbox-container svg {

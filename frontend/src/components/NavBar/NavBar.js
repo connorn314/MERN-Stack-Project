@@ -20,15 +20,15 @@ function NavBar() {
         <div className="links-auth">
           <Link className='signup-link' to={'/games'}>Games</Link>
           <Link className='signup-link' to={'/profile'}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
+          <div onClick={logoutUser} className='signup-link' >Logout</div>
         </div>
       );
     } else {
       return (
         <div className="links-auth">
+          <Link className='signup-link' to={'/games'}>Games</Link>
           <Link className='signup-link' to={'/signup'}>Signup</Link>
           <Link className='signup-link' to={'/login'}>Login</Link>
-          <Link className='signup-link' to={'/games'}>Games</Link>
         </div>
       );
     }
@@ -37,7 +37,9 @@ function NavBar() {
   return (
     <>
     <header className='main_header_container'>
-      <Link to='/' className='logo-title'>KeyWi</Link>
+      <div id='left-nav-container'>
+        <Link to='/' className='logo-title'>KeyWi</Link>
+      </div>
       {getLinks()}
     </header>
     </>

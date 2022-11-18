@@ -1,4 +1,6 @@
 import './BindingsIndexItem.css';
+import * as userActions from '../../store/users';
+import * as gameActions from '../../store/games';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
@@ -7,6 +9,7 @@ import { deleteBinding } from '../../store/bindings';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
     const moveSet = binding.keyBinds;
@@ -32,6 +35,10 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
         window.location.reload(false)
     }
 
+    const author = useSelector(state => state.users[binding.user])
+    const games = useSelector(state => state.games)
+    let game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == binding.game)
+    
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
             return xboxController
@@ -43,6 +50,11 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
             return null
         }
     }
+
+    useEffect(() => {
+        dispatch(gameActions.fetchGame(binding.game))
+        dispatch(userActions.getOneUser(binding.user))
+    }, [])
 
     const openUpdate = e => {
         if (user._id === binding.user) {
@@ -77,35 +89,38 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
 
     return showMain ? (
         <>
-    `        <div className='main-individual-binding-container'>
+            <div className='main-individual-binding-container'>
                 <div id="binding-item-container">
                     <div id="game-mini-thumbnail-container">
                         <div id='actual-mini-thumbnail'>
-                            GAME IMG
+                            <div id='author-div'>Game: {game.title}</div>
+                            {author && (
+                                <div id='author-div'>User: {author.username}</div>
+                                )}
                         </div>
-                    </div>
-                    <div id='binding-detail-container'>
-                        <div className="binding-set-container">
-                            <div className="bindpage-move-title-name">Moves</div>
-                            <div className="bindpage-move-title-binding">Bindings</div>
+                        <div id='binding-detail-container'>
+                            <div className="binding-set-container">
+                                <div className="bindpage-move-title-name">Moves</div>
+                                <div className="bindpage-move-title-binding">Bindings</div>
+                            </div>
+                            {Object.keys(moveSet).map(move =>
+                                <>
+                                    <div className="individual-set-container">
+                                        <div className='move-name'>{move}</div>
+                                        <div className="move-binding">{moveSet[move]}</div>
+                                    </div>
+                                </>
+                            )}
                         </div>
-                        {Object.keys(moveSet).map(move =>
-                            <>
-                                <div className="individual-set-container">
-                                    <div className='move-name'>{move}</div>
-                                    <div className="move-binding">{moveSet[move]}</div>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                    <div id='controller-mini-thumbnail'>
-                        <div id='controller-icon-container'>
-                            <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
+                        <div id='controller-mini-thumbnail'>
+                            <div id='controller-icon-container'>
+                                <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
+                            </div>
                         </div>
-                    </div>
-                    <div className='toggle-menu'>
-                        <div onClick={openUpdate}>update</div>
-                        <div onClick={deleteBind}>delete</div>
+                        <div className='toggle-menu'>
+                            <div onClick={openUpdate}>update</div>
+                            <div onClick={deleteBind}>delete</div>
+                        </div>
                     </div>
                 </div>
             </div>

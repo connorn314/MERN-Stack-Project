@@ -1,16 +1,21 @@
 import './xbox.css'
 import React, { useEffect } from "react";
-import { useState, useParams, useDispatch } from 'react';
+import { useState, useParams } from 'react';
+import { useDispatch } from 'react-redux';
+import { receiveCurrentUser } from '../../store/session';
+import { addBinding } from '../../store/games';
 export default function XboxController({currentKey}){
   console.log(currentKey)
   // const {game_id} = useParams()
 
   const dummyId = 0
+  const [currentButton, setCurrentButton] = useState()
   const [binding, setBinding] = useState({})
+  const [buttonBinding,setButtonBinding] = useState()
   const [selectedKey, setSelectedKey] = useState()
-  // const dispatch = useDispatch()
-  // const userId = dispatch(receiveCurrentUser)
-  // const [selectionTag, setSelectionTag] = useState()
+  const dispatch = useDispatch()
+  const userId = dispatch(receiveCurrentUser)
+  const [selectionTag, setSelectionTag] = useState()
   // useEffect(()=>{
   //   let selectionTag
     // document.addEventListener("keypress", (e) => {
@@ -32,28 +37,48 @@ export default function XboxController({currentKey}){
   
   // },[currentKey,selectedKey])
 
-  const tags = Array.from(document.getElementsByClassName("key" ))
 
-  tags.forEach(tag => {
 
-    if(binding[currentKey] === tag.id){
-      const fillColor = "red"
-      tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
-    }else{
-      tag.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
-    }
-
-  })
 
   useEffect(() => {
-    console.log(binding)
-  },[currentKey])
 
+    if(selectedKey !== undefined){
+      if(selectedKey !== undefined){
+        if(currentButton !== undefined){
+          console.log(currentButton.style === document.getElementById(selectedKey))
+          currentButton.setAttribute("style",currentButton.style)
+        
+          console.log(currentButton.style.fill === 'none')
+        }
+        const fillColor = "red"
+        const tag = document.getElementById(selectedKey)
+        setCurrentButton(tag)
+        tag.style.fill = "red"
+        tag.style.stroke = "#49FB35" 
+      }
+        if(selectedKey !== undefined && currentKey !== ''){
+    
+          const selectionTag = document.getElementById(`${currentKey}-selection`)
+    
+          let currentText = selectionTag.innerText
+          selectionTag.innerText = selectedKey
+          dispatch(addBinding({ [currentKey]: selectedKey }))
+     
+        }
+      
+    }
+  },[selectedKey])
+  // ["Left stick", "Left stick click", "Left bumper", "Left Trigger", "View button", "Xbox button", "Menu button", "Right bumper", "Directional pad up", "Directional pad down", "Directional pad left", "Directional pad right", "Right Trigger", "Right stick", "Right stick click", "X button", "Y button", "A button", "B button"]
     const handleClick = (e) => {
       if (currentKey !== '') {
-        setSelectedKey(e.code)
+  
+        setSelectedKey(e.target.id)
         setBinding({ [currentKey]: e.target.id })
         console.log({ [currentKey]: e.target.id })
+        const fillColor= "red"
+
+        // const tag = document.getElementById(selectedKey)
+        // tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
       }
   
     }
@@ -80,10 +105,10 @@ export default function XboxController({currentKey}){
             <path d="M6077 8337c120-255 405-766 555-1051 151-300 166-375 241-481 60-104 165-255 240-360s135-180 210-240c76-60 151-90 346-150 180-45 466-136 661-181 180-29 270-44 345-44 90 0 150 0 210 15s105 29 151 59c29 30 59 76 104 136s91 165 151 315c59 135 135 346 195 511s105 315 120 390c30 60 30 60 15 75 0 0-15 0-150 15-136 30-376 75-631 135-240 60-495 136-781 225-270 91-585 196-871 316-285 120-526 225-721 315s-330 166-405 196c-90 45-105 60 15-196h0zM29368 8337c-120-255-390-766-540-1051-150-300-181-375-241-481-74-104-180-255-255-360s-135-180-210-240-150-90-345-150c-180-45-466-136-646-181-195-29-286-44-361-44-74 0-150 0-210 15s-105 29-135 59c-45 30-75 76-120 136-30 60-90 165-150 315-60 135-135 346-180 511-61 165-121 315-136 390-14 60-14 60-14 75 14 0 14 0 150 15 134 30 375 75 630 135 240 60 496 136 781 225 285 91 586 196 871 316 286 120 541 225 721 315 195 90 330 166 405 196 91 45 120 60-15-196h0zM12714 8037c60 30 106 45 151 75 45 45 90 90 135 196 30 89 75 255 90 420 15 180 0 375 0 570M22460 8037c-59 30-104 45-150 75-45 45-90 90-134 196-31 89-76 255-91 420-15 180 0 375 0 570"></path>
           </g>
           <g>
-          <circle fill="transparent" stroke="none" cx="13100" cy="19000" r="900" id="up" onClick={(e) => {handleClick(e)}}></circle>
-          <circle fill="transparent" stroke="none" cx="11000" cy="20500" r="900" id="left" onClick={(e) => {handleClick(e)}}></circle>
-          <circle fill="transparent" stroke="none" cx="15100" cy="20500" r="900" id="right" onClick={(e) => {handleClick(e)}}></circle>
-          <circle fill="transparent" stroke="none" cx="13100" cy="22500" r="900" id="down" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none" cx="13100" cy="19000" r="900" id="Directional pad up" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none" cx="11000" cy="20500" r="900" id="Directional pad left" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none" cx="15100" cy="20500" r="900" id="Directional pad right" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none" cx="13100" cy="22500" r="900" id="Directional pad down" onClick={(e) => {handleClick(e)}}></circle>
 
           <path
             fill="none"
@@ -128,23 +153,23 @@ export default function XboxController({currentKey}){
           ></path>
           <ellipse cx="14817" cy="8352" fill="#49FB35" rx="615" ry="210"></ellipse>
         
-          <circle         className='controllerButton' cx="8209" cy="15200" r="1772" fill="#49FB35" id="l-analog" ></circle>
+          <circle         className='controllerButton' cx="8209" cy="15200" r="1772" fill="#49FB35" id="Left stick"></circle>
       
      
           <circle cx="22386" cy="20546" r="1772" fill="#49FB35"></circle>
-          <circle cx="8120" cy="15275" r="1126" fill="#49FB35" id="l-analog" onClick={(e) => handleClick(e)}></circle>
-          <circle cx="22431" cy="20636" r="1126" fill="#49FB35" id="r-analog" onClick={(e) => handleClick(e)}></circle>
-          <circle cx="25059" cy="15155" r="1217" fill="none" stroke="#49FB35"  id="x"
+          <circle cx="8120" cy="15275" r="1126" fill="#49FB35" id="Left stick"onClick={(e) => handleClick(e)}></circle>
+          <circle cx="22431" cy="20636" r="1126" fill="#49FB35" id="Right stick" onClick={(e) => handleClick(e)}></circle>
+          <circle cx="25059" cy="15155" r="1217" fill="none" stroke="#49FB35"  id="X button"
             onClick={handleClick}></circle>
-          <circle cx="27521" cy="12797" r="1217" fill="none" id="y" stroke='#49FB35'
+          <circle cx="27521" cy="12797" r="1217" fill="none" id="Y button" stroke='#49FB35'
             onClick={(e) => handleClick(e)}></circle>
-          <circle cx="27431" cy="17333" r="1217" fill="none" id="a"stroke='#49FB35'
+          <circle cx="27431" cy="17333" r="1217" fill="none" id="A button"stroke='#49FB35'
             onClick={(e) => handleClick}></circle>
-          <circle cx="29909" cy="14975" r="1217" fill="none" id="b" stroke='#49FB35'
+          <circle cx="29909" cy="14975" r="1217" fill="none" id="B button" stroke='#49FB35'
             onClick={(e) => handleClick(e)}></circle>
           <path
           className='controllerButton'
-      id="x"
+      id="X button"
       onClick={(e) => handleClick(e)}
             fill="#49FB35"
             stroke="#49FB35"
@@ -152,7 +177,7 @@ export default function XboxController({currentKey}){
           ></path>
           <path
                     className='controllerButton'
-             id="x"
+             id="X button"
              onClick={(e) => handleClick(e)}
             fill="none"
             fillRule="nonzero"
@@ -160,14 +185,14 @@ export default function XboxController({currentKey}){
           ></path>
           <path
                     className='controllerButton'
-                 id="y"
+                 id="Y button"
                  onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M27446 13533v-556l-510-750h210l255 405c45 75 90 135 135 211 46-61 91-136 150-226l256-390h195l-525 750v556h-166 0z"
           ></path>
           <path
                     className='controllerButton'
-                  id="y"
+                  id="Y button"
                   onClick={(e) => handleClick(e)}
             fill="none"
             fillRule="nonzero"
@@ -175,14 +200,14 @@ export default function XboxController({currentKey}){
           ></path>
           <path
                     className='controllerButton'
-              id="b"
+              id="B button"
               onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M29503 15635v-1306h496c90 0 180 15 240 30 61 30 106 76 136 120 29 60 44 120 44 181 0 59-15 104-44 150-30 60-75 90-136 120 91 30 151 75 180 120 46 60 76 120 76 195s-15 120-46 180c-30 45-59 91-89 121-45 30-91 45-151 60s-120 29-210 29h-496 0zm166-765h285c75 0 135 0 165-15 45-15 75-30 105-60 15-31 30-76 30-120 0-45-15-76-30-106-15-45-45-60-90-75-29-15-105-15-195-15h-270v391h0zm0 615h330c60 0 90-15 120-15 45 0 75-15 105-30 15-15 45-45 61-75 15-29 30-75 30-105 0-60-15-105-46-135-15-30-60-60-105-75s-105-30-180-30h-315v465h0z"
           ></path>
           <path
                     className='controllerButton'
-                       id="b"
+                       id="B button"
                        onClick={(e) => handleClick(e)}
             fill="none"
             fillRule="nonzero"
@@ -190,14 +215,14 @@ export default function XboxController({currentKey}){
           ></path>
           <path
                 className='controllerButton'
-                       id="a"
+                       id="A button"
                        onClick={(e) => handleClick(e)}
             fillRule="nonzero"
             d="M26815 17948l496-1306h195l541 1306h-195l-166-390h-540l-150 390h-181 0zm376-525h451l-136-376c-45-105-75-195-105-270-15 90-30 165-60 255l-150 391z"
           ></path>
           <path
                 className='controllerButton'
-                     id="a"
+                     id="A button"
                      onClick={(e) => handleClick(e)}
             fill="none"
             fillRule="nonzero"
@@ -205,7 +230,7 @@ export default function XboxController({currentKey}){
           ></path>
           <path
                     className='controllerButton'
-                     id="a"
+                     id="A button"
                      onClick={(e) => handleClick(e)}
             fill="none"
             fillRule="nonzero"
