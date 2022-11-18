@@ -95,7 +95,8 @@ export const deleteBinding = (binding) => async dispatch => {
     const res = await jwtFetch(`/api/bindings/${binding._id}`, {
         method: 'DELETE'
     })
-    dispatch(removeBinding(binding))
+
+    dispatch(removeBinding(binding._id))
 }
 
 
@@ -111,6 +112,7 @@ const bindingReducer = (state = {}, action) => {
             nextState = { ...nextState, ...Object.values(action.binding) }
             return nextState;
         case REMOVE_BINDING:
+            console.log(action)
             delete nextState[action.bindingId];
             return nextState;
         default:

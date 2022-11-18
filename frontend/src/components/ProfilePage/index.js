@@ -41,6 +41,8 @@ export default function ProfilePage(){
             }
             dispatch(createBinding(binding))
             alert('you did it')   
+            document.getElementById('profile-main-container').style.display = 'none'
+            document.getElementById('dropdown-container').style.display = 'block'
         }
     }
 
@@ -123,7 +125,7 @@ export default function ProfilePage(){
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>
                         <ul class="dropdown">
-                            {games.map((game, i)=>
+                            {games.slice(0,3).map((game, i)=>
                                 <li id={i} onClick={handleClick(i)}>{game.title}</li>
                                 )}
                         </ul>

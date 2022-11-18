@@ -66,6 +66,171 @@
   font-family: 'Acumin Pro', sans-serif;
 }
 
-/* .banner-button-main-container{
+.game-description-text_0 {
+  color: black;
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
 
-} */
+.game-description-text_1 {
+  color: rgb(208, 196, 196);
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+.game-description-text_2 {
+  color: black;
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+.learn-more-0{
+  color: black;
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+.learn-more-1 {
+  color: rgb(208, 196, 196);  
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+.learn-more-2 {
+  color: black; 
+  line-height: 25px;
+  text-align: center;
+  font-family: 'Acumin Pro', sans-serif;
+}
+
+
+
+.link-0 {
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.link-0:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #0440a0;
+  transition: all .35s;
+}
+
+.link-0 div {
+  position: relative;
+  z-index: 2;
+}
+
+.link-0:hover {
+  color: #fff;
+}
+
+.link-0:hover:after {
+  width: 100%;
+}
+
+.link-1 {
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  background-color: rgb(0, 0, 0, 0.3);
+  color: rgb(222, 247, 81);
+  border: 2px solid rgb(119, 119, 119);
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.link-1:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgb(222, 247, 81);
+  transition: all .35s;
+}
+
+.link-1 div {
+  position: relative;
+  z-index: 2;
+}
+
+.link-1:hover {
+  color: rgb(119, 119, 119);;
+}
+
+.link-1:hover:after {
+  width: 100%;
+}
+
+.link-2 {
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.link-2:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff5adb;
+  transition: all .35s;
+}
+
+.link-2 div {
+  position: relative;
+  z-index: 2;
+}
+
+.link-2:hover {
+  color: #fff;
+}
+
+.link-2:hover:after {
+  width: 100%;
+}
+
+.wrapper-1{
+  margin-top: 30px;
+}
