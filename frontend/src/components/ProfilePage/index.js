@@ -5,6 +5,7 @@ import { createBinding, getUserBindings } from "../../store/bindings";
 import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
+import XboxController from "../XboxController"
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
@@ -79,6 +80,7 @@ export default function ProfilePage(){
 
     const handleClick = (i) => e => {
         e.preventDefault();
+
         const gameObject = games[e.target.id]
 
         setSelectedGame(gameObject)
@@ -91,8 +93,14 @@ export default function ProfilePage(){
         } else if (i === 2){
             setController('game-cube')
         }
+
         document.getElementById('profile-main-container').style.display = 'flex'
         document.getElementById('dropdown-container').style.display = 'none'
+    }
+
+    const controllers = {
+        "xbox-one": <XboxController currentKey={currentKey}/>,
+        "pc": <Keyboard currentKey={currentKey} />
     }
 
     const handleClose = e => {
@@ -108,7 +116,7 @@ export default function ProfilePage(){
         // console.log(currentKey)
         window.location.reload(false)
     }
-
+    console.log(controller)
     return(
         <>
         <div className="background-div-profile">
@@ -126,7 +134,7 @@ export default function ProfilePage(){
             <div id="profile-main-container">
                     <div className="x-positioning"><img onClick={handleClose} src={x}/></div>
                 <h1 className="profile-game-title">{selectedGame.title}</h1>
-                <Keyboard currentKey={currentKey} />
+                {controllers[controller]}
                 <div className="move-set-container">
                     <div className="individual-set-container1">
                         <div className="move-set-title-name">Moves</div>
