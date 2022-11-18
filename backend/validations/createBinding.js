@@ -18,7 +18,6 @@ const validateBindingInput = [
     check('keyBinds').custom(async (value, {req, next}) => {
         let game = await Game.findById(req.body.game)
         Object.keys(value).forEach(movement => {
-            console.log(movement)
             if (!game.validMovements.includes(movement) || !controlOptions[req.body.controller].includes(value[movement])){
                 return next();
             }

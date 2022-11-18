@@ -109,15 +109,9 @@ export default function ProfilePage(){
         document.getElementById('profile-main-container').style.display = 'none'
         document.getElementById('dropdown-container').style.display = 'block'
         dispatch(clearCurrentBindings())
-        // selectedGame.validMovements.map(move => {
-        //     const selectionTag = document.getElementById(`${move}-selection`)
-        //     let currentText = selectionTag.innerText
-        //     selectionTag.innerText = ''
-        // })
-        // console.log(currentKey)
         window.location.reload(false)
     }
-    console.log(controller)
+
     return(
         <>
         <div className="background-div-profile">

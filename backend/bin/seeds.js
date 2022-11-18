@@ -3,16 +3,6 @@ const info = require('../config/keys');
 const User = require("../models/User");
 const Game = require("../models/Game");
 
-// console.log(info)
-// // const Binding = require("./models/Binding")
-// db = info.mongoURI
-// console.log(db)
-// mongoose
-//   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => {
-//     console.log("Connected to MongoDB successfully");
-//   })
-//   .catch(err => console.log(err));
 
 
 const seedUsers = [
@@ -124,51 +114,4 @@ const seedBindings = [
 
         }
     }
-    // ,
-//     {
-//         user: "",
-//         game: "",
-//         controller: "",
-//         keyBinds: {}
-//     },
-//     {
-//         user: "",
-//         game: "",
-//         controller: "",
-//         keyBinds: {}
-//     },
-//     {
-//         user: "",
-//         game: "",
-//         controller: "",
-//         keyBinds: {}
-//     },
-//     {
-//         user: "",
-//         game: "",
-//         controller: "",
-//         keyBinds: {}
-//     },
-//     {
-//         user: "",
-//         game: "",
-//         controller: "",
-//         keyBinds: {}
-//     }
 ]
-
-// const seedDB = async () => {
-//     console.log("deleting users...");
-//     await User.deleteMany({});
-//     console.log("deleting games...");
-//     await Game.deleteMany({});
-//     console.log("creating users...");
-//     await User.insertMany(seedUsers);
-//     console.log("creating games...");
-//     await Game.insertMany(seedGames);
-//     console.log("Done!")
-// }
-
-// seedDB().then(() => {
-//     mongoose.connection.close();
-// });
