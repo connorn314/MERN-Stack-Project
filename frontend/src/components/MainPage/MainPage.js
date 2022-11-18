@@ -7,7 +7,8 @@ function MainPage() {
       <div className="main-mainpage-container">
         <video className='background-video' autoPlay loop muted id='video' src={backgroundVideo} />
           <div className='text-box-container'>
-            <p className='splash-text'>Welcome to KEYWI</p>
+            <h1 className='splash-text-title'>Welcome to</h1>
+          <p className='splash-text'>KEYWI</p>
           </div>
       </div>
     </>
