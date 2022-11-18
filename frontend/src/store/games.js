@@ -52,11 +52,12 @@ export const gameReducer = (state = {}, action) => {
     case RECEIVE_GAMES:
       return {...action.games}
     case RECEIVE_GAME:
-      return {...nextState, [action.game.id]: action.game}
+      return {...nextState, [action.game._id]: action.game}
     default:
       return state;
   }
 }
+
 
 
 export const BindingsReducer = (state = {}, action) => {
