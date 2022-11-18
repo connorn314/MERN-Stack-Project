@@ -9,7 +9,6 @@ import { addBinding } from '../../store/games';
 export default function XboxController({currentKey, currentBind={}}){
 
   const dispatch = useDispatch()
-  const dummyId = 0
   const [currentButton, setCurrentButton] = useState()
 
   const [buttonBinding,setButtonBinding] = useState()
@@ -18,7 +17,11 @@ export default function XboxController({currentKey, currentBind={}}){
   const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
   
-
+  useEffect(() => {
+    if(currentBind !== {}){
+      dispatch(addBinding(currentBind))
+    }
+  },[])
 
 
   useEffect(() => {
@@ -134,13 +137,13 @@ export default function XboxController({currentKey, currentBind={}}){
           <circle fill="transparent" stroke="none" cx="8000" cy="6800" r="900" id="Left Trigger" onClick={(e) => {handleClick(e)}}></circle>
           <circle fill="transparent" stroke="none" cx="27000" cy="6800" r="900" id="Right Trigger" onClick={(e) => {handleClick(e)}}></circle>
 
-          <circle fill="transparent" stroke="none"  cx="10000" cy="7900"  r="700" id="Left Bumper" onClick={(e) => {handleClick(e)}}></circle>
-          <circle fill="transparent" stroke="none"  cx="8000" cy="8500"  r="700" id="Left Bumper" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none"  cx="10000" cy="7900"  r="700" id="Left bumper" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none"  cx="8000" cy="8500"  r="700" id="Left bumper" onClick={(e) => {handleClick(e)}}></circle>
 
 
-          <circle fill="transparent" stroke="none"   cx="25000" cy="7900"  r="700" id="Right Bumper" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none"   cx="25000" cy="7900"  r="700" id="Right bumper" onClick={(e) => {handleClick(e)}}></circle>
 
-          <circle fill="transparent" stroke="none"   cx="28000" cy="8500"  r="700" id="Right Bumper" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none"   cx="28000" cy="8500"  r="700" id="Right bumper" onClick={(e) => {handleClick(e)}}></circle>
 
 
 

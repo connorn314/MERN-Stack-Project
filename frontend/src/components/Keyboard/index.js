@@ -17,14 +17,18 @@ export default function Keyboard ({currentKey, currentBind={}}){
 
   // const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
+
   useEffect(() => {
     if(currentBind !== {}){
       dispatch(addBinding(currentBind))
     }
   },[])
+
   useEffect(()=>{
 
-    document.addEventListener("keypress", (e) => {
+    document.addEventListener("keydown", (e) => {
+      e.preventDefault()
+
       if (currentKey !== '') {
         setSelectedKey(e.code)
         setBinding({ [currentKey]: e.key })
@@ -164,9 +168,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   </defs>
   <g>
   <path
-  id="~"
-
-  
+  id="`"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -181,8 +183,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M0 0h60v60H0V0z"
   ></path>
   <path
-  id="!"
-
+  id="1"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -197,7 +198,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M60 0h60v60H60V0z"
   ></path>
   <path
-
+  id="2"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -212,8 +213,9 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M120 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="3"
   className="key"
+
   fill="#fff"
   fillOpacity="0"
   fillRule="evenodd"
@@ -227,7 +229,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M180 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="4"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -242,7 +244,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M240 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="5"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -257,7 +259,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M300 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="6"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -272,7 +274,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M360 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="7"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -287,7 +289,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M420 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="8"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -302,7 +304,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M480 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="9"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -317,7 +319,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M540 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="0"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -332,7 +334,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M600 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="-"
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -347,7 +349,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M660 0h60v60h-60V0z"
   ></path>
   <path
-
+  id="="
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -362,7 +364,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M720 0h60v60h-60V0z"
   ></path>
   <path
-
+  
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -377,8 +379,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M780 0h120v60H780V0z"
   ></path>
   <path
-
-
+  id="Tab"
   className="key"
   fill="#dfdfdf"
   fillOpacity="0"
@@ -394,7 +395,6 @@ export default function Keyboard ({currentKey, currentBind={}}){
   ></path>
   <path
    id="q"
-
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -553,8 +553,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M630 60h60v60h-60V60z"
   ></path>
   <path
-
-
+  id="["
   className="key"
   fill="#fff"
   fillOpacity="0"
@@ -569,7 +568,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   d="M690 60h60v60h-60V60z"
   ></path>
   <path
-
+  id="]"
 
   className="key"
   fill="#fff"
@@ -586,7 +585,7 @@ export default function Keyboard ({currentKey, currentBind={}}){
   ></path>
   <path
 
-
+id="\"
   className="key"
   fill="#fff"
   fillOpacity="0"

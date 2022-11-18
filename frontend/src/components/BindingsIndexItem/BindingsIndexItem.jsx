@@ -108,7 +108,6 @@ const BindingIndexItem = ({ binding}) => {
         console.log(updatedBinding)
         dispatch(updateBinding(updatedBinding))
 
-        alert("Updated binding!")
         history.push("/profile")
         window.location.reload()
     }

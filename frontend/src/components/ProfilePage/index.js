@@ -44,6 +44,8 @@ export default function ProfilePage(){
             alert('you did it')   
             document.getElementById('profile-main-container').style.display = 'none'
             document.getElementById('dropdown-container').style.display = 'block'
+            history.push("/profile")
+            window.location.reload()
         }
     }
 
