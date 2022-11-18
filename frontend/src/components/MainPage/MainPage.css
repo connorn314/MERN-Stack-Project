@@ -9,15 +9,61 @@
   height: 100%;
 }
 
+
 .splash-text{
   color: #49FB35;
   /* font-family: 'Acumin Pro', sans-serif; */
-  font-size: 100px;
+  width: 74%;
+  font-size: 101px;
   text-align: center;
-  line-height: 110px;
+  line-height: 100px;
   margin: 16% 0;
+  overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    /* white-space: wrap; */
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    letter-spacing: .15em;
+  animation:
+        typing 2.5s steps(40, end),
+        blink-caret .75s step-end infinite;
 }
+
+.splash-text-title {
+  color: #49FB35;
+  font-size: 95px;
+  margin-bottom: 30px;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 74%
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: #ec7bef;
+  }
+}
+
 .text-box-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border:#49FB35 3px solid;
   border-radius: 10%;
   width: 50%;

@@ -63,7 +63,6 @@ router.post('/new', async function(req, res, next) {
 router.delete('/:id', async function(req, res, next) {
     try {
         const game = await Game.findByIdAndDelete(req.params.id);
-        console.log("success")
         return res.json(game);
     }
     catch(err){

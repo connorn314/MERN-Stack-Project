@@ -63,7 +63,6 @@ router.get('/:id', async function(req, res, next) {
 router.delete('/:id', async function(req, res, next) {
   try {
     const binding = await Binding.findByIdAndDelete(req.params.id);
-    console.log("success")
     return res.json(binding);
 
   } catch(err) {

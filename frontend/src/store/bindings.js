@@ -95,7 +95,8 @@ export const deleteBinding = (binding) => async dispatch => {
     const res = await jwtFetch(`/api/bindings/${binding._id}`, {
         method: 'DELETE'
     })
-    dispatch(removeBinding(binding))
+
+    dispatch(removeBinding(binding._id))
 }
 
 
@@ -104,7 +105,6 @@ const bindingReducer = (state = {}, action) => {
     let nextState = { ...state }
     switch (action.type){
         case RECEIVE_BINDINGS:
-            // nextState = { ...nextState, ...action.bindings }
             nextState = { ...action.bindings }            
             return nextState;
         case RECEIVE_ONE_BINDING:

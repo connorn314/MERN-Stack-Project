@@ -20,7 +20,6 @@ export default function ProfilePage(){
     const games = useSelector(state => Object.values(state.games));
     const [selectedGame, setSelectedGame] = useState('');
     const [moves, setMoves] = useState([])
-    // const [keyBind, setKeyBind] = useState('')
     const [controller, setController] = useState('')
     const history = useHistory()
     const keybind = useSelector(state => state.currentBindings)
@@ -43,6 +42,8 @@ export default function ProfilePage(){
             console.log(binding)
             dispatch(createBinding(binding))
             alert('you did it')   
+            document.getElementById('profile-main-container').style.display = 'none'
+            document.getElementById('dropdown-container').style.display = 'block'
         }
     }
 
@@ -109,15 +110,9 @@ export default function ProfilePage(){
         document.getElementById('profile-main-container').style.display = 'none'
         document.getElementById('dropdown-container').style.display = 'block'
         dispatch(clearCurrentBindings())
-        // selectedGame.validMovements.map(move => {
-        //     const selectionTag = document.getElementById(`${move}-selection`)
-        //     let currentText = selectionTag.innerText
-        //     selectionTag.innerText = ''
-        // })
-        // console.log(currentKey)
         window.location.reload(false)
     }
-    console.log(controller)
+
     return(
         <>
         <div className="background-div-profile">
@@ -125,7 +120,7 @@ export default function ProfilePage(){
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>
                         <ul class="dropdown">
-                            {games.map((game, i)=>
+                            {games.slice(0,3).map((game, i)=>
                                 <li id={i} onClick={handleClick(i)}>{game.title}</li>
                                 )}
                         </ul>
