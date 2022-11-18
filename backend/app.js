@@ -19,9 +19,10 @@ const usersRouter = require('./routes/api/users');
 const bindingsRouter = require('./routes/api/bindings');
 const gamesRouter = require('./routes/api/games');
 const csrfRouter = require('./routes/api/csrf');
-
-
 const app = express();
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,6 +36,22 @@ if (!isProduction) {
     // server will serve the React files statically.)
     app.use(cors());
 }
+
+
+app.use(
+    csurf({
+        cookie: {
+            secure: isProduction,
+            sameSite: isProduction && "Lax",
+            httpOnly: true
+        }
+    })
+);
+
+app.use('/api/users', usersRouter);
+app.use('/api/bindings', bindingsRouter);
+app.use('/api/games', gamesRouter)
+app.use('/api/csrf', csrfRouter);
 
 if (isProduction) {
     const path = require('path');
@@ -57,23 +74,6 @@ if (isProduction) {
         );
     });
 }
-
-app.use(
-    csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && "Lax",
-            httpOnly: true
-        }
-    })
-);
-
-app.use('/api/users', usersRouter);
-app.use('/api/bindings', bindingsRouter);
-app.use('/api/games', gamesRouter)
-app.use('/api/csrf', csrfRouter);
-
-
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.statusCode = 404;
