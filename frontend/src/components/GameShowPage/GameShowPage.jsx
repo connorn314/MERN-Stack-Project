@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import './GameShowPage.css'
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import { getGameBindings } from "../../store/bindings";
+import RocketLeague from './RocketLeague.png';
+import League from './LeagueOfLegends.png';
+import Smash from './SmashBrosUltimate.png';
 
 const GameShowPage = () => {
     const { gameId } = useParams();
@@ -16,11 +19,21 @@ const GameShowPage = () => {
         dispatch(getGameBindings(gameId))
     }, [])
 
+    const correctImage = (title) => {
+        switch (title){
+            case "Rocket League":
+                return RocketLeague;
+            case "League of Legends":
+                return League;
+            case "Super Smash Bros. Ultimate":
+                return Smash;
+            default:
+                return null;
+        }
+    }
+
     return (
         <div id="game-show-page-container">
-            {/* <div id="temp-cont">
-                Hello Gamers
-            </div> */}
             <div id="game-details-container">
                 {game && (
                     <>
@@ -28,14 +41,14 @@ const GameShowPage = () => {
                         <div id="details-content-container">
                             <div id="details-left">
                                 <div id="game-img-container">
-                                    IMG GOES HERE
+                                    <img src={correctImage(game.title)} alt="game-img" id="game-img" />
                                 </div>
                                 <div id="description-cont">
                                     {game.description}
                                 </div>
                             </div>
                             <div id="details-right">
-                                <div>
+
                                     <div id="right-side-title">
                                         {game.title}
                                     </div>
@@ -50,7 +63,7 @@ const GameShowPage = () => {
                                     <div id="compatability-container">
                                         {game.compatibility}
                                     </div>
-                                </div>
+
                             </div>
                         </div>
                     </>
