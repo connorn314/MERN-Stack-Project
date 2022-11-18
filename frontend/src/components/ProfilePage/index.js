@@ -40,6 +40,7 @@ export default function ProfilePage(){
                 controller: controller,
                 keyBinds: keybind
             }
+            console.log(binding)
             dispatch(createBinding(binding))
             alert('you did it')   
         }

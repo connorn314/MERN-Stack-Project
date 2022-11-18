@@ -5,18 +5,22 @@ import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBinding } from '../../store/bindings';
+import { deleteBinding, updateBinding } from '../../store/bindings';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import XboxController from '../XboxController';
 
-const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
+const BindingIndexItem = ({ binding}) => {
+    const history = useHistory()
     const moveSet = binding.keyBinds;
     const user = useSelector(state => state.session.user);
     const [showMain, setShowMain] = useState(true)
+    const [currentKey, setCurrentKey] = useState()
     const dispatch = useDispatch();
-
+    const keybind = useSelector(state => state.currentBindings)
     
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
@@ -37,7 +41,7 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
 
     const author = useSelector(state => state.users[binding.user])
     const games = useSelector(state => state.games)
-    let game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == binding.game)
+    const game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == binding.game)
     
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
@@ -54,7 +58,13 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
     useEffect(() => {
         dispatch(gameActions.fetchGame(binding.game))
         dispatch(userActions.getOneUser(binding.user))
+        if(moveSet){
+            setCurrentKey(Object.keys(moveSet)[0])
+        }
+ 
     }, [])
+
+
 
     const openUpdate = e => {
         if (user._id === binding.user) {
@@ -80,13 +90,35 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
     const deleteBind = e => {
         if (user._id === binding.user){
             dispatch(deleteBinding(binding))
+            history.push("/profile")
+            window.location.reload()
         }
     }
 
     const handleUpdate = e => {
-        e.preventDefault();
+
+        e.preventDefault()
+        let updatedBinding = {
+            _id: binding._id,
+            user: user._id,
+            game: binding.game,
+            controller: binding.controller,
+            keyBinds: keybind
+        }
+        console.log(updatedBinding)
+        dispatch(updateBinding(updatedBinding))
+
+        alert("Updated binding!")
+        history.push("/profile")
+        window.location.reload()
     }
 
+    const controllers = {
+        "pc":    <Keyboard currentKey={currentKey} currentBind={moveSet}/>,
+        "xbox-one": <XboxController currentKey={currentKey} currentBind={moveSet} />
+    }
+
+    if(game){
     return showMain ? (
         <>
             <div className='main-individual-binding-container'>
@@ -119,8 +151,8 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
                             </div>
                         </div>
                         <div className='toggle-menu'>
-                            <div onClick={openUpdate}>update</div>
-                            <div onClick={deleteBind}>delete</div>
+                            <div onClick={openUpdate} id="edit-option-button-1">update</div>
+                            <div onClick={deleteBind}  id="edit-option-button-1">delete</div>
                         </div>
                     </div>
                 </div>
@@ -130,13 +162,13 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
             <div id="update-binding2">
                 <div className="x-positioning"><img onClick={handleClose} src={x} /></div>
                 <h1 className="profile-game-title">{gameTitle(binding)}</h1>
-                <Keyboard currentKey={currentKey} />
+                    {controllers[binding.controller]}
                 <div className="move-set-container">
                     <div className="individual-set-container1">
                         <div className="move-set-title-name">Moves</div>
                         <div className="move-set-title-binding">Bindings</div>
                     </div>
-                    {Object.keys(moveSet).map((move, i) =>
+                    {game.validMovements.map((move, i) =>
                         <>
                             <div id={`${move}-container`} className="individual-set-container">
                                 <div className='move-name' id={move} onClick={handleMove}>{move}</div>
@@ -148,7 +180,7 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
                 <button className='create-button' onClick={handleUpdate}>Update</button>
             </div>
         </div>
-    )
+    )}
 
     // return (
     //     <>
@@ -211,3 +243,26 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
 }
 
 export default BindingIndexItem;
+// create:
+// {
+//     "user": "6372bce9c6f3636a1efe9dec",
+//     "game": "63752873afb6a1247fc7250f",
+//     "controller": "pc",
+//     "keyBinds": {
+//         "ability3": "KeyA"
+//     }
+// }
+// }
+// {
+//     "_id": "63767ef05a1a77b63aa8b4a9",
+//     "user": "6372bce9c6f3636a1efe9dec",
+//     "game": "63767ef05a1a77b63aa8b4a9",
+//     "controller": "pc",
+//     "keyBinds": {
+//         "ability1": "KeyA",
+//         "ability3": "KeyS",
+//         "ability2": "KeyD",
+//         "summoner spell 2": "KeyV",
+//         "item 3": "KeyX"
+//     }
+// }

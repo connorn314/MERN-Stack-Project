@@ -4,16 +4,16 @@ import { useState, useParams } from 'react';
 import { useDispatch } from 'react-redux';
 import { receiveCurrentUser } from '../../store/session';
 import { addBinding } from '../../store/games';
-export default function XboxController({currentKey}){
+export default function XboxController({currentKey, currentBind={}}){
   console.log(currentKey)
   // const {game_id} = useParams()
-
+  const dispatch = useDispatch()
   const dummyId = 0
   const [currentButton, setCurrentButton] = useState()
-  const [binding, setBinding] = useState({})
+
   const [buttonBinding,setButtonBinding] = useState()
   const [selectedKey, setSelectedKey] = useState()
-  const dispatch = useDispatch()
+  const [binding, setBinding] = useState(currentBind)
   const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
   // useEffect(()=>{

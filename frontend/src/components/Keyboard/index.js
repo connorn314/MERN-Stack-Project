@@ -5,17 +5,25 @@ import { useParams } from "react-router-dom";
 import {addBinding} from '../../store/games'
 import { receiveCurrentUser } from "../../store/session";
 
-export default function Keyboard ({currentKey}){
+export default function Keyboard ({currentKey, currentBind={}}){
   const {game_id} = useParams()
+     //for update:
+  const dispatch = useDispatch()
+
 
   const dummyId = 0
-  const [binding, setBinding] = useState({})
+  const [binding, setBinding] = useState(currentBind)
   const [selectedKey, setSelectedKey] = useState()
-  const dispatch = useDispatch()
+
   // const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
+  useEffect(() => {
+    if(currentBind !== {}){
+      dispatch(addBinding(currentBind))
+    }
+  },[])
   useEffect(()=>{
-    let selectionTag
+
     document.addEventListener("keypress", (e) => {
       if (currentKey !== '') {
         setSelectedKey(e.code)
@@ -25,8 +33,6 @@ export default function Keyboard ({currentKey}){
     if(selectedKey !== undefined && currentKey !== ''){
     
       const selectionTag = document.getElementById(`${currentKey}-selection`)
-
-      let currentText = selectionTag.innerText
       selectionTag.innerText = selectedKey
       dispatch(addBinding({ [currentKey]: selectedKey }))
  
@@ -36,7 +42,6 @@ export default function Keyboard ({currentKey}){
 
 
 
-  
 
 
   const tags = Array.from(document.getElementsByClassName("key" ))
