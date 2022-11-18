@@ -107,5 +107,14 @@
 }
 
 .update-binding{
-    display: none;
+    display: block;
+}
+
+#update-binding2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+
 }
