@@ -1,5 +1,6 @@
 import './BindingsIndexItem.css';
 import * as userActions from '../../store/users';
+import * as gameActions from '../../store/games';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
@@ -11,6 +12,8 @@ const BindingIndexItem = ({binding}) => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const author = useSelector(state => state.users[binding.user])
+    const games = useSelector(state => state.games)
+    let game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == binding.game)
     
     const getControllerIcon = (controllerString) => {
         if (controllerString === "xbox-one") {
@@ -25,6 +28,7 @@ const BindingIndexItem = ({binding}) => {
     }
 
     useEffect(() => {
+        dispatch(gameActions.fetchGame(binding.game))
         dispatch(userActions.getOneUser(binding.user))
     }, [])
 
@@ -47,10 +51,10 @@ const BindingIndexItem = ({binding}) => {
             <div id="binding-item-container">
                 <div id="game-mini-thumbnail-container">
                     <div id='actual-mini-thumbnail'>
-                        <div id='author-div'>By:</div>
+                        <div id='author-div'>Game: {game.title}</div>
                         {author && (
-                            <div id='author-div'>{author.username}</div>
-                        )}
+                            <div id='author-div'>User: {author.username}</div>
+                            )}
                     </div>
                 </div>
                 <div id='binding-detail-container'>
