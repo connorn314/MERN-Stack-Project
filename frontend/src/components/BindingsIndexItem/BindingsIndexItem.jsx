@@ -97,7 +97,8 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
                             {author && (
                                 <div id='author-div'>User: {author.username}</div>
                                 )}
-                        </div>
+                            </div>
+                        </div>    
                         <div id='binding-detail-container'>
                             <div className="binding-set-container">
                                 <div className="bindpage-move-title-name">Moves</div>
@@ -123,7 +124,6 @@ const BindingIndexItem = ({ binding, currentKey, setCurrentKey}) => {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     ) : (
         <div id={binding._id} className='update-binding'>
