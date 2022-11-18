@@ -20,7 +20,6 @@ export default function ProfilePage(){
     const games = useSelector(state => Object.values(state.games));
     const [selectedGame, setSelectedGame] = useState('');
     const [moves, setMoves] = useState([])
-    // const [keyBind, setKeyBind] = useState('')
     const [controller, setController] = useState('')
     const history = useHistory()
     const keybind = useSelector(state => state.currentBindings)
