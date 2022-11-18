@@ -152,7 +152,7 @@ export default function ProfilePage(){
                 <button className='create-button' onClick={handleCreate}>Create</button>
             </div>
             <div className="binding-container-profile">
-                <BindingIndex />
+                <BindingIndex currentKey={currentKey} setCurrentKey={setCurrentKey}/>
             </div>
         </div>
         </>
