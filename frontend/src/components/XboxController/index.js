@@ -5,8 +5,7 @@ import { useDispatch } from 'react-redux';
 import { receiveCurrentUser } from '../../store/session';
 import { addBinding } from '../../store/games';
 export default function XboxController({currentKey}){
-  console.log(currentKey)
-  // const {game_id} = useParams()
+
 
   const dummyId = 0
   const [currentButton, setCurrentButton] = useState()
@@ -16,27 +15,7 @@ export default function XboxController({currentKey}){
   const dispatch = useDispatch()
   const userId = dispatch(receiveCurrentUser)
   const [selectionTag, setSelectionTag] = useState()
-  // useEffect(()=>{
-  //   let selectionTag
-    // document.addEventListener("keypress", (e) => {
-    //   if (currentKey !== '') {
-    //     setSelectedKey(e.code)
-    //     setBinding({ [currentKey]: e.key })
-    //   }
-    // })
-    // if(selectedKey !== undefined && currentKey !== ''){
-    
-    //   const selectionTag = document.getElementById(`${currentKey}-selection`)
-
-    //   let currentText = selectionTag.innerText
-    //   console.log(currentText)
-    //   selectionTag.innerText = selectedKey
-    //   dispatch(addBinding({ [currentKey]: selectedKey }))
- 
-    // }
   
-  // },[currentKey,selectedKey])
-
 
 
 
@@ -45,10 +24,8 @@ export default function XboxController({currentKey}){
     if(selectedKey !== undefined){
       if(selectedKey !== undefined){
         if(currentButton !== undefined){
-          console.log(currentButton.style === document.getElementById(selectedKey))
           currentButton.setAttribute("style",currentButton.style)
         
-          console.log(currentButton.style.fill === 'none')
         }
         const fillColor = "red"
         const tag = document.getElementById(selectedKey)
@@ -68,17 +45,14 @@ export default function XboxController({currentKey}){
       
     }
   },[selectedKey])
-  // ["Left stick", "Left stick click", "Left bumper", "Left Trigger", "View button", "Xbox button", "Menu button", "Right bumper", "Directional pad up", "Directional pad down", "Directional pad left", "Directional pad right", "Right Trigger", "Right stick", "Right stick click", "X button", "Y button", "A button", "B button"]
     const handleClick = (e) => {
       if (currentKey !== '') {
   
         setSelectedKey(e.target.id)
         setBinding({ [currentKey]: e.target.id })
-        console.log({ [currentKey]: e.target.id })
         const fillColor= "red"
 
-        // const tag = document.getElementById(selectedKey)
-        // tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+      
       }
   
     }
