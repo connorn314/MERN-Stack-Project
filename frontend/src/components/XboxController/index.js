@@ -155,7 +155,20 @@ export default function XboxController({currentKey}){
         
           <circle         className='controllerButton' cx="8209" cy="15200" r="1772" fill="#49FB35" id="Left stick"></circle>
       
-     
+          <circle fill="transparent" stroke="none" cx="8000" cy="6800" r="900" id="Left Trigger" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none" cx="27000" cy="6800" r="900" id="Right Trigger" onClick={(e) => {handleClick(e)}}></circle>
+
+          <circle fill="transparent" stroke="none"  cx="10000" cy="7900"  r="700" id="Left Bumper" onClick={(e) => {handleClick(e)}}></circle>
+          <circle fill="transparent" stroke="none"  cx="8000" cy="8500"  r="700" id="Left Bumper" onClick={(e) => {handleClick(e)}}></circle>
+
+
+          <circle fill="transparent" stroke="none"   cx="25000" cy="7900"  r="700" id="Right Bumper" onClick={(e) => {handleClick(e)}}></circle>
+
+          <circle fill="transparent" stroke="none"   cx="28000" cy="8500"  r="700" id="Right Bumper" onClick={(e) => {handleClick(e)}}></circle>
+
+
+
+ o
           <circle cx="22386" cy="20546" r="1772" fill="#49FB35"></circle>
           <circle cx="8120" cy="15275" r="1126" fill="#49FB35" id="Left stick"onClick={(e) => handleClick(e)}></circle>
           <circle cx="22431" cy="20636" r="1126" fill="#49FB35" id="Right stick" onClick={(e) => handleClick(e)}></circle>
