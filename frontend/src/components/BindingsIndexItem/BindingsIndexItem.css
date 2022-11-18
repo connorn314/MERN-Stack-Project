@@ -110,6 +110,15 @@
     color: white
 }
 
+
+#update-binding2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
 #author-div {
     padding: 5px 0px;
     font-weight: 900;
