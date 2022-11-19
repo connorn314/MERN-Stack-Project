@@ -108,7 +108,7 @@ const bindingReducer = (state = {}, action) => {
             nextState = { ...action.bindings }            
             return nextState;
         case RECEIVE_ONE_BINDING:
-            nextState = { ...nextState, ...Object.values(action.binding) }
+            nextState = { ...nextState, [action.binding.id]: action.binding}
             return nextState;
         case REMOVE_BINDING:
             delete nextState[action.bindingId];

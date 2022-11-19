@@ -17,7 +17,7 @@ const BindingIndex = ({currentKey}) => {
                     <div id="bindings-index-outline">
                         {bindings.map(binding => {
                             return (
-                                <div key={binding._id}><BindingIndexItem binding={binding} key={binding} currentKey={currentKey}/></div>
+                                <div key={binding._id}><BindingIndexItem binding={binding}/></div>
                             )
                         })
                         }

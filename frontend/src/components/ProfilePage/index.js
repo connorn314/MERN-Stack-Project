@@ -39,10 +39,13 @@ export default function ProfilePage(){
                 controller: controller,
                 keyBinds: keybind
             }
+            console.log(binding)
             dispatch(createBinding(binding))
             alert('you did it')   
             document.getElementById('profile-main-container').style.display = 'none'
             document.getElementById('dropdown-container').style.display = 'block'
+            history.push("/profile")
+            window.location.reload()
         }
     }
 
