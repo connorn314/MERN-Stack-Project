@@ -14,6 +14,7 @@ import { getCurrentUser } from './store/session';
 import XboxController from './components/XboxController';
 import GameShowPage from './components/GameShowPage/GameShowPage';
 import { Route } from 'react-router-dom';
+import XboxControllerTest from './components/XboxControllerTesting';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,6 +28,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/xboxTest" component={XboxControllerTest} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <Route exact path="/games" component={GameIndex} />

@@ -1,16 +1,14 @@
-#xbox-container {
+#xbox-container-test {
     display: flex;
     height: 100%;
     width: 100%;
     justify-content: center;
-    background-color: blueviolet;
     padding: 20px;
 }
 
-
-
-#xbox-container svg {
+#xbox-container-test svg {
     width: 50%;
     height: 0%;
     background-color: transparent;
 }
+

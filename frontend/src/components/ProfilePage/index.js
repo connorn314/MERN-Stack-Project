@@ -1,56 +1,49 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBinding, getUserBindings } from "../../store/bindings";
 import { clearCurrentBindings, fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
-import XboxController from "../XboxController"
+import XboxControllerTest from "../XboxControllerTesting";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
 
 
-
 export default function ProfilePage(){
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    const bindingForm = {}
     const [currentKey, setCurrentKey] = useState('');
+    const [bindingsObject, setBindingsObject] = useState({})
     const games = useSelector(state => Object.values(state.games));
     const [selectedGame, setSelectedGame] = useState('');
     const [moves, setMoves] = useState([])
     const [controller, setController] = useState('')
     const history = useHistory()
-    const keybind = useSelector(state => state.currentBindings)
-    const bindings = useSelector(state => state.bindings)
-    
+
     useEffect(()=>{
         dispatch(fetchGames())
         dispatch(getUserBindings(user._id))
-    },[dispatch, keybind])
+    },[dispatch])
     
-    const handleCreate = (e) => {
- 
-        if (Object.values(keybind).length > 0){
+    const handleCreate = () => {
+        if (Object.values(bindingsObject).length > 0){
             let binding = {
                 user: user._id,
                 game: selectedGame._id,
                 controller: controller,
-                keyBinds: keybind
+                keyBinds: bindingsObject
             }
-            console.log(binding)
-            dispatch(createBinding(binding))
-            alert('you did it')   
+            dispatch(createBinding(binding))  
+            setBindingsObject({})
+            setCurrentKey("")
             document.getElementById('profile-main-container').style.display = 'none'
             document.getElementById('dropdown-container').style.display = 'block'
             history.push("/profile")
-            window.location.reload()
         }
     }
 
-
-      
     const handleMove = (e) => {
         if (currentKey !== ''){
             document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
@@ -58,8 +51,6 @@ export default function ProfilePage(){
         setCurrentKey(e.target.id)
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
-
-    
     
     const tags = Array.from(document.getElementsByClassName("individual-set-container"))
 
@@ -84,9 +75,7 @@ export default function ProfilePage(){
 
     const handleClick = (i) => e => {
         e.preventDefault();
-
         const gameObject = games[e.target.id]
-
         setSelectedGame(gameObject)
         setMoves(gameObject.validMovements)
 
@@ -102,8 +91,16 @@ export default function ProfilePage(){
         document.getElementById('dropdown-container').style.display = 'none'
     }
 
+    const handleSelection = useCallback((e) => {
+        let objCopy = { ...bindingsObject }
+        objCopy[currentKey] = e.target.id
+        setBindingsObject(bindingsObject => ({
+            ...objCopy
+        }))
+    }, [currentKey])
+
     const controllers = {
-        "xbox-one": <XboxController currentKey={currentKey}/>,
+        "xbox-one": <XboxControllerTest handleSelection={handleSelection}/>,
         "pc": <Keyboard currentKey={currentKey} />
     }
 
@@ -111,8 +108,6 @@ export default function ProfilePage(){
         e.preventDefault();
         document.getElementById('profile-main-container').style.display = 'none'
         document.getElementById('dropdown-container').style.display = 'block'
-        dispatch(clearCurrentBindings())
-        window.location.reload(false)
     }
 
     return(
@@ -142,7 +137,8 @@ export default function ProfilePage(){
                             <>
                                 <div id={`${move}-container`} className="individual-set-container">
                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                    <div className="move-binding" id={`${move}-selection`}> </div>
+                                    {console.log(currentKey)}
+                                    <div className="move-binding" id={`${move}-selection`}>{bindingsObject[move]}</div>
                                 </div>
                             </>
                         )}

@@ -27,7 +27,7 @@ const BindingIndexItem = ({ binding}) => {
             return 'Rocket League'
         } else if (binding.controller === 'pc'){
             return 'League of Legends'
-        } else{
+        } else {
             return 'Super Smash Bros Ultimate'
         }
     }
@@ -56,12 +56,11 @@ const BindingIndexItem = ({ binding}) => {
     }
 
     useEffect(() => {
-        dispatch(gameActions.fetchGame(binding.game))
+        // dispatch(gameActions.fetchGame(binding.game))
         dispatch(userActions.getOneUser(binding.user))
         if(moveSet){
             setCurrentKey(Object.keys(moveSet)[0])
         }
- 
     }, [])
 
 
