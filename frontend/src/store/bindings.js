@@ -1,6 +1,6 @@
 import jwtFetch from "./jwt";
 
-const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
+// const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
 const RECEIVE_ONE_BINDING = "bindings/RECEIVE_ONE_BINDING"
 const RECEIVE_BINDINGS = "bindings/RECEIVE_BINDINGS"
 const REMOVE_BINDING = "bindings/REMOVE_BINDING"
@@ -21,16 +21,16 @@ export const removeBinding = (bindingId) => ({
     bindingId
 })
 
-export const populateBindings = () => async (dispatch) => {
-    const res = await jwtFetch('/api/bindings')
-    const bindings = await res.json();
-    if (res.ok){
-        dispatch(receiveBindings(bindings))
-        return bindings
-    } else {
-        return res
-    }
-}
+// export const populateBindings = () => async (dispatch) => {
+//     const res = await jwtFetch('/api/bindings')
+//     const bindings = await res.json();
+//     if (res.ok){
+//         dispatch(receiveBindings(bindings))
+//         return bindings
+//     } else {
+//         return res
+//     }
+// }
 
 export const getOneBinding = (bindingId) => async (dispatch) => {
     const res = await jwtFetch(`/api/bindings/${bindingId}`)
@@ -95,8 +95,10 @@ export const deleteBinding = (binding) => async dispatch => {
     const res = await jwtFetch(`/api/bindings/${binding._id}`, {
         method: 'DELETE'
     })
-
-    dispatch(removeBinding(binding._id))
+    if (res.ok) {
+        dispatch(removeBinding(binding._id))
+    }
+    return res
 }
 
 
@@ -108,11 +110,13 @@ const bindingReducer = (state = {}, action) => {
             nextState = { ...action.bindings }            
             return nextState;
         case RECEIVE_ONE_BINDING:
-            nextState = { ...nextState, [Object.keys(nextState).length]: action.binding}
+            let newIndex = parseInt((Object.keys(nextState)[Object.keys(nextState).length - 1]));
+            nextState = { ...nextState, [newIndex + 1]: action.binding}
             return nextState;
         case REMOVE_BINDING:
-            delete nextState[action.bindingId];
-            return nextState;
+            let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.bindingId)
+            delete nextState[correctIndex];
+            return { ...nextState };
         default:
             return state;
     }

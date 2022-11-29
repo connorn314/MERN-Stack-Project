@@ -18,13 +18,13 @@ export default function ProfilePage(){
     const [bindingsObject, setBindingsObject] = useState({})
     const games = useSelector(state => Object.values(state.games));
     const [selectedGame, setSelectedGame] = useState('');
-    const [moves, setMoves] = useState([])
-    const [controller, setController] = useState('')
-    const history = useHistory()
+    const [moves, setMoves] = useState([]);
+    const [controller, setController] = useState('');
+    const history = useHistory();
 
     useEffect(()=>{
         dispatch(fetchGames())
-        dispatch(getUserBindings(user._id))
+        // dispatch(getUserBindings(user._id))
     },[dispatch])
     
     const handleCreate = () => {
@@ -45,10 +45,14 @@ export default function ProfilePage(){
     }
 
     const handleMove = (e) => {
+        console.log(e.target.id)
         if (currentKey !== ''){
+            console.log("here")
             document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
         }
         setCurrentKey(e.target.id)
+        console.log(currentKey)
+        console.log('here ^')
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
     
@@ -99,9 +103,20 @@ export default function ProfilePage(){
         }))
     }, [currentKey])
 
+    const handleKeyboardSelection = useCallback((e) => {
+        let objCopy = { ...bindingsObject }
+        // console.log(e)
+        objCopy[currentKey] = e.code
+        console.log(currentKey, e.code)
+        setBindingsObject(bindingsObject => ({
+            ...objCopy
+        }))
+        console.log(bindingsObject)
+    }, [currentKey])
+
     const controllers = {
-        "xbox-one": <XboxControllerTest handleSelection={handleSelection}/>,
-        "pc": <Keyboard currentKey={currentKey} />
+        "xbox-one": <XboxControllerTest handleSelection={handleSelection} />,
+        "pc": <Keyboard handleKeyboardSelection={handleKeyboardSelection} />
     }
 
     const handleClose = e => {
@@ -116,9 +131,9 @@ export default function ProfilePage(){
             <div id="dropdown-container">
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>
-                        <ul class="dropdown">
+                        <ul className="dropdown">
                             {games.slice(0,3).map((game, i)=>
-                                <li id={i} onClick={handleClick(i)}>{game.title}</li>
+                                <li id={i} onClick={handleClick(i)} key={i}>{game.title}</li>
                                 )}
                         </ul>
                     </li>
@@ -146,7 +161,7 @@ export default function ProfilePage(){
                 <button className='create-button' onClick={handleCreate}>Create</button>
             </div>
             <div className="binding-container-profile">
-                <BindingIndex currentKey={currentKey} setCurrentKey={setCurrentKey}/>
+                <BindingIndex userId={user._id} />
             </div>
         </div>
         </>

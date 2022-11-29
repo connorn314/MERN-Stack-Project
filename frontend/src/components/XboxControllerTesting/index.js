@@ -1,9 +1,6 @@
 import './xboxTest.css'
-import React, { useEffect } from "react";
-import { useState, useParams } from 'react';
-import { useDispatch } from 'react-redux';
-import { receiveCurrentUser } from '../../store/session';
-import { addBinding } from '../../store/games';
+import React from "react";
+
 
 
 export default function XboxControllerTest({handleSelection}){
@@ -113,17 +110,17 @@ export default function XboxControllerTest({handleSelection}){
                 <circle fill="transparent" stroke="none" cx="8500" cy="6800" r="850" id="Left Trigger" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleHover(e)} onMouseLeave={(e) => handleLeave(e)}></circle>
                 <circle fill="transparent" stroke="none" cx="27000" cy="6800" r="850" id="Right Trigger" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleHover(e)} onMouseLeave={(e) => handleLeave(e)}></circle>
 
-                <circle fill="transparent" stroke="none" cx="6500" cy="9000" r="600" id="Left Bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="7500" cy="8700" r="650" id="Left Bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="8500" cy="8400" r="650" id="Left Bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="9500" cy="8150" r="700" id="Left Bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="10500" cy="8000" r="700" id="Left Bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="6500" cy="9000" r="600" id="Left bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="7500" cy="8700" r="650" id="Left bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="8500" cy="8400" r="650" id="Left bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="9500" cy="8150" r="700" id="Left bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="10500" cy="8000" r="700" id="Left bumper" className="LeftBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
 
-                <circle fill="transparent" stroke="none" cx="25000" cy="8000"  r="700" id="Right Bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="26000" cy="8150"  r="700" id="Right Bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="27000" cy="8400"  r="650" id="Right Bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="28000" cy="8700"  r="650" id="Right Bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
-                <circle fill="transparent" stroke="none" cx="29000" cy="9000"  r="600" id="Right Bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="25000" cy="8000"  r="700" id="Right bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="26000" cy="8150"  r="700" id="Right bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="27000" cy="8400"  r="650" id="Right bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="28000" cy="8700"  r="650" id="Right bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
+                <circle fill="transparent" stroke="none" cx="29000" cy="9000"  r="600" id="Right bumper" className="RightBump" onClick={(e) => handleSelection(e)} onMouseEnter={(e) => handleSpecialHover(e)} onMouseLeave={(e) => handleSpecialLeave(e)}></circle>
 
 
 
@@ -212,16 +209,6 @@ export default function XboxControllerTest({handleSelection}){
                     fillRule="nonzero"
                     d="M26815 17948l496-1306h195l541 1306h-195l-166-390h-540l-150 390h-181 0zm376-525h451l-136-376c-45-105-75-195-105-270-15 90-30 165-60 255l-150 391z"
                 ></path>
-
-                {/* <path
-                    className='controllerButton'
-                    id="A button"
-                    onMouseEnter={(e) => handleHover(e)}
-                    onClick={(e) => handleSelection(e)}
-                    fill="none"
-                    fillRule="nonzero"
-                    d="M3990 11100c30 15 60 15 120 15 75 0 180 0 826-180 630-180 1817-525 2627-736 812-225 1247-330 1622-390 361-75 661-105 917-105 255 15 465 45 645 120 195 75 361 195 841 676 496 480 1322 1351 1802 1832 496 496 646 615 811 721 150 90 330 165 916 195 1667 135 3559 135 5226 0 601-30 766-105 916-195 165-106 315-225 811-721 481-481 1306-1352 1802-1832 496-481 646-601 841-676 181-75 406-105 646-120 255 0 555 30 931 105 360 60 796 165 1607 390 811 211 1997 556 2643 736 630 180 736 180 810 180 61 0 91 0 136-15"
-                ></path> */}
                 </g>
             </g>
         </svg>
