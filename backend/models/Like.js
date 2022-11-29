@@ -6,7 +6,6 @@ const likeSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-
   binding: {
     type: Schema.Types.ObjectId,
     ref: 'Binding'
@@ -15,4 +14,4 @@ const likeSchema = Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('Like', gameSchema);
+module.exports = mongoose.model('Like', likeSchema);

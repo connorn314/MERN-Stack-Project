@@ -1,8 +1,6 @@
 const { json } = require('express');
 const express = require('express');
-
 const router = express.Router();
-
 const mongoose = require('mongoose');
 const Binding = mongoose.model('Binding');
 
