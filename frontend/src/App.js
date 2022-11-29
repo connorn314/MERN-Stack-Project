@@ -15,6 +15,7 @@ import XboxController from './components/XboxController';
 import GameShowPage from './components/GameShowPage/GameShowPage';
 import { Route } from 'react-router-dom';
 import XboxControllerTest from './components/XboxControllerTesting';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,7 @@ function App() {
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
 
       </Switch>
+      <Footer />
     </>
   );
 }

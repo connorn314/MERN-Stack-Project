@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import {addBinding} from '../../store/games'
 import { receiveCurrentUser } from "../../store/session";
 
-export default function Keyboard ({handleKeyboardSelection}){
+export default function Keyboard ({selection}){
   // const {game_id} = useParams()
      //for update:
   // const dispatch = useDispatch()
@@ -24,9 +24,9 @@ export default function Keyboard ({handleKeyboardSelection}){
   //   }
   // },[])
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    document.addEventListener("keydown", handleKeyboardSelection)
+    // document.addEventListener("keydown", handleKeyboardSelection)
 
     // if(selectedKey !== undefined && currentKey !== ''){
     //   const selectionTag = document.getElementById(`${currentKey}-selection`)
@@ -34,24 +34,26 @@ export default function Keyboard ({handleKeyboardSelection}){
     //   dispatch(addBinding({ [currentKey]: selectedKey }))
     // }
   
-  },[])
+  // },[])
 
 
 
 
 
-  // const tags = Array.from(document.getElementsByClassName("key"))
+  const tags = Array.from(document.getElementsByClassName("key"))
 
-  // tags.forEach(tag => {
+  tags.forEach(tag => {
 
-    // if (binding[currentKey] === tag.id){
-    //   const fillColor = "red"
-    //   tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
-    // }else{
-    //   tag.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
-    // }
+    if (selection && selection === tag.id){
+      const fillColor = "red"
+      tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+    }else{
+      tag.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
+    }
 
-  // })
+  })
+
+
 
   return (
   <>

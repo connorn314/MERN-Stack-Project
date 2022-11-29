@@ -14,18 +14,27 @@ import './ProfilePage.css'
 export default function ProfilePage(){
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    const [selection, setSelection] = useState('');
     const [currentKey, setCurrentKey] = useState('');
-    const [bindingsObject, setBindingsObject] = useState({})
+    const [bindingsObject, setBindingsObject] = useState({});
     const games = useSelector(state => Object.values(state.games));
     const [selectedGame, setSelectedGame] = useState('');
     const [moves, setMoves] = useState([]);
     const [controller, setController] = useState('');
     const history = useHistory();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchGames())
         // dispatch(getUserBindings(user._id))
     },[dispatch])
+
+    useEffect((e) => {
+        console.log(e)
+        console.log(currentKey)
+        if (controller === 'pc'){
+            document.addEventListener("keypress", handleKeyboardSelection, {once: true})
+        } 
+    }, [currentKey])
     
     const handleCreate = () => {
         if (Object.values(bindingsObject).length > 0){
@@ -45,15 +54,12 @@ export default function ProfilePage(){
     }
 
     const handleMove = (e) => {
-        console.log(e.target.id)
         if (currentKey !== ''){
-            console.log("here")
             document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
         }
         setCurrentKey(e.target.id)
-        console.log(currentKey)
-        console.log('here ^')
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
+        // console.log(currentKey)
     }
     
     const tags = Array.from(document.getElementsByClassName("individual-set-container"))
@@ -103,20 +109,26 @@ export default function ProfilePage(){
         }))
     }, [currentKey])
 
-    const handleKeyboardSelection = useCallback((e) => {
+
+
+    const handleKeyboardSelection = (e) => {
         let objCopy = { ...bindingsObject }
         // console.log(e)
+        // console.log(currentKey)
+        // console.log(e)
+        setSelection(e.code)
         objCopy[currentKey] = e.code
-        console.log(currentKey, e.code)
         setBindingsObject(bindingsObject => ({
             ...objCopy
         }))
         console.log(bindingsObject)
-    }, [currentKey])
+    }
+
+
 
     const controllers = {
         "xbox-one": <XboxControllerTest handleSelection={handleSelection} />,
-        "pc": <Keyboard handleKeyboardSelection={handleKeyboardSelection} />
+        "pc": <Keyboard selection={selection} />
     }
 
     const handleClose = e => {
@@ -126,7 +138,6 @@ export default function ProfilePage(){
     }
 
     return(
-        <>
         <div className="background-div-profile">
             <div id="dropdown-container">
                 <ul>
@@ -152,7 +163,6 @@ export default function ProfilePage(){
                             <>
                                 <div id={`${move}-container`} className="individual-set-container">
                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                    {console.log(currentKey)}
                                     <div className="move-binding" id={`${move}-selection`}>{bindingsObject[move]}</div>
                                 </div>
                             </>
@@ -164,6 +174,5 @@ export default function ProfilePage(){
                 <BindingIndex userId={user._id} />
             </div>
         </div>
-        </>
     )
 }
