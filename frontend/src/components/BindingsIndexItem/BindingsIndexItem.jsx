@@ -6,6 +6,7 @@ import xboxController from './xbox-controller.png';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBinding, updateBinding } from '../../store/bindings';
+import { createLike, getGameLikes } from '../../store/likes';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useState } from 'react';
@@ -13,7 +14,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import XboxController from '../XboxController';
 
-const BindingIndexItem = ({ binding}) => {
+const BindingIndexItem = ({binding, gameId}) => {
     const history = useHistory()
     const moveSet = binding.keyBinds;
     const user = useSelector(state => state.session.user);
@@ -21,7 +22,12 @@ const BindingIndexItem = ({ binding}) => {
     const [currentKey, setCurrentKey] = useState()
     const dispatch = useDispatch();
     const keybind = useSelector(state => state.currentBindings)
-    
+    const likes = useSelector(state => state.likes)
+
+    useEffect(()=>{
+        dispatch(getGameLikes(gameId))
+    },[dispatch])
+
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
             return 'Rocket League'
@@ -112,6 +118,25 @@ const BindingIndexItem = ({ binding}) => {
         window.location.reload()
     }
 
+    let userLike = Object.values(likes).find(like => {
+        return like.user == user._id
+    })
+
+    let liked = userLike ? true : false
+    const handleLike = e => {
+        e.preventDefault();
+
+        if (!liked){
+            e.target.setAttribute("stroke", "red")
+            let newLike = {
+                user: user._id,
+                binding: binding._id,
+                game: gameId
+            }
+            dispatch(createLike(newLike))
+        }
+    }
+
     const controllers = {
         "pc":    <Keyboard currentKey={currentKey} currentBind={moveSet}/>,
         "xbox-one": <XboxController currentKey={currentKey} currentBind={moveSet} />
@@ -152,6 +177,7 @@ const BindingIndexItem = ({ binding}) => {
                         <div className='toggle-menu'>
                             <div onClick={openUpdate} id="edit-option-button-1">update</div>
                             <div onClick={deleteBind}  id="edit-option-button-1">delete</div>
+                        <div onClick={handleLike}><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke="white" ><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg></div>
                         </div>
                     </div>
                 </div>

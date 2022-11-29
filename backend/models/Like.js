@@ -9,6 +9,10 @@ const likeSchema = Schema({
   binding: {
     type: Schema.Types.ObjectId,
     ref: 'Binding'
+  },
+  game:{
+    type: Schema.Types.ObjectId,
+    ref: 'Game'
   }
 }, {
   timestamps: true

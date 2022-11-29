@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const Binding = mongoose.model('Binding');
 const User = mongoose.model('User');
+const Like = mongoose.model('Like')
 const passport = require('passport');
 
 const validateRegisterInput = require('../../validations/register');
@@ -110,6 +111,17 @@ router.get('/bindings/:userId', async function (req, res, next) {
     const user = await User.findById(req.params.userId);
     const bindings = await Binding.find({ user: user })
     return res.json(bindings)
+  }
+  catch (err) {
+    return res.json([]);
+  }
+})
+
+router.get('/likes/:userId', async function (req, res, next) {
+  try {
+    const user = await User.findById(req.params.userId);
+    const likes = await Like.find({ user: user })
+    return res.json(likes)
   }
   catch (err) {
     return res.json([]);

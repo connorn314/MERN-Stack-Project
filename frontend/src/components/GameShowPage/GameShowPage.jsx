@@ -69,7 +69,7 @@ const GameShowPage = () => {
                     </>
                 )}
             </div>
-            <BindingIndex />
+            <BindingIndex gameId={gameId}/>
         </div>
     )
 }

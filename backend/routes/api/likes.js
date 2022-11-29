@@ -16,11 +16,11 @@ router.get('/', async function (req, res, next) {
 router.post('/new', async (req, res, next) => {
   const newLike = new Like({
     user: req.body.user,
-    game: req.body.binding,
+    binding: req.body.binding,
     game: req.body.game
   })
   if (newLike && newLike.save()) {
-    return res.json({ newLike })
+    return res.json( newLike )
   } else {
     return res.json()
   }

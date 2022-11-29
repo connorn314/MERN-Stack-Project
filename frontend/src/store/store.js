@@ -5,6 +5,7 @@ import users from './users';
 import errors from './errors';
 import games from './games';
 import bindings from './bindings';
+import likes from './likes';
 import { BindingsReducer } from './games';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   games,
   bindings,
   errors,
+  likes,
   currentBindings: BindingsReducer
 });
 

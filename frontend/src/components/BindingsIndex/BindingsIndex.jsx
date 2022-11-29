@@ -4,7 +4,7 @@ import * as bindingActions from '../../store/bindings';
 import './BindingsIndex.css'
 import BindingIndexItem from '../BindingsIndexItem/BindingsIndexItem.jsx';
 
-const BindingIndex = ({currentKey}) => {
+const BindingIndex = ({currentKey, gameId}) => {
     const dispatch = useDispatch();
     const bindings = useSelector(state => Object.values(state.bindings))
     // useEffect(() => {
@@ -17,7 +17,7 @@ const BindingIndex = ({currentKey}) => {
                     <div id="bindings-index-outline">
                         {bindings.map(binding => {
                             return (
-                                <div key={binding._id}><BindingIndexItem binding={binding}/></div>
+                                <div key={binding._id}><BindingIndexItem binding={binding} gameId={gameId}/></div>
                             )
                         })
                         }

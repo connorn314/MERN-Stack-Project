@@ -1,121 +1,96 @@
 import jwtFetch from "./jwt";
 
-const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
-const RECEIVE_ONE_BINDING = "bindings/RECEIVE_ONE_BINDING"
-const RECEIVE_BINDINGS = "bindings/RECEIVE_BINDINGS"
-const REMOVE_BINDING = "bindings/REMOVE_BINDING"
+const RECEIVE_ONE_LIKE = "bindings/RECEIVE_ONE_LIKE"
+const RECEIVE_LIKES = "bindings/RECEIVE_LIKES"
+const REMOVE_LIKE = "bindings/REMOVE_LIKE"
 
 
-export const receiveBindings = (bindings) => ({
-  type: RECEIVE_BINDINGS,
-  bindings
+export const receiveLikes = (likes) => ({
+  type: RECEIVE_LIKES,
+  likes
 })
 
-export const receiveOneBinding = (binding) => ({
-  type: RECEIVE_ONE_BINDING,
-  binding
+export const receiveOneLike = (like) => ({
+  type: RECEIVE_ONE_LIKE,
+  like
 })
 
-export const removeBinding = (bindingId) => ({
-  type: REMOVE_BINDING,
-  bindingId
+export const removeLike = (likeId) => ({
+  type: REMOVE_LIKE,
+  likeId
 })
 
-export const populateBindings = () => async (dispatch) => {
-  const res = await jwtFetch('/api/bindings')
-  const bindings = await res.json();
+
+export const getOneLike = (likeId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/likes/${likeId}`)
+  const like = await res.json();
   if (res.ok) {
-    dispatch(receiveBindings(bindings))
-    return bindings
+    dispatch(receiveOneLike(like))
+    return like
   } else {
     return res
   }
 }
 
-export const getOneBinding = (bindingId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/bindings/${bindingId}`)
-  const binding = await res.json();
-  if (res.ok) {
-    dispatch(receiveOneBinding(binding))
-    return binding
-  } else {
-    return res
-  }
-}
-
-export const createBinding = (binding) => async dispatch => {
-  const res = await jwtFetch('/api/bindings/new', {
+export const createLike = (like) => async dispatch => {
+  const res = await jwtFetch('/api/likes/new', {
     method: 'POST',
-    body: JSON.stringify(binding)
+    body: JSON.stringify(like)
   });
-  const newBinding = await res.json();
-  if (newBinding) {
-    dispatch(receiveOneBinding(newBinding));
+  const newLike = await res.json();
+  if (newLike) {
+    dispatch(receiveOneLike(newLike));
   }
 }
 
-export const getUserBindings = (userId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/bindings/${userId}`)
-  const bindings = await res.json();
+export const getUserLikes = (userId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/likes/${userId}`)
+  const likes = await res.json();
   if (res.ok) {
-    dispatch(receiveBindings(bindings))
-    return bindings
+    dispatch(receiveLikes(likes))
+    return likes
   } else {
     return res
   }
 }
 
-export const getGameBindings = (gameId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/games/bindings/${gameId}`)
-  const bindings = await res.json();
+export const getGameLikes = (gameId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/games/likes/${gameId}`)
+  const likes = await res.json();
   if (res.ok) {
-    dispatch(receiveBindings(bindings))
-    return bindings
+    dispatch(receiveLikes(likes))
+    return likes
   } else {
     return res
   }
 }
 
-export const updateBinding = (binding) => async dispatch => {
-  const res = await jwtFetch(`/api/bindings/${binding._id}/edit`, {
-    method: 'PATCH',
-    body: JSON.stringify(binding),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  })
-  if (res.ok) {
-    const updatedBinding = await res.json();
-    dispatch(receiveOneBinding(updatedBinding))
-  }
-}
 
-export const deleteBinding = (binding) => async dispatch => {
-  const res = await jwtFetch(`/api/bindings/${binding._id}`, {
+export const deleteLike = (like) => async dispatch => {
+  const res = await jwtFetch(`/api/likes/${like._id}`, {
     method: 'DELETE'
   })
 
-  dispatch(removeBinding(binding._id))
+  dispatch(removeLike(like._id))
 }
 
 
-const bindingReducer = (state = {}, action) => {
+const likeReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = { ...state }
   switch (action.type) {
-    case RECEIVE_BINDINGS:
-      nextState = { ...action.bindings }
+    case RECEIVE_LIKES:
+      nextState = { ...action.likes }
       return nextState;
-    case RECEIVE_ONE_BINDING:
-      nextState = { ...nextState, [action.binding.id]: action.binding }
+    case RECEIVE_ONE_LIKE:
+      nextState = { ...nextState, [action.like._id]: action.like }
       return nextState;
-    case REMOVE_BINDING:
-      delete nextState[action.bindingId];
+    case REMOVE_LIKE:
+      delete nextState[action.likeId];
       return nextState;
     default:
       return state;
   }
 }
 
-export default bindingReducer;
+export default likeReducer;

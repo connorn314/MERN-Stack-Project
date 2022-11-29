@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Binding = mongoose.model('Binding');
-const Game = mongoose.model('Game')
+const Game = mongoose.model('Game');
+const Like = mongoose.model('Like');
 
 router.get('/', async function(req, res, next) {
     try {
@@ -75,6 +76,17 @@ router.get('/bindings/:gameId', async function (req, res, next) {
         const game = await Game.findById(req.params.gameId);
         const bindings = await Binding.find({ game: game })
         return res.json(bindings)
+    }
+    catch (err) {
+        return res.json([]);
+    }
+})
+
+router.get('/likes/:gameId', async function (req, res, next) {
+    try {
+        const game = await Game.findById(req.params.gameId);
+        const likes = await Like.find({ game: game })
+        return res.json(likes)
     }
     catch (err) {
         return res.json([]);
