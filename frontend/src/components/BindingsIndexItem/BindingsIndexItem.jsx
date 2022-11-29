@@ -18,7 +18,7 @@ const BindingIndexItem = ({binding}) => {
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const [currentKey, setCurrentKey] = useState('');
     const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
     const [showMain, setShowMain] = useState(true);
@@ -60,7 +60,13 @@ const BindingIndexItem = ({binding}) => {
         dispatch(userActions.getOneUser(binding.user))
     }, [])
 
-
+    useEffect((e) => {
+        console.log(e)
+        console.log(currentKey)
+        if (binding.controller === 'pc'){
+            document.addEventListener("keypress", handleKeyboardSelection, {once: true})
+        } 
+    }, [currentKey])
 
     const openUpdate = e => {
         if (user._id === binding.user) {
@@ -70,11 +76,9 @@ const BindingIndexItem = ({binding}) => {
 
     const handleMove = (e) => {
         if (currentKey !== '') {
-            // console.log(currentKey)
             document.getElementById(`${currentKey}-container`).style.backgroundColor = 'transparent'
         }
         setCurrentKey(e.target.id)
-        // console.log(currentKey)
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
 
@@ -85,6 +89,16 @@ const BindingIndexItem = ({binding}) => {
             ...objCopy
         }))
     }, [currentKey])
+
+    const handleKeyboardSelection = (e) => {
+        let objCopy = { ...bindingsObject }
+        // setSelection(e.code)
+        objCopy[currentKey] = e.code
+        setBindingsObject(bindingsObject => ({
+            ...objCopy
+        }))
+        console.log(bindingsObject)
+    }
 
     const deleteBind = e => {
         if (user._id === binding.user){
@@ -102,7 +116,7 @@ const BindingIndexItem = ({binding}) => {
             controller: binding.controller,
             keyBinds: bindingsObject
         }
-        console.log(updatedBinding)
+        // console.log(updatedBinding)
         dispatch(updateBinding(updatedBinding))
         setShowMain(true)
         // window.location.reload()

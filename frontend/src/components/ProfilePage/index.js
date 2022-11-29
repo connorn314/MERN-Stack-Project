@@ -113,9 +113,6 @@ export default function ProfilePage(){
 
     const handleKeyboardSelection = (e) => {
         let objCopy = { ...bindingsObject }
-        // console.log(e)
-        // console.log(currentKey)
-        // console.log(e)
         setSelection(e.code)
         objCopy[currentKey] = e.code
         setBindingsObject(bindingsObject => ({
@@ -133,6 +130,8 @@ export default function ProfilePage(){
 
     const handleClose = e => {
         e.preventDefault();
+        setBindingsObject({})
+        setCurrentKey('')
         document.getElementById('profile-main-container').style.display = 'none'
         document.getElementById('dropdown-container').style.display = 'block'
     }

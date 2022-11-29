@@ -1,3 +1,4 @@
+import BindingIndex from "../components/BindingsIndex/BindingsIndex";
 import jwtFetch from "./jwt";
 
 // const POPULATE_BINDINGS = "bindings/POPULATE_BINDINGS"
@@ -110,8 +111,13 @@ const bindingReducer = (state = {}, action) => {
             nextState = { ...action.bindings }            
             return nextState;
         case RECEIVE_ONE_BINDING:
-            let newIndex = parseInt((Object.keys(nextState)[Object.keys(nextState).length - 1]));
-            nextState = { ...nextState, [newIndex + 1]: action.binding}
+            let newIndex = parseInt((Object.keys(nextState)[Object.keys(nextState).length - 1])) + 1;
+            Object.keys(nextState).forEach(bindingIndex => {
+                if (nextState[bindingIndex]._id == action.binding._id) {
+                    newIndex = bindingIndex
+                }
+            })
+            nextState = { ...nextState, [newIndex]: action.binding}
             return nextState;
         case REMOVE_BINDING:
             let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.bindingId)
