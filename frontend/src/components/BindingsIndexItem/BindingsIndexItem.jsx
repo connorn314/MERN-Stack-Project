@@ -27,6 +27,7 @@ import { useEffect } from 'react';
 const BindingIndexItem = ({ binding, gameId }) => {
 
     const user = useSelector(state => state.session.user);
+    const likes = useSelector(state => state.likes)
     const dispatch = useDispatch();
     const [currentKey, setCurrentKey] = useState('');
     const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
