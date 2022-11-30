@@ -76,7 +76,8 @@
 .bindpage-move-title-name {
     font-size: 20px;
     font-weight: 500;
-    color: #49FB35
+    color: #49FB35;
+    font-family: Hermes-Regular;
 }
 
 .bindpage-move-title-binding {
@@ -84,7 +85,8 @@
     font-weight: 500;
     width: 30%;
     text-align: center;
-    color: #49FB35
+    color: #49FB35;
+    font-family: Hermes-Regular;
 }
 
 .toggle-menu{
@@ -123,9 +125,15 @@
     padding: 5px 0px;
     font-weight: 900;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Hermes-Regular;
     padding-left: 10px;
 
+}
+
+#a-spacer {
+    border-bottom: 1px solid;
+    width: 75%;
+    margin-left: 5%;
 }
 
 #edit-option-button-1:hover {
@@ -134,4 +142,15 @@
 
 #edit-option-button-2:hover {
     color: #49FB35
+}
+
+#like-button-container {
+    size: 20px;
+}
+
+#update-delete-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
 }

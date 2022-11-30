@@ -1,3 +1,5 @@
+
+
 #game-show-page-container {
     background: radial-gradient(rgb(146, 55, 231), rgb(26, 1, 49));
     height: 100%;
@@ -6,7 +8,7 @@
     justify-content: center;
     align-items: center;
     padding: 5%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Hermes-Regular;
     color: #49FB35;
 }
 #game-img {

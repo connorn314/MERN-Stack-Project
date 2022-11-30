@@ -42,6 +42,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
             return 'Super Smash Bros Ultimate'
         }
     }
+
     const handleClose = e => {
         e.preventDefault();
         setShowMain(true)
@@ -159,6 +160,21 @@ const BindingIndexItem = ({ binding, gameId }) => {
         }
     }
 
+    const authorDiv = (author && (author._id !== user._id)) ? (
+        <div id='author-div'>{author.username}</div>
+    ) : (
+        <div id='author-div'>Your Binding</div>
+    )
+
+    const toggleMenu = (author && (author._id !== user._id)) ? (
+        <div onClick={handleLike} id="like-button-container"><svg id={`like-${binding._id}`} width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke={strokeColor} ><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg></div>
+    ) : (
+        <div id='update-delete-container'>
+            <div onClick={openUpdate} id="edit-option-button-1">update</div>
+            <div onClick={deleteBind}  id="edit-option-button-1">delete</div>
+        </div>
+    )
+
 
     const controllers = {
         "pc": <Keyboard currentKey={currentKey} />,
@@ -172,10 +188,9 @@ const BindingIndexItem = ({ binding, gameId }) => {
                 <div id="binding-item-container">
                     <div id="game-mini-thumbnail-container">
                         <div id='actual-mini-thumbnail'>
-                            <div id='author-div'>Game: {game.title}</div>
-                            {author && (
-                                <div id='author-div'>User: {author.username}</div>
-                                )}
+                            <div id='author-div'>{game.title}</div>
+                            <div id='a-spacer' />
+                            {authorDiv}
                             </div>
                         </div>    
                         <div id='binding-detail-container'>
@@ -199,9 +214,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
                             </div>
                         </div>
                         <div className='toggle-menu'>
-                            <div onClick={openUpdate} id="edit-option-button-1">update</div>
-                            <div onClick={deleteBind}  id="edit-option-button-1">delete</div>
-                        <div onClick={handleLike}><svg id={`like-${binding._id}`} width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke={strokeColor} ><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg></div>
+                            {toggleMenu}
                         </div>
                     </div>
                 </div>
