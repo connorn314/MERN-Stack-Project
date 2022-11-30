@@ -5,10 +5,10 @@ const logger = require('morgan');
 require('./models/User');
 require('./models/Game');
 require('./models/Binding');
+require('./models/Like');
 require('./config/passport'); 
 
 const passport = require('passport');
-
 
 const cors = require('cors');
 const csurf = require('csurf');
@@ -18,6 +18,7 @@ const { isProduction } = require('./config/keys');
 const usersRouter = require('./routes/api/users');
 const bindingsRouter = require('./routes/api/bindings');
 const gamesRouter = require('./routes/api/games');
+const likesRouter = require('./routes/api/likes');
 const csrfRouter = require('./routes/api/csrf');
 const app = express();
 
@@ -50,7 +51,8 @@ app.use(
 
 app.use('/api/users', usersRouter);
 app.use('/api/bindings', bindingsRouter);
-app.use('/api/games', gamesRouter)
+app.use('/api/games', gamesRouter);
+app.use('/api/likes', likesRouter);
 app.use('/api/csrf', csrfRouter);
 
 if (isProduction) {

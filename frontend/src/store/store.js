@@ -5,14 +5,16 @@ import users from './users';
 import errors from './errors';
 import games from './games';
 import bindings from './bindings';
-
+import likes from './likes';
+import { BindingsReducer } from './games';
 
 const rootReducer = combineReducers({
   session,
   users,
   games,
   bindings,
-  errors
+  errors,
+  likes
 });
 
 let enhancer;

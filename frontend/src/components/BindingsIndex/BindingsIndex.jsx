@@ -20,11 +20,21 @@ const BindingIndex = (props) => {
     return (
         <>
             <div id="bindings-index-container">
+                {/* {bindings && (
+                    <div id="bindings-index-outline">
+                        {bindings.map(binding => {
+                            return (
+                                <div key={binding._id}><BindingIndexItem binding={binding} gameId={gameId}/></div>
+                            )
+                        })
+                        }
+                    </div>
+                )} */}
                 <div id="bindings-index-outline">
                     {complete &&
                     Object.values(bindings).map((binding, i)=> {
                         return (
-                            <div key={i}><BindingIndexItem binding={binding}/></div>
+                            <div key={i}><BindingIndexItem binding={binding} gameId={props.gameId} /></div>
                         )
                     })
                     }
