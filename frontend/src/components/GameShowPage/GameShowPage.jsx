@@ -16,7 +16,7 @@ const GameShowPage = () => {
     let game = (Object.keys(games).length === 0) ? null : Object.values(games).find(game => game._id == gameId)
     useEffect(() => {
         dispatch(fetchGame(gameId))
-        dispatch(getGameBindings(gameId))
+        // dispatch(getGameBindings(gameId))
     }, [])
 
     const correctImage = (title) => {
@@ -69,7 +69,7 @@ const GameShowPage = () => {
                     </>
                 )}
             </div>
-            <BindingIndex />
+            <BindingIndex gameId={gameId} />
         </div>
     )
 }

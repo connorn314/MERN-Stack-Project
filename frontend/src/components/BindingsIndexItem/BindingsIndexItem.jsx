@@ -1,42 +1,39 @@
 import './BindingsIndexItem.css';
 import * as userActions from '../../store/users';
-import * as gameActions from '../../store/games';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
+import XboxControllerTest from '../XboxControllerTesting';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBinding, updateBinding } from '../../store/bindings';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import XboxController from '../XboxController';
 
-const BindingIndexItem = ({ binding}) => {
-    const history = useHistory()
-    const moveSet = binding.keyBinds;
+
+const BindingIndexItem = ({binding}) => {
+
     const user = useSelector(state => state.session.user);
-    const [showMain, setShowMain] = useState(true)
-    const [currentKey, setCurrentKey] = useState()
     const dispatch = useDispatch();
-    const keybind = useSelector(state => state.currentBindings)
+    const [currentKey, setCurrentKey] = useState('');
+    const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
+    const [showMain, setShowMain] = useState(true);
     
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
             return 'Rocket League'
         } else if (binding.controller === 'pc'){
             return 'League of Legends'
-        } else{
+        } else {
             return 'Super Smash Bros Ultimate'
         }
     }
     const handleClose = e => {
         e.preventDefault();
-        // document.getElementById('profile-main-container').style.display = 'none'
-        // document.getElementById('dropdown-container').style.display = 'block'
-        // dispatch(clearCurrentBindings())
-        window.location.reload(false)
+        setShowMain(true)
+        document.getElementById('profile-main-container').style.display = 'none'
+        document.getElementById('dropdown-container').style.display = 'block'
     }
 
     const author = useSelector(state => state.users[binding.user])
@@ -55,21 +52,19 @@ const BindingIndexItem = ({ binding}) => {
         }
     }
 
-    useEffect(() => {
-        dispatch(gameActions.fetchGame(binding.game))
+    useEffect(() => {        
         dispatch(userActions.getOneUser(binding.user))
-        if(moveSet){
-            setCurrentKey(Object.keys(moveSet)[0])
-        }
- 
     }, [])
 
+    useEffect((e) => {
+        if (binding.controller === 'pc'){
+            document.addEventListener("keypress", handleKeyboardSelection, {once: true})
+        } 
+    }, [currentKey])
 
-
-    const openUpdate = e => {
+    const openUpdate = () => {
         if (user._id === binding.user) {
             setShowMain(false)
-            // document.getElementById(binding._id).style.display = 'block'
         }    
     }
 
@@ -81,40 +76,47 @@ const BindingIndexItem = ({ binding}) => {
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
 
-    // const controller = {
-    //     'pc': <Keyboard currentKey={currentKey} />,
+    const handleSelection = useCallback((e) => {
+        let objCopy = { ...bindingsObject }
+        objCopy[currentKey] = e.target.id
+        setBindingsObject(bindingsObject => ({
+            ...objCopy
+        }))
+    }, [currentKey])
 
-
-    // }
+    const handleKeyboardSelection = (e) => {
+        if (currentKey !== ''){
+            let objCopy = { ...bindingsObject }
+            objCopy[currentKey] = e.code
+            setBindingsObject(bindingsObject => ({
+                ...objCopy
+            }))
+        }
+    }
 
     const deleteBind = e => {
         if (user._id === binding.user){
-            dispatch(deleteBinding(binding))
-            history.push("/profile")
-            window.location.reload()
+            return dispatch(deleteBinding(binding))
         }
     }
 
     const handleUpdate = e => {
-
         e.preventDefault()
+
         let updatedBinding = {
             _id: binding._id,
             user: user._id,
             game: binding.game,
             controller: binding.controller,
-            keyBinds: keybind
+            keyBinds: bindingsObject
         }
-        console.log(updatedBinding)
         dispatch(updateBinding(updatedBinding))
-
-        history.push("/profile")
-        window.location.reload()
+        setShowMain(true)
     }
 
     const controllers = {
-        "pc":    <Keyboard currentKey={currentKey} currentBind={moveSet}/>,
-        "xbox-one": <XboxController currentKey={currentKey} currentBind={moveSet} />
+        "pc": <Keyboard currentKey={currentKey} />,
+        "xbox-one": <XboxControllerTest  handleSelection={handleSelection}/>
     }
 
     if(game){
@@ -135,14 +137,15 @@ const BindingIndexItem = ({ binding}) => {
                                 <div className="bindpage-move-title-name">Moves</div>
                                 <div className="bindpage-move-title-binding">Bindings</div>
                             </div>
-                            {Object.keys(moveSet).map(move =>
-                                <>
-                                    <div className="individual-set-container">
-                                        <div className='move-name'>{move}</div>
-                                        <div className="move-binding">{moveSet[move]}</div>
-                                    </div>
-                                </>
+                            {/* {console.log(bindingsObject)} */}
+
+                            {Object.keys(bindingsObject).map(move =>
+                                <div className="individual-set-container" key={move}>
+                                    <div className='move-name'>{move}</div>
+                                    <div className="move-binding">{bindingsObject[move]}</div>
+                                </div>
                             )}
+                            
                         </div>
                         <div id='controller-mini-thumbnail'>
                             <div id='controller-icon-container'>
@@ -168,18 +171,19 @@ const BindingIndexItem = ({ binding}) => {
                         <div className="move-set-title-binding">Bindings</div>
                     </div>
                     {game.validMovements.map((move, i) =>
-                        <>
-                            <div id={`${move}-container`} className="individual-set-container">
+                            <div id={`${move}-container`} className="individual-set-container" key={i}>
                                 <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                <div className="move-binding" id={`${move}-selection`}>{moveSet[move]}</div>
+                                <div className="move-binding" id={`${move}-selection`}>{bindingsObject[move]}</div>
                             </div>
-                        </>
                     )}
                 </div>
                 <button className='create-button' onClick={handleUpdate}>Update</button>
             </div>
         </div>
     )}
+}
+
+export default BindingIndexItem;
 
     // return (
     //     <>
@@ -195,7 +199,7 @@ const BindingIndexItem = ({ binding}) => {
     //                     <div className="bindpage-move-title-name">Moves</div>
     //                     <div className="bindpage-move-title-binding">Bindings</div>
     //                 </div>
-    //                 {Object.keys(moveSet).map(move =>
+    //                 {Object.keys(bindingsObject).map(move =>
     //                     <>
     //                         <div className="individual-set-container">
     //                             <div className='move-name'>{move}</div>
@@ -239,9 +243,6 @@ const BindingIndexItem = ({ binding}) => {
     //     </div>
     //     </>
     // )
-}
-
-export default BindingIndexItem;
 // create:
 // {
 //     "user": "6372bce9c6f3636a1efe9dec",
