@@ -3,6 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Like = mongoose.model('Like');
 
+const validateLike = require('../../validations/like');
+
+
 router.get('/', async function (req, res, next) {
   try {
     const likes = await Like.find()
@@ -13,7 +16,7 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-router.post('/new', async (req, res, next) => {
+router.post('/new', validateLike, async (req, res, next) => {
   const newLike = new Like({
     user: req.body.user,
     binding: req.body.binding,
