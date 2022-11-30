@@ -1,42 +1,51 @@
 import './BindingsIndexItem.css';
 import * as userActions from '../../store/users';
-import * as gameActions from '../../store/games';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
+import XboxControllerTest from '../XboxControllerTesting';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBinding, updateBinding } from '../../store/bindings';
 import { createLike, deleteLike, getGameLikes } from '../../store/likes';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import XboxController from '../XboxController';
 
-const BindingIndexItem = ({binding, gameId}) => {
-    const history = useHistory()
-    const dispatch = useDispatch();
-    const moveSet = binding.keyBinds;
+// const BindingIndexItem = ({binding, gameId}) => {
+//     const history = useHistory()
+//     const dispatch = useDispatch();
+//     const moveSet = binding.keyBinds;
+//     const user = useSelector(state => state.session.user);
+//     const [showMain, setShowMain] = useState(true)
+//     const [currentKey, setCurrentKey] = useState()
+//     const keybind = useSelector(state => state.currentBindings)
+//     const likes = useSelector(state => state.likes)
+
+
+
+const BindingIndexItem = ({ binding, gameId }) => {
+
     const user = useSelector(state => state.session.user);
-    const [showMain, setShowMain] = useState(true)
-    const [currentKey, setCurrentKey] = useState()
-    const keybind = useSelector(state => state.currentBindings)
-    const likes = useSelector(state => state.likes)
-
-
+    const dispatch = useDispatch();
+    const [currentKey, setCurrentKey] = useState('');
+    const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
+    const [showMain, setShowMain] = useState(true);
+    
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
             return 'Rocket League'
         } else if (binding.controller === 'pc'){
             return 'League of Legends'
-        } else{
+        } else {
             return 'Super Smash Bros Ultimate'
         }
     }
     const handleClose = e => {
         e.preventDefault();
-        window.location.reload(false)
+        setShowMain(true)
+        document.getElementById('profile-main-container').style.display = 'none'
+        document.getElementById('dropdown-container').style.display = 'block'
     }
 
     const author = useSelector(state => state.users[binding.user])
@@ -55,17 +64,26 @@ const BindingIndexItem = ({binding, gameId}) => {
         }
     }
 
-    useEffect(() => {
-        dispatch(gameActions.fetchGame(binding.game))
-        dispatch(userActions.getOneUser(binding.user))
-        dispatch(getGameLikes(gameId))
-        if(moveSet){
-            setCurrentKey(Object.keys(moveSet)[0])
-        }
+    // useEffect(() => {        
+    //     dispatch(userActions.getOneUser(binding.user))
+    //     dispatch(getGameLikes(gameId))
+    //     if(moveSet){
+    //         setCurrentKey(Object.keys(moveSet)[0])
+    //     }
  
-    }, [])
+    // }, [])
 
-    const openUpdate = e => {
+    // const openUpdate = e => {
+    // }, [])
+
+    useEffect((e) => {
+        dispatch(getGameLikes(gameId))
+        if (binding.controller === 'pc'){
+            document.addEventListener("keypress", handleKeyboardSelection, {once: true})
+        } 
+    }, [currentKey])
+
+    const openUpdate = () => {
         if (user._id === binding.user) {
             setShowMain(false)
         }    
@@ -79,29 +97,42 @@ const BindingIndexItem = ({binding, gameId}) => {
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
     }
 
+    const handleSelection = useCallback((e) => {
+        let objCopy = { ...bindingsObject }
+        objCopy[currentKey] = e.target.id
+        setBindingsObject(bindingsObject => ({
+            ...objCopy
+        }))
+    }, [currentKey])
+
+    const handleKeyboardSelection = (e) => {
+        if (currentKey !== ''){
+            let objCopy = { ...bindingsObject }
+            objCopy[currentKey] = e.code
+            setBindingsObject(bindingsObject => ({
+                ...objCopy
+            }))
+        }
+    }
+
     const deleteBind = e => {
         if (user._id === binding.user){
-            dispatch(deleteBinding(binding))
-            history.push("/profile")
-            window.location.reload()
+            return dispatch(deleteBinding(binding))
         }
     }
 
     const handleUpdate = e => {
-
         e.preventDefault()
+
         let updatedBinding = {
             _id: binding._id,
             user: user._id,
             game: binding.game,
             controller: binding.controller,
-            keyBinds: keybind
+            keyBinds: bindingsObject
         }
-        console.log(updatedBinding)
         dispatch(updateBinding(updatedBinding))
-
-        history.push("/profile")
-        window.location.reload()
+        setShowMain(true)
     }
 
     
@@ -137,8 +168,8 @@ const BindingIndexItem = ({binding, gameId}) => {
 
 
     const controllers = {
-        "pc":    <Keyboard currentKey={currentKey} currentBind={moveSet}/>,
-        "xbox-one": <XboxController currentKey={currentKey} currentBind={moveSet} />
+        "pc": <Keyboard currentKey={currentKey} />,
+        "xbox-one": <XboxControllerTest  handleSelection={handleSelection}/>
     }
 
     if(game){
@@ -159,14 +190,15 @@ const BindingIndexItem = ({binding, gameId}) => {
                                 <div className="bindpage-move-title-name">Moves</div>
                                 <div className="bindpage-move-title-binding">Bindings</div>
                             </div>
-                            {Object.keys(moveSet).map(move =>
-                                <>
-                                    <div className="individual-set-container">
-                                        <div className='move-name'>{move}</div>
-                                        <div className="move-binding">{moveSet[move]}</div>
-                                    </div>
-                                </>
+                            {/* {console.log(bindingsObject)} */}
+
+                            {Object.keys(bindingsObject).map(move =>
+                                <div className="individual-set-container" key={move}>
+                                    <div className='move-name'>{move}</div>
+                                    <div className="move-binding">{bindingsObject[move]}</div>
+                                </div>
                             )}
+                            
                         </div>
                         <div id='controller-mini-thumbnail'>
                             <div id='controller-icon-container'>
@@ -193,12 +225,10 @@ const BindingIndexItem = ({binding, gameId}) => {
                         <div className="move-set-title-binding">Bindings</div>
                     </div>
                     {game.validMovements.map((move, i) =>
-                        <>
-                            <div id={`${move}-container`} className="individual-set-container">
+                            <div id={`${move}-container`} className="individual-set-container" key={i}>
                                 <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-                                <div className="move-binding" id={`${move}-selection`}>{moveSet[move]}</div>
+                                <div className="move-binding" id={`${move}-selection`}>{bindingsObject[move]}</div>
                             </div>
-                        </>
                     )}
                 </div>
                 <button className='create-button' onClick={handleUpdate}>Update</button>
@@ -208,3 +238,85 @@ const BindingIndexItem = ({binding, gameId}) => {
 }
 
 export default BindingIndexItem;
+
+    // return (
+    //     <>
+    //     <div className='main-individual-binding-container'>
+    //         <div id="binding-item-container">
+    //             <div id="game-mini-thumbnail-container">
+    //                 <div id='actual-mini-thumbnail'>
+    //                     GAME IMG
+    //                 </div>
+    //             </div>
+    //             <div id='binding-detail-container'>
+    //                 <div className="binding-set-container">
+    //                     <div className="bindpage-move-title-name">Moves</div>
+    //                     <div className="bindpage-move-title-binding">Bindings</div>
+    //                 </div>
+    //                 {Object.keys(bindingsObject).map(move =>
+    //                     <>
+    //                         <div className="individual-set-container">
+    //                             <div className='move-name'>{move}</div>
+    //                             <div className="move-binding">{moveSet[move]}</div>
+    //                         </div>
+    //                     </>
+    //                 )}            
+    //             </div>
+    //             <div id='controller-mini-thumbnail'>
+    //                 <div id='controller-icon-container'>
+    //                     <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
+    //                 </div>
+    //             </div>
+    //             <div className='toggle-menu'>
+    //                 <div onClick={openUpdate}>update</div>
+    //                 <div onClick={deleteBind}>delete</div>
+    //             </div>
+    //         </div>
+    //         <div id={binding._id} className='update-binding'>
+    //                 <div id="profile-main-container">
+    //                     <div className="x-positioning"><img onClick={handleClose} src={x} /></div>
+    //                     <h1 className="profile-game-title">{gameTitle(binding)}</h1>
+    //                     <Keyboard currentKey={currentKey}/>
+    //                     <div className="move-set-container">
+    //                         <div className="individual-set-container1">
+    //                             <div className="move-set-title-name">Moves</div>
+    //                             <div className="move-set-title-binding">Bindings</div>
+    //                         </div>
+    //                         {Object.keys(moveSet).map((move, i) =>
+    //                             <>
+    //                                 <div id={`${move}-container`} className="individual-set-container">
+    //                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
+    //                                     <div className="move-binding" id={`${move}-selection`}> </div>
+    //                                 </div>
+    //                             </>
+    //                         )}
+    //                     </div>
+    //                     <button className='create-button' onClick={handleUpdate}>Update</button>
+    //                 </div>            
+    //             </div>
+    //     </div>
+    //     </>
+    // )
+// create:
+// {
+//     "user": "6372bce9c6f3636a1efe9dec",
+//     "game": "63752873afb6a1247fc7250f",
+//     "controller": "pc",
+//     "keyBinds": {
+//         "ability3": "KeyA"
+//     }
+// }
+// }
+// {
+//     "_id": "63767ef05a1a77b63aa8b4a9",
+//     "user": "6372bce9c6f3636a1efe9dec",
+//     "game": "63767ef05a1a77b63aa8b4a9",
+//     "controller": "pc",
+//     "keyBinds": {
+//         "ability1": "KeyA",
+//         "ability3": "KeyS",
+//         "ability2": "KeyD",
+//         "summoner spell 2": "KeyV",
+//         "item 3": "KeyX"
+//     }
+// }

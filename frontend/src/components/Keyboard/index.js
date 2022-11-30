@@ -5,54 +5,46 @@ import { useParams } from "react-router-dom";
 import {addBinding} from '../../store/games'
 import { receiveCurrentUser } from "../../store/session";
 
-export default function Keyboard ({currentKey, currentBind={}}){
-  const {game_id} = useParams()
+export default function Keyboard ({selection}){
+  // const {game_id} = useParams()
      //for update:
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
 
-  const dummyId = 0
-  const [binding, setBinding] = useState(currentBind)
-  const [selectedKey, setSelectedKey] = useState()
+  // const dummyId = 0
+  // const [binding, setBinding] = useState(currentBind)
+  // const [selectedKey, setSelectedKey] = useState()
 
   // const userId = dispatch(receiveCurrentUser)
-  const [selectionTag, setSelectionTag] = useState()
+  // const [selectionTag, setSelectionTag] = useState()
 
-  useEffect(() => {
-    if(currentBind !== {}){
-      dispatch(addBinding(currentBind))
-    }
-  },[])
+  // useEffect(() => {
+  //   if(currentBind !== {}){
+  //     dispatch(addBinding(currentBind))
+  //   }
+  // },[])
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    document.addEventListener("keydown", (e) => {
-      e.preventDefault()
+    // document.addEventListener("keydown", handleKeyboardSelection)
 
-      if (currentKey !== '') {
-        setSelectedKey(e.code)
-        setBinding({ [currentKey]: e.key })
-      }
-    })
-    if(selectedKey !== undefined && currentKey !== ''){
-    
-      const selectionTag = document.getElementById(`${currentKey}-selection`)
-      selectionTag.innerText = selectedKey
-      dispatch(addBinding({ [currentKey]: selectedKey }))
- 
-    }
+    // if(selectedKey !== undefined && currentKey !== ''){
+    //   const selectionTag = document.getElementById(`${currentKey}-selection`)
+    //   selectionTag.innerText = selectedKey
+    //   dispatch(addBinding({ [currentKey]: selectedKey }))
+    // }
   
-  },[currentKey,selectedKey])
+  // },[])
 
 
 
 
 
-  const tags = Array.from(document.getElementsByClassName("key" ))
+  const tags = Array.from(document.getElementsByClassName("key"))
 
   tags.forEach(tag => {
 
-    if(binding[currentKey] === tag.id){
+    if (selection && selection === tag.id){
       const fillColor = "red"
       tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
     }else{
@@ -60,6 +52,8 @@ export default function Keyboard ({currentKey, currentBind={}}){
     }
 
   })
+
+
 
   return (
   <>

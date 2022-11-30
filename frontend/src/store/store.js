@@ -14,8 +14,7 @@ const rootReducer = combineReducers({
   games,
   bindings,
   errors,
-  likes,
-  currentBindings: BindingsReducer
+  likes
 });
 
 let enhancer;

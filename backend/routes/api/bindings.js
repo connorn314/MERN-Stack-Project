@@ -25,7 +25,7 @@ router.post('/new', validateBindingInput, async (req, res, next) => {
     keyBinds: req.body.keyBinds
   })
   if (newBinding && newBinding.save()){
-    return res.json({newBinding})
+    return res.json(newBinding)
   } else {
     return res.json()
   }
