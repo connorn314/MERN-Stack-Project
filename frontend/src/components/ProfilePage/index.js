@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBinding, getUserBindings } from "../../store/bindings";
-import { clearCurrentBindings, fetchGames } from "../../store/games";
+import { createBinding } from "../../store/bindings";
+import { fetchGames } from "../../store/games";
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
 import XboxControllerTest from "../XboxControllerTesting";
@@ -25,12 +25,9 @@ export default function ProfilePage(){
 
     useEffect(() => {
         dispatch(fetchGames())
-        // dispatch(getUserBindings(user._id))
     },[dispatch])
 
     useEffect((e) => {
-        console.log(e)
-        console.log(currentKey)
         if (controller === 'pc'){
             document.addEventListener("keypress", handleKeyboardSelection, {once: true})
         } 
@@ -59,7 +56,6 @@ export default function ProfilePage(){
         }
         setCurrentKey(e.target.id)
         document.getElementById(`${e.target.id}-container`).style.backgroundColor = '#2E294E'
-        // console.log(currentKey)
     }
     
     const tags = Array.from(document.getElementsByClassName("individual-set-container"))
@@ -118,7 +114,7 @@ export default function ProfilePage(){
         setBindingsObject(bindingsObject => ({
             ...objCopy
         }))
-        console.log(bindingsObject)
+
     }
 
 

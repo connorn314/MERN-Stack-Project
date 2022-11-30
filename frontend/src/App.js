@@ -34,10 +34,6 @@ function App() {
         <AuthRoute exact path="/signup" component={SignupForm} />
         <Route exact path="/games" component={GameIndex} />
         <Route exact path="/games/:gameId" component={GameShowPage}/>
-
-        <Route path="/test">
-          <XboxController currentKey={"test"}></XboxController>
-        </Route>
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
 

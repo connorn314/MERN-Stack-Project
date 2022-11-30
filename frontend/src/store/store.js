@@ -5,15 +5,14 @@ import users from './users';
 import errors from './errors';
 import games from './games';
 import bindings from './bindings';
-import { BindingsReducer } from './games';
+
 
 const rootReducer = combineReducers({
   session,
   users,
   games,
   bindings,
-  errors,
-  currentBindings: BindingsReducer
+  errors
 });
 
 let enhancer;

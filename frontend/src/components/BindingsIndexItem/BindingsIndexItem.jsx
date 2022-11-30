@@ -1,6 +1,5 @@
 import './BindingsIndexItem.css';
 import * as userActions from '../../store/users';
-import * as gameActions from '../../store/games';
 import keyboard from './keyboard.png';
 import xboxController from './xbox-controller.png';
 import XboxControllerTest from '../XboxControllerTesting';
@@ -11,18 +10,15 @@ import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import XboxController from '../XboxController';
+
 
 const BindingIndexItem = ({binding}) => {
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    // const history = useHistory();
     const [currentKey, setCurrentKey] = useState('');
     const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
     const [showMain, setShowMain] = useState(true);
-    // const keybind = useSelector(state => state.currentBindings)
     
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
@@ -61,14 +57,12 @@ const BindingIndexItem = ({binding}) => {
     }, [])
 
     useEffect((e) => {
-        console.log(e)
-        console.log(currentKey)
         if (binding.controller === 'pc'){
             document.addEventListener("keypress", handleKeyboardSelection, {once: true})
         } 
     }, [currentKey])
 
-    const openUpdate = e => {
+    const openUpdate = () => {
         if (user._id === binding.user) {
             setShowMain(false)
         }    
@@ -91,13 +85,13 @@ const BindingIndexItem = ({binding}) => {
     }, [currentKey])
 
     const handleKeyboardSelection = (e) => {
-        let objCopy = { ...bindingsObject }
-        // setSelection(e.code)
-        objCopy[currentKey] = e.code
-        setBindingsObject(bindingsObject => ({
-            ...objCopy
-        }))
-        console.log(bindingsObject)
+        if (currentKey !== ''){
+            let objCopy = { ...bindingsObject }
+            objCopy[currentKey] = e.code
+            setBindingsObject(bindingsObject => ({
+                ...objCopy
+            }))
+        }
     }
 
     const deleteBind = e => {
@@ -116,10 +110,8 @@ const BindingIndexItem = ({binding}) => {
             controller: binding.controller,
             keyBinds: bindingsObject
         }
-        // console.log(updatedBinding)
         dispatch(updateBinding(updatedBinding))
         setShowMain(true)
-        // window.location.reload()
     }
 
     const controllers = {
@@ -145,12 +137,15 @@ const BindingIndexItem = ({binding}) => {
                                 <div className="bindpage-move-title-name">Moves</div>
                                 <div className="bindpage-move-title-binding">Bindings</div>
                             </div>
+                            {/* {console.log(bindingsObject)} */}
+
                             {Object.keys(bindingsObject).map(move =>
                                 <div className="individual-set-container" key={move}>
                                     <div className='move-name'>{move}</div>
                                     <div className="move-binding">{bindingsObject[move]}</div>
                                 </div>
                             )}
+                            
                         </div>
                         <div id='controller-mini-thumbnail'>
                             <div id='controller-icon-container'>

@@ -7,6 +7,9 @@ import BindingIndexItem from '../BindingsIndexItem/BindingsIndexItem.jsx';
 const BindingIndex = (props) => {
     const dispatch = useDispatch();
     const bindings = useSelector(state => state.bindings)
+    const complete = (Object.values(bindings).every(binding => {
+        return Object.values(binding.keyBinds).length > 0
+    })) ? true : false
     useEffect(() => {
         if (props.gameId !== undefined) {
             dispatch(bindingActions.getGameBindings(props.gameId))
@@ -18,7 +21,8 @@ const BindingIndex = (props) => {
         <>
             <div id="bindings-index-container">
                 <div id="bindings-index-outline">
-                    {Object.values(bindings).map((binding, i)=> {
+                    {complete &&
+                    Object.values(bindings).map((binding, i)=> {
                         return (
                             <div key={i}><BindingIndexItem binding={binding}/></div>
                         )
