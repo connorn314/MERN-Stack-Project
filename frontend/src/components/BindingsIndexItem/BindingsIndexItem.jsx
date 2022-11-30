@@ -65,17 +65,9 @@ const BindingIndexItem = ({ binding, gameId }) => {
         }
     }
 
-    // useEffect(() => {        
-    //     dispatch(userActions.getOneUser(binding.user))
-    //     dispatch(getGameLikes(gameId))
-    //     if(moveSet){
-    //         setCurrentKey(Object.keys(moveSet)[0])
-    //     }
- 
-    // }, [])
-
-    // const openUpdate = e => {
-    // }, [])
+    useEffect(() => {        
+        dispatch(userActions.getOneUser(binding.user))
+    }, [])
 
     useEffect((e) => {
         dispatch(getGameLikes(gameId))
