@@ -9,6 +9,7 @@
     margin: 20px 0px;
     padding: 10px 0px;
     z-index: 2;
+    font-family: Hermes-Regular;
 }
 
 #binding-item-container:hover {
