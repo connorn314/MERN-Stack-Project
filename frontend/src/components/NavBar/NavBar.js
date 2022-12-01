@@ -11,9 +11,10 @@ function NavBar() {
   const logoutUser = e => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/');
   }
 
- 
+
 
   const getLinks = () => {
     if (loggedIn) {

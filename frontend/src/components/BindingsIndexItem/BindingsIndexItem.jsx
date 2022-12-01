@@ -138,7 +138,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     })
     //checking to see find if user has liked that binding
     let userLike = false
-    if (user !== null && bindingLike ){
+    if (user && bindingLike ){
         userLike = Object.values(bindingLike).find(like => {
             return like.user == user._id
         })
