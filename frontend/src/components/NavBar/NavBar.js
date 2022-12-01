@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import './NavBar.css'
@@ -6,6 +6,7 @@ import './NavBar.css'
 function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logoutUser = e => {
     e.preventDefault();
@@ -37,7 +38,7 @@ function NavBar() {
   return (
     <>
     <header className='main_header_container'>
-      <div id='left-nav-container'>
+      <div id='left-nav-container' onClick={() => history.push('/')}>
         <Link to='/' className='logo-title'>KeyWi</Link>
       </div>
       {getLinks()}

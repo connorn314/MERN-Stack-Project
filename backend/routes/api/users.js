@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const Binding = mongoose.model('Binding');
 const User = mongoose.model('User');
-const Like = mongoose.model('Like')
+const Like = mongoose.model('Like');
+const Follow = mongoose.model('Follow');
 const passport = require('passport');
 
 const validateRegisterInput = require('../../validations/register');
@@ -115,7 +116,7 @@ router.get('/bindings/:userId', async function (req, res, next) {
   catch (err) {
     return res.json([]);
   }
-})
+});
 
 router.get('/likes/:userId', async function (req, res, next) {
   try {
@@ -125,6 +126,28 @@ router.get('/likes/:userId', async function (req, res, next) {
   }
   catch (err) {
     return res.json([]);
+  }
+});
+
+router.get('/followers/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const followerInstances = await Follow.find({ userFollowed: user })
+    return res.json(followerInstances)
+  }
+  catch (err) {
+    return res.json([])
+  }
+})
+
+router.get('/following/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const followingInstances = await Follow.find({ userFollowing: user })
+    return res.json(followingInstances)
+  }
+  catch (err) {
+    return res.json([])
   }
 })
 
