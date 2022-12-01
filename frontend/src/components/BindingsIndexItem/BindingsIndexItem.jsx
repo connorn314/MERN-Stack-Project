@@ -12,18 +12,7 @@ import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import FollowButton from '../FollowButton';
-
-// const BindingIndexItem = ({binding, gameId}) => {
-//     const history = useHistory()
-//     const dispatch = useDispatch();
-//     const moveSet = binding.keyBinds;
-//     const user = useSelector(state => state.session.user);
-//     const [showMain, setShowMain] = useState(true)
-//     const [currentKey, setCurrentKey] = useState()
-//     const keybind = useSelector(state => state.currentBindings)
-//     const likes = useSelector(state => state.likes)
-
-
+import { useHistory } from 'react-router-dom';
 
 const BindingIndexItem = ({ binding, gameId }) => {
 
@@ -33,6 +22,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const [currentKey, setCurrentKey] = useState('');
     const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
     const [showMain, setShowMain] = useState(true);
+    const history = useHistory();
     
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
@@ -175,7 +165,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const authorDiv = (user && author && (author._id === user._id)) ? (
         <div id='author-div'>Your Binding</div>
         ) : ((author) ? (
-        <div id='author-div'>{author.username} <div id='binding-index-item-follow'><FollowButton userId={author._id} /></div></div>
+        <div id='author-div' onClick={() => history.push(`/users/${author._id}`)}>{author.username} <div id='binding-index-item-follow'><FollowButton userId={author._id} /></div></div>
         ) : (
         <div>loading...</div>
         ))

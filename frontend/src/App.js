@@ -16,6 +16,7 @@ import GameShowPage from './components/GameShowPage/GameShowPage';
 import { Route } from 'react-router-dom';
 import XboxControllerTest from './components/XboxControllerTesting';
 import Footer from './components/Footer';
+import UserShow from './components/UserShow';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,7 +37,7 @@ function App() {
         <Route exact path="/games/:gameId" component={GameShowPage}/>
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
-
+        <Route exact path="/users/:userId" component={UserShow} />
       </Switch>
       <Footer />
     </>
