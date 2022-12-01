@@ -6,7 +6,8 @@ import errors from './errors';
 import games from './games';
 import bindings from './bindings';
 import likes from './likes';
-import { BindingsReducer } from './games';
+import follows from './follows';
+
 
 const rootReducer = combineReducers({
   session,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   games,
   bindings,
   errors,
-  likes
+  likes,
+  follows
 });
 
 let enhancer;

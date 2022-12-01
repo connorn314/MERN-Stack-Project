@@ -11,6 +11,7 @@ import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
+import FollowButton from '../FollowButton';
 
 // const BindingIndexItem = ({binding, gameId}) => {
 //     const history = useHistory()
@@ -167,7 +168,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const authorDiv = (user && author && (author._id === user._id)) ? (
         <div id='author-div'>Your Binding</div>
         ) : ((author) ? (
-        <div id='author-div'>{author.username}</div>
+        <div id='author-div'>{author.username} <FollowButton userId={author._id} /></div>
         ) : (
         <div>loading...</div>
         ))

@@ -6,6 +6,7 @@ require('./models/User');
 require('./models/Game');
 require('./models/Binding');
 require('./models/Like');
+require('./models/Follow');
 require('./config/passport'); 
 
 const passport = require('passport');
@@ -19,6 +20,7 @@ const usersRouter = require('./routes/api/users');
 const bindingsRouter = require('./routes/api/bindings');
 const gamesRouter = require('./routes/api/games');
 const likesRouter = require('./routes/api/likes');
+const followsRouter = require('./routes/api/follows');
 const csrfRouter = require('./routes/api/csrf');
 const app = express();
 
@@ -53,6 +55,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/bindings', bindingsRouter);
 app.use('/api/games', gamesRouter);
 app.use('/api/likes', likesRouter);
+app.use('/api/follows', followsRouter);
 app.use('/api/csrf', csrfRouter);
 
 if (isProduction) {

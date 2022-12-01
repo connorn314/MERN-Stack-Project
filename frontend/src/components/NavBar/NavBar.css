@@ -62,6 +62,7 @@
 #left-nav-container:hover {
   background-size: 100% 100%;
   color: #49FB35;
+  cursor: pointer;
 }
 
 #left-nav-container:hover .logo-title {
