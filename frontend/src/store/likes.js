@@ -86,7 +86,8 @@ const likeReducer = (state = {}, action) => {
       nextState = { ...nextState, [action.like._id]: action.like }
       return nextState;
     case REMOVE_LIKE:
-      delete nextState[action.likeId];
+      let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.likeId)
+      delete nextState[correctIndex];
       return nextState;
     default:
       return state;
