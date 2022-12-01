@@ -10,7 +10,9 @@ const FollowButton = ({userId}) => {
     // const follows = useSelector(state => state.follows)
 
     useEffect(() => {
-        dispatch(followActions.getUserFollowingInstances(currentUser._id))
+        if (currentUser){
+            dispatch(followActions.getUserFollowingInstances(currentUser._id))
+        }
     }, [])
     
     const checkFollowExists = (userId) => {
@@ -23,7 +25,7 @@ const FollowButton = ({userId}) => {
         }
     }
 
-    const buttonDisplay = (currentUser) ? ((checkFollowExists(userId)) ? (true) : (false)) : (false)
+    const buttonDisplay = (currentUser !== null) ? ((checkFollowExists(userId)) ? (true) : (false)) : (false)
 
     const showButton = (buttonDisplay) ? (
         <div id='unfollow-text'>
