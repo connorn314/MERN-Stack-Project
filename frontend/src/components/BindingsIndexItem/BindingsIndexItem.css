@@ -155,3 +155,8 @@
     justify-content: space-evenly;
     height: 100%;
 }
+
+#binding-index-item-follow {
+    width: 70%;
+    padding-top: 10px;
+}

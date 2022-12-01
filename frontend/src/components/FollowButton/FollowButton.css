@@ -1,7 +1,26 @@
 #follow-text {
-    color: blue;
+    background-color: #49FB35;
+    color: black;
 }
 
 #unfollow-text {
-    color: red;
+    background-color: black;
+    color: #49FB35;
+}
+
+#follow-text, #unfollow-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+#follow-button-container {
+    border: 2px solid #49FB35;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
