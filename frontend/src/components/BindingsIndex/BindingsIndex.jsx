@@ -43,10 +43,6 @@ const BindingIndex = (props) => {
         }
     }
 
-    const relevantBindings = Object.values(bindings)
-
-    console.log(complete)
-    console.log(Object.values(bindings))
     return (
         <>
             <div id="bindings-index-container">
