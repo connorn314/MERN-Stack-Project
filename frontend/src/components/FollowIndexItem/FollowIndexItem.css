@@ -1,0 +1,21 @@
+#follow-item-container {
+  background-color: black;
+  transition: box-shadow .2s;
+  display: grid;
+  grid-template-columns: 3% 20% 50% 17% 10%;
+  height: 150px;
+  border-radius: 10px;
+  margin: 20px 0px;
+  padding: 10px 0px;
+  z-index: 2;
+  font-family: Hermes-Regular;
+}
+
+#follow-item-container:hover {
+  cursor: pointer;
+  box-shadow: 0 0 30px #49FB35;
+}
+
+#follow-button-container-profile{
+  grid-column-start: 5
+}
