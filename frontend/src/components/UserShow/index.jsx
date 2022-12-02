@@ -22,7 +22,7 @@ const UserShow = () => {
                     <div>{showUser.username}</div>
                 </div>
             )}
-            <BindingIndex userId={userId} />
+            <BindingIndex userId={userId} constraint="user"/>
         </div>
     )
 }

@@ -83,7 +83,13 @@ const likeReducer = (state = {}, action) => {
       nextState = { ...action.likes }
       return nextState;
     case RECEIVE_ONE_LIKE:
-      nextState = { ...nextState, [action.like._id]: action.like }
+      let newIndex = parseInt((Object.keys(nextState)[Object.keys(nextState).length - 1])) + 1;
+        Object.keys(nextState).forEach(likeIndex => {
+            if (nextState[likeIndex]._id == action.like._id) {
+                newIndex = likeIndex
+            }
+        })
+      nextState = { ...nextState, [newIndex]: action.like }
       return nextState;
     case REMOVE_LIKE:
       let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.likeId)

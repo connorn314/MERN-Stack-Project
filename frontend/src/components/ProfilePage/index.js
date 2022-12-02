@@ -9,6 +9,7 @@ import XboxControllerTest from "../XboxControllerTesting";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
+import LikedPage from "../LikedPage";
 
 
 export default function ProfilePage(){
@@ -134,6 +135,7 @@ export default function ProfilePage(){
 
     return(
         <div className="background-div-profile">
+            <LikedPage userId={user._id} />
             <div id="dropdown-container">
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>
@@ -166,7 +168,7 @@ export default function ProfilePage(){
                 <button className='create-button' onClick={handleCreate}>Create</button>
             </div>
             <div className="binding-container-profile">
-                <BindingIndex userId={user._id} />
+                <BindingIndex userId={user._id} constraint="user" />
             </div>
         </div>
     )
