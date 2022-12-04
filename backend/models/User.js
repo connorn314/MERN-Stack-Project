@@ -14,6 +14,10 @@ const userSchema = Schema({
     hashedPassword: {
         type: String,
         required: true
+    },
+    photo: {
+        type: String,
+        required: false
     }
     }, {
     timestamps: true
