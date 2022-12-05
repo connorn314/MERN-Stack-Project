@@ -46,16 +46,6 @@ const BindingIndex = (props) => {
     return (
         <>
             <div id="bindings-index-container">
-                {/* {bindings && (
-                    <div id="bindings-index-outline">
-                        {bindings.map(binding => {
-                            return (
-                                <div key={binding._id}><BindingIndexItem binding={binding} gameId={gameId}/></div>
-                            )
-                        })
-                        }
-                    </div>
-                )} */}
                 <div id="bindings-index-outline">
                     {complete && (
                     correctConstraint().map((binding, i)=> {

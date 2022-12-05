@@ -37,6 +37,29 @@ export const getAllUsers = () => async (dispatch) => {
 }
 
 
+export const ADD_PHOTO = 'users/ADD_PHOTO';
+
+export const uploadPhoto = (userId, photoForm) => async dispatch => {
+
+    const res = await jwtFetch(`/api/images/${userId}/upload`,{
+        method: "POST",
+        body: photoForm,
+        Headers: {"Accept":"application/json"}
+    })
+    const data = await res.json()
+    if(data){
+        dispatch(addUserPhoto)
+    }
+}
+
+export const addUserPhoto = (photo) => {
+    return {
+        type: ADD_PHOTO,
+        payload: photo
+    }
+}
+
+
 const userReducer = ( state = {}, action) => {
     Object.freeze(state);
     let nextState = { ...state }
@@ -47,6 +70,9 @@ const userReducer = ( state = {}, action) => {
         case RECEIVE_USERS:
             nextState = { ...nextState, ...action.users}
             return nextState;
+        case ADD_PHOTO:
+            nextState = {...nextState, photos: action.payload}
+            return nextState
         default:
             return state;
     }

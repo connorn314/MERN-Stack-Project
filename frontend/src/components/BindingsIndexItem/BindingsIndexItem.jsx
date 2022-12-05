@@ -167,7 +167,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const authorDiv = (user && author && (author._id === user._id)) ? (
         <div id='author-div'>Your Binding</div>
         ) : ((author) ? (
-        <div id='author-div' onClick={() => history.push(`/users/${author._id}`)}>{author.username} <div id='binding-index-item-follow'><FollowButton userId={author._id} /></div></div>
+        <div id='author-div' onClick={() => history.push(`/users/${author._id}`)}>{author.username}</div>
         ) : (
         <div>loading...</div>
         ))

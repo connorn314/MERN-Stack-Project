@@ -10,6 +10,8 @@ import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
 import LikedPage from "../LikedPage";
+import FollowsIndex from "../FollowsIndex/FollowsIndex";
+import { getUserFollowingInstances } from "../../store/follows";
 
 
 export default function ProfilePage(){
@@ -23,12 +25,14 @@ export default function ProfilePage(){
     const [moves, setMoves] = useState([]);
     const [controller, setController] = useState('');
     const history = useHistory();
+    const following = useSelector(state => Object.values(state.follows))
 
     const [showBindings, toggleShowBindings] = useState(true);
     const [showLikes, toggleShowLikes] = useState(false)
 
     useEffect(() => {
         dispatch(fetchGames())
+        dispatch(getUserFollowingInstances(user._id))
     },[dispatch])
 
     useEffect((e) => {
@@ -200,6 +204,10 @@ export default function ProfilePage(){
                         <LikedPage userId={user._id} />
                     </div>
                 )}
+            </div>
+            <div className="follows-container-profile">
+                Follower
+                <FollowsIndex follows={following} />
             </div>
         </div>
     )

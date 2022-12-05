@@ -25,36 +25,51 @@ function LoginForm() {
     dispatch(login({ email, password }));
   }
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    dispatch(login({
+      email: 'test1@mail.com',
+      password: 'password'
+    }))
+  }
+
   return (
     <div className='background-div'>
-      <form className="session-form login-form" onSubmit={handleSubmit}>
-        <h2>Log In Form</h2>
-        <div className='signup-text-container login-text'>
-          <div className="errors">{errors?.email}</div>
-          <label>
-            <span>Email</span>
-            <input type="text"
-              value={email}
-              onChange={update('email')}
-              placeholder="Email"
+      <div className="login-form" >
+        <form className='session-form' onSubmit={handleSubmit}>
+          <h2>Log In Form</h2>
+          <div className='signup-text-container login-text'>
+            <div className="errors">{errors?.email}</div>
+            <label>
+              <span>Email</span>
+              <input type="text"
+                value={email}
+                onChange={update('email')}
+                placeholder="Email"
+              />
+            </label>
+            <div className="errors">{errors?.password}</div>
+            <label>
+              <span>Password</span>
+              <input type="password"
+                value={password}
+                onChange={update('password')}
+                placeholder="Password"
+              />
+            </label>
+          </div>
+          <div className='login-button-container'>
+            <input className='submit-button'
+              type="submit"
+              value="Log In"
+              disabled={!email || !password}
             />
-          </label>
-          <div className="errors">{errors?.password}</div>
-          <label>
-            <span>Password</span>
-            <input type="password"
-              value={password}
-              onChange={update('password')}
-              placeholder="Password"
-            />
-          </label>
-        </div>
-        <input className='submit-button'
-          type="submit"
-          value="Log In"
-          disabled={!email || !password}
-        />
-      </form>
+          </div>
+        </form>
+        <div> OR </div>
+        <button onClick={handleDemo} className='submit-button'>Demo User</button>
+
+      </div>
     </div>
   );
 }
