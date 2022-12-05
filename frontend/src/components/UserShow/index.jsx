@@ -57,7 +57,7 @@ const UserShow = () => {
         <div id="show-main-container">
       
         {showUser && (
-            <div>
+          
             <div id='user-info'>
                 {/* <div id="show-photo-container">
                 <div id="submit-form">
@@ -77,12 +77,16 @@ const UserShow = () => {
                 <div><FollowButton userId={userId}></FollowButton>,</div>
             </div>
             
-            <div id="show-bindings-container">
-                    <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
-            <BindingIndex userId={userId} />
-            </div>
-            </div>
+
                 
+        )}
+
+        {showUser && (
+                        <div id="show-bindings-container">
+                        <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
+                <BindingIndex userId={userId} />
+                </div>
+              
         )}
             </div>
     </>
