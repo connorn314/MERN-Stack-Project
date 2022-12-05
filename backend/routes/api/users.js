@@ -11,6 +11,7 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
+
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 
@@ -150,5 +151,8 @@ router.get('/following/:userId', async (req, res, next) => {
     return res.json([])
   }
 })
+
+
+
 
 module.exports = router;
