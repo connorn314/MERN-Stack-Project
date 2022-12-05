@@ -9,6 +9,8 @@ import XboxControllerTest from "../XboxControllerTesting";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
+import FollowsIndex from "../FollowsIndex/FollowsIndex";
+import { getUserFollowingInstances } from "../../store/follows";
 
 
 export default function ProfilePage(){
@@ -22,9 +24,11 @@ export default function ProfilePage(){
     const [moves, setMoves] = useState([]);
     const [controller, setController] = useState('');
     const history = useHistory();
+    const following = useSelector(state => Object.values(state.follows))
 
     useEffect(() => {
         dispatch(fetchGames())
+        dispatch(getUserFollowingInstances(user._id))
     },[dispatch])
 
     useEffect((e) => {
@@ -167,6 +171,10 @@ export default function ProfilePage(){
             </div>
             <div className="binding-container-profile">
                 <BindingIndex userId={user._id} />
+            </div>
+            <div className="follows-container-profile">
+                Follower
+                <FollowsIndex follows={following} />
             </div>
         </div>
     )
