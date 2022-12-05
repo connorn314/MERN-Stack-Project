@@ -53,8 +53,8 @@ function SignupForm() {
 
   return (
     <div className='background-div'>
-      <form className="session-form" onSubmit={usernameSubmit}>
-        <h2>Sign Up Form</h2>
+      <form className="login-form2" onSubmit={usernameSubmit}>
+        <h2 >Sign Up Form</h2>
         <div className='signup-text-container'>
           <div className="errors">{errors?.email}</div>
           <label>

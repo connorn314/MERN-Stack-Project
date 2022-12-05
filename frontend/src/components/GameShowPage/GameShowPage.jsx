@@ -4,7 +4,6 @@ import { fetchGame } from "../../store/games";
 import { useParams } from "react-router-dom";
 import './GameShowPage.css'
 import BindingIndex from "../BindingsIndex/BindingsIndex";
-import { getGameBindings } from "../../store/bindings";
 import RocketLeague from './RocketLeague.png';
 import League from './LeagueOfLegends.png';
 import Smash from './SmashBrosUltimate.png';
