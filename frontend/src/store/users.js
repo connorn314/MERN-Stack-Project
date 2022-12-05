@@ -40,7 +40,7 @@ export const getAllUsers = () => async (dispatch) => {
 export const ADD_PHOTO = 'users/ADD_PHOTO';
 
 export const uploadPhoto = (userId, photoForm) => async dispatch => {
-    console.log(photoForm)
+
     const res = await jwtFetch(`/api/images/${userId}/upload`,{
         method: "POST",
         body: photoForm,

@@ -7,7 +7,7 @@ import './UserShow.css'
 import FollowButton from '../FollowButton';
 import { useState } from 'react';
 import * as followActions from '../../store/follows'
-var FormData = require('form-data');
+const FormData = require('form-data');
 
 const UserShow = () => {
     const {userId} = useParams();
@@ -16,10 +16,11 @@ const UserShow = () => {
     const showUser = useSelector(state => state.users[userId])
     const [userFollowers, setUserFollowers] = useState()
     const [userFollowings, setUserFollowings] = useState()
-    useEffect(async () => {
+    
+    useEffect(() => {
         dispatch(userActions.getOneUser(userId))
-        let followers = await dispatch(followActions.getUserFollowerInstances(userId))
-        let followings = await dispatch(followActions.getUserFollowingInstances(userId))
+        let followers = dispatch(followActions.getUserFollowerInstances(userId))
+        let followings = dispatch(followActions.getUserFollowingInstances(userId))
         setUserFollowers(followers)
         setUserFollowings(followings)
     }, [])
@@ -50,13 +51,13 @@ const UserShow = () => {
         }
 
     }
-    console.log(userFollowings)
+
     return (
         <>
         <div id="show-main-container">
       
         {showUser && (
-            
+            <div>
             <div id='user-info'>
                 {/* <div id="show-photo-container">
                 <div id="submit-form">
@@ -70,19 +71,20 @@ const UserShow = () => {
                 </div> */}
                 <div id="show-username">{showUser.username}</div>
                 <div id="follower-container">
-                    <p>followers: {userFollowers === undefined ? '' : `${userFollowers.length}`}  </p>
-                    <p>following</p>
+                    <p>followers: {userFollowers === undefined ? 0 : `${userFollowers.length}`}  </p>
+                    <p>following: {userFollowings === undefined ? 0 : `${userFollowings.length}`} </p>
                 </div>
                 <div><FollowButton userId={userId}></FollowButton>,</div>
             </div>
             
+            <div id="show-bindings-container">
+                    <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
+            <BindingIndex userId={userId} />
+            </div>
+            </div>
+                
         )}
-
-    <div id="show-bindings-container">
-    <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
-    <BindingIndex userId={userId} />
-    </div>
-    </div>
+            </div>
     </>
    
         )}

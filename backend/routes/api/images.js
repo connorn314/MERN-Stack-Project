@@ -24,7 +24,6 @@ const storage = multer.memoryStorage({
   
   
   router.post('/:userId/upload', upload.single("photo"),async (req,res, next) => {
-    console.log(req.photo)
     
       const s3 = new Aws.S3({
         accessKeyId:process.env.AWS_ACCESS_KEY_ID,          
