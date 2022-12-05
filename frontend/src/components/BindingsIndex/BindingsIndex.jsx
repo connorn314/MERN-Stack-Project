@@ -64,6 +64,7 @@ const BindingIndex = (props) => {
                         )
                     })
                     )}
+                    {console.log(correctConstraint())}
                 </div>
             </div>
         </>
