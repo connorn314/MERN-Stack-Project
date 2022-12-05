@@ -194,7 +194,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
                 <div id="binding-item-container">
                     <div id="game-mini-thumbnail-container">
                         <div id='actual-mini-thumbnail'>
-                            <div id='author-div'>{game.title}</div>
+                            <div id='author-div' onClick={() => history.push(`/games/${gameId}`)}>{game.title}</div>
                             <div id='a-spacer' />
                             {authorDiv}
                         </div>
