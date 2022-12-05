@@ -6,7 +6,7 @@ import XboxControllerTest from '../XboxControllerTesting';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBinding, updateBinding } from '../../store/bindings';
-import { createLike, deleteLike, getGameLikes } from '../../store/likes';
+import { createLike, deleteLike, getGameLikes, getUserLikes } from '../../store/likes';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
@@ -62,7 +62,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     }, [])
 
     useEffect((e) => {
-        dispatch(getGameLikes(gameId))
+        // dispatch(getGameLikes(gameId))
         if (binding.controller === 'pc'){
             document.addEventListener("keypress", handleKeyboardSelection, {once: true})
         } 
@@ -123,14 +123,16 @@ const BindingIndexItem = ({ binding, gameId }) => {
     
 
     //check find all the likes of single binding
-    let bindingLike = Object.values(likes).filter(like => {
-        return like.binding == binding._id
-    })
+
+    // let bindingLike = Object.values(likes).filter(like => {
+    //     return like.binding == binding._id
+    // })
+
     //checking to see find if user has liked that binding
     let userLike = false
-    if (user && bindingLike ){
-        userLike = Object.values(bindingLike).find(like => {
-            return like.user == user._id
+    if (user && likes ){
+        userLike = Object.values(likes).find(like => {
+            return ((like.binding == binding._id) && (like.user == user._id))
         })
     } 
 

@@ -9,6 +9,7 @@ import XboxControllerTest from "../XboxControllerTesting";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
+import LikedPage from "../LikedPage";
 import FollowsIndex from "../FollowsIndex/FollowsIndex";
 import { getUserFollowingInstances } from "../../store/follows";
 
@@ -25,6 +26,9 @@ export default function ProfilePage(){
     const [controller, setController] = useState('');
     const history = useHistory();
     const following = useSelector(state => Object.values(state.follows))
+
+    const [showBindings, toggleShowBindings] = useState(true);
+    const [showLikes, toggleShowLikes] = useState(false)
 
     useEffect(() => {
         dispatch(fetchGames())
@@ -136,6 +140,17 @@ export default function ProfilePage(){
         document.getElementById('dropdown-container').style.display = 'block'
     }
 
+    const handleSwitcher = (e) => {
+        e.preventDefault();
+        if (e.target.id === "likes-option") {
+            toggleShowBindings(false)
+            toggleShowLikes(true)
+        } else if (e.target.id === "bindings-option" ){
+            toggleShowLikes(false)
+            toggleShowBindings(true)
+        }
+    }
+
     return(
         <div className="background-div-profile">
             <div id="dropdown-container">
@@ -169,8 +184,26 @@ export default function ProfilePage(){
                 </div>
                 <button className='create-button' onClick={handleCreate}>Create</button>
             </div>
-            <div className="binding-container-profile">
-                <BindingIndex userId={user._id} />
+
+            <div id="display-switcher-profile-container">
+                <div id="display-switcher-headers">
+                    <div className="switcher-header" id="bindings-option"  onClick={handleSwitcher}>
+                        Bindings
+                    </div>
+                    <div className="switcher-header" id="likes-option" onClick={handleSwitcher}>
+                        Likes
+                    </div>
+                </div>
+                {showBindings && (
+                    <div className="binding-container-profile">
+                        <BindingIndex userId={user._id} constraint="user" />
+                    </div>
+                )}
+                {showLikes && (
+                    <div className="liked-binding-container-profile">
+                        <LikedPage userId={user._id} />
+                    </div>
+                )}
             </div>
             <div className="follows-container-profile">
                 Follower

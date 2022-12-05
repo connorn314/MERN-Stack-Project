@@ -84,7 +84,7 @@ const UserShow = () => {
         {showUser && (
                         <div id="show-bindings-container">
                         <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
-                <BindingIndex userId={userId} />
+                <BindingIndex userId={userId} constraint="user"/>
                 </div>
               
         )}

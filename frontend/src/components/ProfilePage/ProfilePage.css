@@ -188,7 +188,7 @@ ul li ul li:hover{
 
 }
 
-.binding-container-profile{
+.binding-container-profile, .liked-binding-container-profile{
   margin-left: 17%;
 }
 
@@ -213,4 +213,27 @@ ul li ul li:hover{
   height: 50px;
   width: 50px;
   cursor: pointer;
+}
+
+#display-switcher-headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.switcher-header {
+  margin: 1% 5%;
+  padding: 15px;
+  background-color: #49FB35;
+  color: black;
+  font-family: Hermes-Regular;
+  font-size: 16px;
+  border: 2px solid #49FB35;
+}
+
+.switcher-header:hover {
+  cursor: pointer;
+  background-color: black;
+  color: #49FB35;
 }
