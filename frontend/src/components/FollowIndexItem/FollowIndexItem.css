@@ -2,8 +2,8 @@
   background-color: black;
   transition: box-shadow .2s;
   display: grid;
-  grid-template-columns: 3% 15% 3% 16% 60% 3%;
-  height: 150px;
+  grid-template-columns: 3% 14% 60% 3% 16% 3%;
+  height: 75px;
   border-radius: 10px;
   margin: 20px 0px;
   padding: 10px 0px;
@@ -11,35 +11,51 @@
   font-family: Hermes-Regular;
 }
 
-#profile-image-container{
-  grid-column-start: 4;  
-  color: white;
-}
-
 #follow-item-container:hover {
   cursor: pointer;
   box-shadow: 0 0 30px #49FB35;
 }
 
+#profile-image-container{
+  grid-column-start: 2;  
+  color: white;
+}
+
 #follow-button-container-profile{
-  grid-column-start: 2;
+  grid-column-start: 5;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #follower-detail-container {
-  grid-column-start: 5;
-  margin-top: 17px;
+  grid-column-start: 3;
+  /* margin-top: 17px; */
   margin-left: 20px;
   border-radius: 10px;
   /* text-align: center; */
-  height: 117px;
   border: #49FB35 solid 1px;
   display: flex;
   align-items: center;
   justify-self: center;
-  width: 100%
+}
+
+#follow-button-container-profile, #profile-image-container, #follower-detail-container {
+  height: 75px;
+  width: 100%;
+}
+
+#profile-image-container {
+  background-color: aquamarine;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.follow-button-on-item {
+  border: 2px solid #49FB35;
 }
 
 .positioning-follow-container{

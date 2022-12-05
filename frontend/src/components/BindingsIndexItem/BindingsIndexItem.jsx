@@ -20,10 +20,9 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const likes = useSelector(state => state.likes)
     const dispatch = useDispatch();
     const [currentKey, setCurrentKey] = useState('');
-    const [bindingsObject, setBindingsObject] = useState(binding.keyBinds);
+    const [bindingsObject, setBindingsObject] = useState({});
     const [showMain, setShowMain] = useState(true);
     const history = useHistory();
-    
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
             return 'Rocket League'
@@ -59,6 +58,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
 
     useEffect(() => {        
         dispatch(userActions.getOneUser(binding.user))
+        setBindingsObject(binding.keyBinds)
     }, [])
 
     useEffect((e) => {
@@ -206,10 +206,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
                         </div>
                         {/* {console.log(bindingsObject)} */}
 
-                        {Object.keys(bindingsObject).map(move =>
+                        {Object.keys(binding.keyBinds).map(move =>
                             <div className="individual-set-container" key={move}>
                                 <div className='move-name'>{move}</div>
-                                <div className="move-binding">{bindingsObject[move]}</div>
+                                <div className="move-binding">{binding.keyBinds[move]}</div>
                             </div>
                         )}
                         
@@ -226,12 +226,15 @@ const BindingIndexItem = ({ binding, gameId }) => {
             </div>
         </>
     ) : (
+        
         <div id={binding._id} className='update-binding'>
             <div id="update-binding2">
                 <div className="x-positioning"><img onClick={handleClose} src={x} /></div>
                 <h1 className="profile-game-title">{gameTitle(binding)}</h1>
                     {controllers[binding.controller]}
+                {bindingsObject && (
                 <div className="move-set-container">
+                    {console.log(bindingsObject)}
                     <div className="individual-set-container1">
                         <div className="move-set-title-name">Moves</div>
                         <div className="move-set-title-binding">Bindings</div>
@@ -243,6 +246,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
                             </div>
                     )}
                 </div>
+                )}
                 <button className='create-button' onClick={handleUpdate}>Update</button>
             </div>
         </div>
@@ -250,85 +254,3 @@ const BindingIndexItem = ({ binding, gameId }) => {
 }
 
 export default BindingIndexItem;
-
-    // return (
-    //     <>
-    //     <div className='main-individual-binding-container'>
-    //         <div id="binding-item-container">
-    //             <div id="game-mini-thumbnail-container">
-    //                 <div id='actual-mini-thumbnail'>
-    //                     GAME IMG
-    //                 </div>
-    //             </div>
-    //             <div id='binding-detail-container'>
-    //                 <div className="binding-set-container">
-    //                     <div className="bindpage-move-title-name">Moves</div>
-    //                     <div className="bindpage-move-title-binding">Bindings</div>
-    //                 </div>
-    //                 {Object.keys(bindingsObject).map(move =>
-    //                     <>
-    //                         <div className="individual-set-container">
-    //                             <div className='move-name'>{move}</div>
-    //                             <div className="move-binding">{moveSet[move]}</div>
-    //                         </div>
-    //                     </>
-    //                 )}            
-    //             </div>
-    //             <div id='controller-mini-thumbnail'>
-    //                 <div id='controller-icon-container'>
-    //                     <img src={getControllerIcon(binding.controller)} alt="controller-icon" id='controller-icon' />
-    //                 </div>
-    //             </div>
-    //             <div className='toggle-menu'>
-    //                 <div onClick={openUpdate}>update</div>
-    //                 <div onClick={deleteBind}>delete</div>
-    //             </div>
-    //         </div>
-    //         <div id={binding._id} className='update-binding'>
-    //                 <div id="profile-main-container">
-    //                     <div className="x-positioning"><img onClick={handleClose} src={x} /></div>
-    //                     <h1 className="profile-game-title">{gameTitle(binding)}</h1>
-    //                     <Keyboard currentKey={currentKey}/>
-    //                     <div className="move-set-container">
-    //                         <div className="individual-set-container1">
-    //                             <div className="move-set-title-name">Moves</div>
-    //                             <div className="move-set-title-binding">Bindings</div>
-    //                         </div>
-    //                         {Object.keys(moveSet).map((move, i) =>
-    //                             <>
-    //                                 <div id={`${move}-container`} className="individual-set-container">
-    //                                     <div className='move-name' id={move} onClick={handleMove}>{move}</div>
-    //                                     <div className="move-binding" id={`${move}-selection`}> </div>
-    //                                 </div>
-    //                             </>
-    //                         )}
-    //                     </div>
-    //                     <button className='create-button' onClick={handleUpdate}>Update</button>
-    //                 </div>            
-    //             </div>
-    //     </div>
-    //     </>
-    // )
-// create:
-// {
-//     "user": "6372bce9c6f3636a1efe9dec",
-//     "game": "63752873afb6a1247fc7250f",
-//     "controller": "pc",
-//     "keyBinds": {
-//         "ability3": "KeyA"
-//     }
-// }
-// }
-// {
-//     "_id": "63767ef05a1a77b63aa8b4a9",
-//     "user": "6372bce9c6f3636a1efe9dec",
-//     "game": "63767ef05a1a77b63aa8b4a9",
-//     "controller": "pc",
-//     "keyBinds": {
-//         "ability1": "KeyA",
-//         "ability3": "KeyS",
-//         "ability2": "KeyD",
-//         "summoner spell 2": "KeyV",
-//         "item 3": "KeyX"
-//     }
-// }

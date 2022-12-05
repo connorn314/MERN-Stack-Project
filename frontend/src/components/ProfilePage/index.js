@@ -29,6 +29,7 @@ export default function ProfilePage(){
 
     const [showBindings, toggleShowBindings] = useState(true);
     const [showLikes, toggleShowLikes] = useState(false)
+    const [showFollowing, toggleShowFollowing] = useState(false)
 
     useEffect(() => {
         dispatch(fetchGames())
@@ -144,10 +145,16 @@ export default function ProfilePage(){
         e.preventDefault();
         if (e.target.id === "likes-option") {
             toggleShowBindings(false)
+            toggleShowFollowing(false)
             toggleShowLikes(true)
         } else if (e.target.id === "bindings-option" ){
             toggleShowLikes(false)
+            toggleShowFollowing(false)
             toggleShowBindings(true)
+        } else if (e.target.id === "followers-option" ){
+            toggleShowBindings(false)
+            toggleShowLikes(false)
+            toggleShowFollowing(true)
         }
     }
 
@@ -193,6 +200,9 @@ export default function ProfilePage(){
                     <div className="switcher-header" id="likes-option" onClick={handleSwitcher}>
                         Likes
                     </div>
+                    <div className="switcher-header" id="followers-option" onClick={handleSwitcher}>
+                        Following
+                    </div>
                 </div>
                 {showBindings && (
                     <div className="binding-container-profile">
@@ -204,10 +214,11 @@ export default function ProfilePage(){
                         <LikedPage userId={user._id} />
                     </div>
                 )}
-            </div>
-            <div className="follows-container-profile">
-                Follower
-                <FollowsIndex follows={following} />
+                {showFollowing && (
+                    <div className="follows-container-profile">
+                        <FollowsIndex follows={following} />
+                    </div>
+                )}
             </div>
         </div>
     )

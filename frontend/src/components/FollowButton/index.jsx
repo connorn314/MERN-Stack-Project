@@ -16,13 +16,13 @@ const FollowButton = ({userId}) => {
     }, [])
     
     const checkFollowExists = (userId) => {
-        if (Object.keys(following).length === 0) {
-            return false
-        } else {
+        // if (Object.keys(following).length === 0) {
+        //     return false
+        // } else {
             return Object.values(following).some((follow) => {
                 return follow.userFollowed == userId
             })
-        }
+        // }
     }
 
     const buttonDisplay = (currentUser !== null) ? ((checkFollowExists(userId)) ? (true) : (false)) : (false)

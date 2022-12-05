@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between; */
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30% 70%;
     background: radial-gradient(rgb(146, 55, 231), rgb(26, 1, 49));
     font-family: Hermes-Regular;
     color: #49FB35;
@@ -13,6 +13,11 @@
     font-size: 50px;
 }
 
+#follow-button-user-show {
+    height: 50px;
+    padding: 5px;
+}
+
 #show-info-box {
     height: 500px;
     width: 20%;
@@ -20,20 +25,19 @@
 
 #user-info {
     display: flex;
-
     flex-direction: column;
     justify-content: space-between;
-
-    padding: 50px;
+    padding: 10px;
     color: black;
-    width: 50%;
+    width: 70%;
     margin-top: 20%;
     margin-left: 10%;
     height: 200px;
-    border: 1px solid black;
+    border: 3px solid #49FB35;
+    border-radius: 15px;
     position: sticky;
+    top: 10%;
     z-index: 100;
-    top: 0;
     scroll-padding-top: 100px;
 }
 
@@ -55,7 +59,7 @@
     justify-content: space-between;
     /* margin-left: 40%; */
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     margin-top: 20%;
     margin-bottom: 10%;
     

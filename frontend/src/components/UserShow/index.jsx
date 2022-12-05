@@ -19,10 +19,10 @@ const UserShow = () => {
     
     useEffect(() => {
         dispatch(userActions.getOneUser(userId))
-        let followers = dispatch(followActions.getUserFollowerInstances(userId))
-        let followings = dispatch(followActions.getUserFollowingInstances(userId))
-        setUserFollowers(followers)
-        setUserFollowings(followings)
+        // let followers = dispatch(followActions.getUserFollowerInstances(userId))
+        // let followings = dispatch(followActions.getUserFollowingInstances(userId))
+        // setUserFollowers(followers)
+        // setUserFollowings(followings)
     }, [])
 
     const handleFile = (e) => {
@@ -34,9 +34,9 @@ const UserShow = () => {
             fileReader.readAsArrayBuffer(file)
             fileReader.onload = () => {
                 console.log(file)
-              setPhoto(file);
+                setPhoto(file);
             };
-          }
+        }
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -53,11 +53,8 @@ const UserShow = () => {
     }
 
     return (
-        <>
         <div id="show-main-container">
-      
         {showUser && (
-          
             <div id='user-info'>
                 {/* <div id="show-photo-container">
                 <div id="submit-form">
@@ -74,7 +71,7 @@ const UserShow = () => {
                     <p>followers: {userFollowers === undefined ? 0 : `${userFollowers.length}`}  </p>
                     <p>following: {userFollowings === undefined ? 0 : `${userFollowings.length}`} </p>
                 </div>
-                <div><FollowButton userId={userId}></FollowButton>,</div>
+                <div id='follow-button-user-show'><FollowButton userId={userId} /></div>
             </div>
             
 
@@ -82,14 +79,12 @@ const UserShow = () => {
         )}
 
         {showUser && (
-                        <div id="show-bindings-container">
-                        <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
+            <div id="show-bindings-container">
+            <h1 id="user-show-bindings-banner">{`${showUser.username} 's Bindings`}</h1>
                 <BindingIndex userId={userId} constraint="user"/>
-                </div>
-              
-        )}
             </div>
-    </>
+        )}
+        </div>
    
         )}
 
