@@ -156,7 +156,17 @@
 }
 
 #like-button-container {
-    size: 30px;
+    /* size: 30px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#like-total-b-item {
+    font-size: 24px;
+    padding-right: 5px;
+    font-family: 'Common Pixel', sans-serif;
 }
 
 #update-delete-container {

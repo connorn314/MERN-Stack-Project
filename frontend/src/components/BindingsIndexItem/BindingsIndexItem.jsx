@@ -6,7 +6,7 @@ import XboxControllerTest from '../XboxControllerTesting';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBinding, updateBinding } from '../../store/bindings';
-import { createLike, deleteLike, getGameLikes, getUserLikes } from '../../store/likes';
+import { createLike, deleteLike, getBindingLikeTotal} from '../../store/likes';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
@@ -21,6 +21,8 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const [currentKey, setCurrentKey] = useState('');
     const [bindingsObject, setBindingsObject] = useState({});
     const [showMain, setShowMain] = useState(true);
+    const [likeTotal, setLikeTotal] = useState();
+
     const history = useHistory();
     const gameTitle = (binding) =>{
         if (binding.controller === 'xbox-one'){
@@ -120,14 +122,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
     }
 
     
-
-    //check find all the likes of single binding
-
-    // let bindingLike = Object.values(likes).filter(like => {
-    //     return like.binding == binding._id
-    // })
-
-    //checking to see find if user has liked that binding
+    useEffect(() => {
+        dispatch(getBindingLikeTotal(binding._id)).then((res) => setLikeTotal(Object.values(res).length))
+    }, [likes])
+    
     let userLike = false
     if (user && likes ){
         userLike = Object.values(likes).find(like => {
@@ -173,7 +171,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
 
     
     const toggleMenu = (user && author && (author._id !== user._id)) ? (
-        <div onClick={handleLike} id="like-button-container">{buttonDisplay}</div>
+        <div onClick={handleLike} id="like-button-container">
+            <div id='like-total-b-item'>{likeTotal}</div>
+            {buttonDisplay}
+        </div>
     ) : (
         <div id='update-delete-container'>
             <div onClick={openUpdate} id="edit-option-button-1">update</div>

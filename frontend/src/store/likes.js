@@ -69,6 +69,15 @@ export const getGameLikes = (gameId) => async (dispatch) => {
   }
 }
 
+export const getBindingLikeTotal = (bindingId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/likes/bindings/${bindingId}`)
+  const likes = await res.json();
+  if (res.ok){
+    return likes
+  } else {
+    return res
+  }
+}
 
 export const deleteLike = (like) => async dispatch => {
   const res = await jwtFetch(`/api/likes/${like._id}`, {
