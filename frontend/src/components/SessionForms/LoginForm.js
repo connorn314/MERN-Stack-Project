@@ -37,7 +37,7 @@ function LoginForm() {
     <div className='background-div'>
       <div className="login-form" >
         <form className='session-form' onSubmit={handleSubmit}>
-          <h2>Log In Form</h2>
+          <h2>Log In</h2>
           <div className='signup-text-container login-text'>
             <div className="errors">{errors?.email}</div>
             <label>

@@ -54,7 +54,7 @@ function SignupForm() {
   return (
     <div className='background-div'>
       <form className="login-form2" onSubmit={usernameSubmit}>
-        <h2 >Sign Up Form</h2>
+        <h2>Sign Up</h2>
         <div className='signup-text-container'>
           <div className="errors">{errors?.email}</div>
           <label>
@@ -83,9 +83,9 @@ function SignupForm() {
               placeholder="Password"
             />
           </label>
-          <div className="errors">
+          {/* <div className="errors">
             {password !== password2 && 'Confirm Password field must match'}
-          </div>
+          </div> */}
           <label>
             <span>Confirm Password</span>
             <input type="password"
