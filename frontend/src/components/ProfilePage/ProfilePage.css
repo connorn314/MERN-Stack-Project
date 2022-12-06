@@ -28,7 +28,7 @@
 
 .move-set-container{
   margin-top: 40px;
-  width: 40%;
+  width: 60%;
   border: solid #49FB35 2px;
   border-bottom: none;
 
@@ -48,21 +48,22 @@
 }
 
 .move-set-title-name{
-  font-size: 30px;
+  margin-left: 5px;
+  font-size: 25px;
   font-weight: 500;
   color: #49FB35
 }
 
 .move-set-title-binding {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 500;
-  width: 30%;
+  width: 40%;
   text-align: center;
   color: #49FB35
 }
 
 .move-binding{
-  width: 30%;
+  width: 40%;
   text-align: center;
   color: #49FB35;
   font-family: Hermes-Regular;
@@ -201,12 +202,6 @@ ul li ul li:hover{
   color: #49FB35;
   margin-bottom: 40px;
 
-}
-
-.x-positioning{
-  position: absolute;
-  top: calc(var(--nav-height) + 5%);
-  right: 20%;
 }
 
 .x-positioning img{

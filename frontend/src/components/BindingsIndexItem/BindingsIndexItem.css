@@ -71,6 +71,12 @@
     object-fit: contain;
 }
 
+.x-positioning {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
 .binding-set-container {
     display: flex;
     justify-content: space-between;
@@ -123,7 +129,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 100px;
+    padding-top: 30px;
 }
 
 #author-div {
