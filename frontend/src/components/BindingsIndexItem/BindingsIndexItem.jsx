@@ -219,7 +219,12 @@ const BindingIndexItem = ({ binding, gameId }) => {
                         </div>
                     </div>
                     <div className='toggle-menu'>
-                        {user && (toggleMenu)}
+                        {(user) ? (toggleMenu) : (
+                            <div id='like-button-container'>
+                                <div id='like-total-b-item'>{likeTotal}</div>
+                                <div id='not-liked' onClick={() => history.push('/login')}><span class="material-symbols-outlined" >favorite</span></div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
