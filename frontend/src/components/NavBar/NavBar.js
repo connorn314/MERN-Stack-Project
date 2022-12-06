@@ -1,6 +1,9 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import { removeAllFollows } from '../../store/follows';
+import { removeAllLikes } from '../../store/likes';
+import { removeAllBindings } from '../../store/bindings';
 import './NavBar.css'
 
 function NavBar() {
@@ -8,9 +11,16 @@ function NavBar() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const handleProfileRedirect = e => {
+    dispatch(removeAllBindings());
+    history.push('/profile')
+  }
+
   const logoutUser = e => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(removeAllFollows());
+    dispatch(removeAllLikes());
     history.push('/');
   }
 
@@ -21,7 +31,7 @@ function NavBar() {
       return (
         <div className="links-auth">
           <Link className='signup-link' to={'/games'}>Games</Link>
-          <Link className='signup-link' to={'/profile'}>Profile</Link>
+          <div className='signup-link' onClick={handleProfileRedirect}>Profile</div>
           <div onClick={logoutUser} className='signup-link' >Logout</div>
         </div>
       );

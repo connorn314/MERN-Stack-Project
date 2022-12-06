@@ -1,9 +1,9 @@
 import jwtFetch from "./jwt";
 
-const RECEIVE_ONE_LIKE = "bindings/RECEIVE_ONE_LIKE"
-const RECEIVE_LIKES = "bindings/RECEIVE_LIKES"
-const REMOVE_LIKE = "bindings/REMOVE_LIKE"
-
+const RECEIVE_ONE_LIKE = "likes/RECEIVE_ONE_LIKE"
+const RECEIVE_LIKES = "likes/RECEIVE_LIKES"
+const REMOVE_LIKE = "likes/REMOVE_LIKE"
+const REMOVE_ALL_LIKES = "likes/REMOVE_ALL_LIKES"
 
 export const receiveLikes = (likes) => ({
   type: RECEIVE_LIKES,
@@ -20,6 +20,10 @@ export const removeLike = (likeId) => ({
   likeId
 })
 
+
+export const removeAllLikes = () => ({
+  type: REMOVE_ALL_LIKES
+})
 
 export const getOneLike = (likeId) => async (dispatch) => {
   const res = await jwtFetch(`/api/likes/${likeId}`)
@@ -94,6 +98,9 @@ const likeReducer = (state = {}, action) => {
     case REMOVE_LIKE:
       let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.likeId)
       delete nextState[correctIndex];
+      return nextState;
+    case REMOVE_ALL_LIKES:
+      nextState = {}
       return nextState;
     default:
       return state;

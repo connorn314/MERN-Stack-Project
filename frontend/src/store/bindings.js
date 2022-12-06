@@ -5,6 +5,7 @@ import jwtFetch from "./jwt";
 const RECEIVE_ONE_BINDING = "bindings/RECEIVE_ONE_BINDING"
 const RECEIVE_BINDINGS = "bindings/RECEIVE_BINDINGS"
 const REMOVE_BINDING = "bindings/REMOVE_BINDING"
+const REMOVE_ALL_BINDINGS = "bindings/REMOVE_ALL_BINDINGS"
 
 
 export const receiveBindings = (bindings) => ({
@@ -22,6 +23,9 @@ export const removeBinding = (bindingId) => ({
     bindingId
 })
 
+export const removeAllBindings = () => ({
+    type: REMOVE_ALL_BINDINGS
+})
 // export const populateBindings = () => async (dispatch) => {
 //     const res = await jwtFetch('/api/bindings')
 //     const bindings = await res.json();
@@ -123,6 +127,9 @@ const bindingReducer = (state = {}, action) => {
             let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.bindingId)
             delete nextState[correctIndex];
             return { ...nextState };
+        case REMOVE_ALL_BINDINGS:
+            nextState = {}
+            return nextState;
         default:
             return state;
     }

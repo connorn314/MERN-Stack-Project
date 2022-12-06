@@ -3,6 +3,7 @@ import jwtFetch from "./jwt";
 const RECEIVE_FOLLOWS = "follows/RECEIVE_FOLLOWS"
 const RECEIVE_ONE_FOLLOW = "follows/RECEIVE_ONE_FOLLOW"
 const REMOVE_FOLLOW = "follows/REMOVE_FOLLOW"
+const REMOVE_ALL_FOLLOWS = 'follows/REMOVE_ALL_FOLLOWS'
 
 export const receiveFollows = (follows) => ({
     type: RECEIVE_FOLLOWS,
@@ -17,6 +18,10 @@ export const receiveOneFollow = (follow) => ({
 export const removeFollow = (followId) => ({
     type: REMOVE_FOLLOW,
     followId
+})
+
+export const removeAllFollows = () => ({
+    type: REMOVE_ALL_FOLLOWS
 })
 
 export const createFollow = (follow) => async (dispatch) => {
@@ -99,6 +104,9 @@ const followReducer = ( state = {}, action ) => {
             let correctIndex = Object.keys(nextState).find(index => nextState[index]._id == action.followId)
             delete nextState[correctIndex];
             return { ...nextState };
+        case REMOVE_ALL_FOLLOWS:
+            nextState = {}
+            return nextState
         default:
             return state;
     }
