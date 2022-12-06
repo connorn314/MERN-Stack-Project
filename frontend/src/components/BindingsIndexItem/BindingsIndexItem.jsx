@@ -11,7 +11,6 @@ import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
-import FollowButton from '../FollowButton';
 import { useHistory } from 'react-router-dom';
 
 const BindingIndexItem = ({ binding, gameId }) => {
@@ -164,14 +163,15 @@ const BindingIndexItem = ({ binding, gameId }) => {
 
     )
 
-    const authorDiv = (user && author && (author._id === user._id)) ? (
+    const authorDiv = (author) ? ((user && (author._id === user._id)) ? (
         <div id='author-div'>Your Binding</div>
-        ) : ((author) ? (
+    ) : (
         <div id='author-div' onClick={() => history.push(`/users/${author._id}`)}>{author.username}</div>
-        ) : (
+    )) : (
         <div>loading...</div>
-        ))
+    )
 
+    
     const toggleMenu = (user && author && (author._id !== user._id)) ? (
         <div onClick={handleLike} id="like-button-container">{buttonDisplay}</div>
     ) : (
@@ -204,8 +204,6 @@ const BindingIndexItem = ({ binding, gameId }) => {
                             <div className="bindpage-move-title-name">Moves</div>
                             <div className="bindpage-move-title-binding">Bindings</div>
                         </div>
-                        {/* {console.log(bindingsObject)} */}
-
                         {Object.keys(binding.keyBinds).map(move =>
                             <div className="individual-set-container" key={move}>
                                 <div className='move-name'>{move}</div>
