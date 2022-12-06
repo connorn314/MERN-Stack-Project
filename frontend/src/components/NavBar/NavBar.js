@@ -16,6 +16,11 @@ function NavBar() {
     history.push('/profile')
   }
 
+  const handleGamesRedirect = e => {
+    dispatch(removeAllBindings());
+    history.push('/games')
+  }
+
   const logoutUser = e => {
     e.preventDefault();
     dispatch(logout());
@@ -30,7 +35,7 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-auth">
-          <Link className='signup-link' to={'/games'}>Games</Link>
+          <div className='signup-link' onClick={handleGamesRedirect}>Games</div>
           <div className='signup-link' onClick={handleProfileRedirect}>Profile</div>
           <div onClick={logoutUser} className='signup-link' >Logout</div>
         </div>
