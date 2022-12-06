@@ -3,4 +3,42 @@
     width: 100%;
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.github-container{
+    background-color: #49FB35;
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+}
+
+
+.linkedIn-container{
+    font-family: Hermes-Regular;
+}
+
+a>p{
+    font-family: Hermes-Regular;
+}
+.name-1{
+    padding-top: 10px
+}
+.name-2{
+    padding: 10px 0px;
+}
+
+.name-1:hover{
+    color: #49FB35;
+}
+
+.name-2:hover {
+    color: #49FB35;
+}
+
+.name-3:hover {
+    color: #49FB35;
 }
