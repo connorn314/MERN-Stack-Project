@@ -73,6 +73,7 @@
 
 .x-positioning {
     width: 100%;
+    margin-right: 30%;
     display: flex;
     justify-content: right;
 }
