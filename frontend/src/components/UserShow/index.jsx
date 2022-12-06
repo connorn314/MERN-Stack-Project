@@ -12,19 +12,21 @@ const FormData = require('form-data');
 const UserShow = () => {
     const {userId} = useParams();
     const dispatch = useDispatch();
-    const [photo, setPhoto] = useState("")
+    const [photo, setPhoto] = useState("");
+    const follows = useSelector(state => state.follows)
     const showUser = useSelector(state => state.users[userId])
     const [userFollowers, setUserFollowers] = useState()
     const [userFollowings, setUserFollowings] = useState()
     
     useEffect(() => {
         dispatch(userActions.getOneUser(userId))
-        // let followers = dispatch(followActions.getUserFollowerInstances(userId))
-        // let followings = dispatch(followActions.getUserFollowingInstances(userId))
-        // setUserFollowers(followers)
-        // setUserFollowings(followings)
     }, [])
 
+    useEffect(() => {
+        dispatch(followActions.getUserFollowerTotal(userId)).then(res => setUserFollowers(Object.values(res).length))
+        dispatch(followActions.getUserFollowingTotal(userId)).then(res => setUserFollowings(Object.values(res).length))
+    }, [follows])
+    
     const handleFile = (e) => {
         e.preventDefault();
         let file = e.target.files[0]
@@ -68,8 +70,10 @@ const UserShow = () => {
                 </div> */}
                 <div id="show-username">{showUser.username}</div>
                 <div id="follower-container">
-                    <p>followers: {userFollowers === undefined ? 0 : `${userFollowers.length}`}  </p>
-                    <p>following: {userFollowings === undefined ? 0 : `${userFollowings.length}`} </p>
+                    {console.log(userFollowers, "followers")}
+                    {console.log(userFollowings, "following")}
+                    <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
+                    <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
                 </div>
                 <div id='follow-button-user-show'><FollowButton userId={userId} /></div>
             </div>

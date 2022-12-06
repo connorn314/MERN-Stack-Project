@@ -30,6 +30,16 @@ export const createFollow = (follow) => async (dispatch) => {
     }
 }
 
+export const getUserFollowerTotal = (userId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/followers/${userId}`)
+    const followerInstances = await res.json();
+    if (res.ok) {
+        // dispatch(receiveFollows(followerInstances))
+        return followerInstances
+    } else {
+        return res
+    }
+}
 
 export const getUserFollowerInstances = (userId) => async (dispatch) => {
     const res = await jwtFetch(`/api/users/followers/${userId}`)
@@ -37,6 +47,16 @@ export const getUserFollowerInstances = (userId) => async (dispatch) => {
     if (res.ok) {
         dispatch(receiveFollows(followerInstances))
         return followerInstances
+    } else {
+        return res
+    }
+}
+
+export const getUserFollowingTotal = (userId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/following/${userId}`)
+    const followingInstances = await res.json();
+    if (res.ok) {
+        return followingInstances
     } else {
         return res
     }
