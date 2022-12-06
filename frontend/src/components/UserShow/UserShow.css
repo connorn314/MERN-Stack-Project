@@ -26,8 +26,8 @@
 #user-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
+    justify-content: space-evenly;
+    padding: 5px;
     color: black;
     width: 70%;
     margin-top: 20%;
@@ -45,12 +45,14 @@
     font-family: Hermes-Regular;
     color: #49FB35;
     font-size: 30px;
+    padding-left: 10px;
 }
 
 #follower-container {
     font-family: Hermes-Regular;
     color: #49FB35;
     font-size: 20px;
+    padding-left: 10px;
 }
 
 #show-bindings-container {
