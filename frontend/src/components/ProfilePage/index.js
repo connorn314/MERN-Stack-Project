@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBinding } from "../../store/bindings";
 import { fetchGames } from "../../store/games";
+import * as followActions from '../../store/follows';
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
 import XboxControllerTest from "../XboxControllerTesting";
@@ -11,7 +12,7 @@ import x from './green-X.png'
 import './ProfilePage.css'
 import LikedPage from "../LikedPage";
 import FollowsIndex from "../FollowsIndex/FollowsIndex";
-import { getUserFollowingInstances } from "../../store/follows";
+// import { getUserFollowingInstances } from "../../store/follows";
 
 
 export default function ProfilePage(){
@@ -26,6 +27,8 @@ export default function ProfilePage(){
     const [controller, setController] = useState('');
     const history = useHistory();
     const following = useSelector(state => Object.values(state.follows))
+    const [userFollowers, setUserFollowers] = useState()
+    const [userFollowings, setUserFollowings] = useState()
 
     const [showBindings, toggleShowBindings] = useState(true);
     const [showLikes, toggleShowLikes] = useState(false)
@@ -33,8 +36,10 @@ export default function ProfilePage(){
 
     useEffect(() => {
         dispatch(fetchGames())
-        dispatch(getUserFollowingInstances(user._id))
-    },[dispatch])
+        .then(dispatch(followActions.getUserFollowerTotal(user._id)).then(res => setUserFollowers(Object.values(res).length)))
+        .then(dispatch(followActions.getUserFollowingTotal(user._id)).then(res => setUserFollowings(Object.values(res).length)))
+        .then(dispatch(followActions.getUserFollowingInstances(user._id)))
+    },[])
 
     useEffect((e) => {
         if (controller === 'pc'){
@@ -160,6 +165,20 @@ export default function ProfilePage(){
 
     return(
         <div className="background-div-profile">
+            <div id="personal-info-container">
+            {user && (
+                <div id='current-user-info'>
+                    <div id="current-username">{user.username}</div>
+                    <div id="current-email">{user.email}</div>
+                    <div id="follower-container">
+                        {console.log(userFollowers, "followers")}
+                        {console.log(userFollowings, "following")}
+                        <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
+                        <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
+                    </div>
+                </div>
+            )}
+            </div>
             <div id="dropdown-container">
                 <ul>
                     <li><button className="add-keybind-button">Add Keybindings</button>

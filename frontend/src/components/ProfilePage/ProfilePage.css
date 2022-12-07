@@ -13,9 +13,35 @@
   justify-content: center;
   align-items: center;
   padding-top: 100px;
-
 }
 
+#current-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5px;
+  color: #49FB35;
+  font-family: Hermes-Regular;
+  width: 70%;
+  height: 200px;
+  border: 3px solid #49FB35;
+  border-radius: 15px;
+}
+
+#current-username {
+  font-size: 60px;
+  padding-left: 10px;
+}
+
+#current-email {
+  padding-left: 10px;
+}
+#personal-info-container {
+  padding-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .move-name{
   font-size: 20px;
@@ -183,7 +209,8 @@ ul li ul li:hover{
 }
 
 #dropdown-container{
-  padding-top: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   margin-left: 10%;
   font-family: Hermes-Regular;
 
