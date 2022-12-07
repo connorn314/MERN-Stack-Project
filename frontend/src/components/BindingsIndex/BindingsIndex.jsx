@@ -54,7 +54,6 @@ const BindingIndex = (props) => {
                         )
                     })
                     )}
-                    {console.log(complete, "complete?", correctConstraint())}
                 </div>
             </div>
         </>

@@ -29,14 +29,9 @@ const LikedPage = ({userId}) => {
         if (relevantLikeBindingIds){
             relevantLikeBindingIds.forEach(id => {
                 dispatch(bindingActions.getOneBinding(id))
-                console.log(id)
             })
-            console.log(relevantLikes)
-            console.log(relevantLikeBindingIds)
         }
     }, [likes])
-
-    console.log(relevantBindings, "made it")
 
     return (
         <div id='liked-page-container'>

@@ -1,55 +1,33 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import {useDispatch}  from "react-redux"
-import { useParams } from "react-router-dom";
-import {addBinding} from '../../store/games'
-import { receiveCurrentUser } from "../../store/session";
+import React from "react";
+
 
 export default function Keyboard ({selection}){
-  // const {game_id} = useParams()
-     //for update:
-  // const dispatch = useDispatch()
-
-
-  // const dummyId = 0
-  // const [binding, setBinding] = useState(currentBind)
-  // const [selectedKey, setSelectedKey] = useState()
-
-  // const userId = dispatch(receiveCurrentUser)
-  // const [selectionTag, setSelectionTag] = useState()
-
-  // useEffect(() => {
-  //   if(currentBind !== {}){
-  //     dispatch(addBinding(currentBind))
-  //   }
-  // },[])
-
-  // useEffect(()=>{
-
-    // document.addEventListener("keydown", handleKeyboardSelection)
-
-    // if(selectedKey !== undefined && currentKey !== ''){
-    //   const selectionTag = document.getElementById(`${currentKey}-selection`)
-    //   selectionTag.innerText = selectedKey
-    //   dispatch(addBinding({ [currentKey]: selectedKey }))
-    // }
-  
-  // },[])
-
-
-
-
 
   const tags = Array.from(document.getElementsByClassName("key"))
+  const contentTags = Array.from(document.getElementsByClassName("keyContent"))
 
   tags.forEach(tag => {
 
     if (selection && selection === tag.id){
-      const fillColor = "red"
-      tag.setAttribute("style",`fill: ${fillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
-    }else{
+      const keyFillColor = "#49FB35"
+      console.log(tag.id)
+      tag.setAttribute("style",`fill: ${keyFillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+    } else {
       tag.setAttribute("style","fill: white;fill-opacity:0;fill-rule:evenodd;stroke:#49fb35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
     }
+
+  })
+
+  contentTags.forEach(tag => {
+
+    if (selection && (`${selection}-content`) === tag.id){
+        const contentFillColor = "#501a6d"
+        console.log(tag)
+        console.log("here2")
+        tag.setAttribute("style",`fill: ${contentFillColor}; fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1`)
+      } else {
+        tag.setAttribute("style","fill: #49FB35;fill-opacity:1;fill-rule:evenodd;stroke:;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1")
+      }
 
   })
 
@@ -1058,7 +1036,7 @@ id="\"
   d="M600 240h90v60h-90v-60z"
   ></path>
   <path
-       id="space"
+  id="space"
 
   className="key"
   fill="#fff"
@@ -1122,13 +1100,14 @@ id="\"
   <path
 
 
-  className="key"
+className="keyContent"
   style={{
     WebkitTextAlign: "center",
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="1-content"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1152,7 +1131,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="`-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1175,7 +1156,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="2-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1198,7 +1181,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="3-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1221,7 +1206,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="4-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1244,7 +1231,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="5-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1267,7 +1256,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="6-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1290,7 +1281,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="7-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1313,7 +1306,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="8-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1336,7 +1331,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="9-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1359,7 +1356,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="0-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1382,7 +1381,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="--content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1405,7 +1406,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="=-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1563,7 +1566,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="q-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1586,7 +1591,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="w-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1609,7 +1616,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="e-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1632,7 +1641,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="r-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1655,7 +1666,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="t-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1678,7 +1691,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="y-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1701,7 +1716,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="u-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1724,7 +1741,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="i-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1747,7 +1766,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="o-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1770,7 +1791,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1786,6 +1807,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="p-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1793,7 +1816,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1809,6 +1832,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="[-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1816,7 +1841,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1832,6 +1857,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="]-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1839,7 +1866,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1855,9 +1882,11 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="\-content"
+  className="keyContent"
   ></path>
   <g
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1865,6 +1894,8 @@ id="\"
   strokeOpacity="1"
   strokeWidth="1"
   transform="translate(0 3.75)"
+  id="CapsLock-content"
+  className="keyContent"
   >
   <text
     x="52.152"
@@ -1898,7 +1929,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1914,6 +1945,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="a-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1921,7 +1954,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1937,6 +1970,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="s-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1944,7 +1979,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1960,6 +1995,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="d-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1967,7 +2004,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -1983,6 +2020,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="f-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -1990,7 +2029,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2006,6 +2045,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="g-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2013,7 +2054,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2029,6 +2070,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="h-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2036,7 +2079,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2052,6 +2095,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="j-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2059,7 +2104,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2075,6 +2120,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="k-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2082,7 +2129,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2098,6 +2145,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="l-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2105,7 +2154,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2121,6 +2170,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="z-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2128,7 +2179,7 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2144,6 +2195,8 @@ id="\"
   fontWeight="bold"
   textAnchor="middle"
   writingMode="lr-tb"
+  id="x-content"
+  className="keyContent"
   ></path>
   <path
   style={{
@@ -2151,7 +2204,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="c-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2174,7 +2229,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="v-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2197,7 +2254,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="b-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2220,7 +2279,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="n-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2243,7 +2304,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="m-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2266,7 +2329,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id=";-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2289,7 +2354,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="'-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2313,6 +2380,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="Return-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2331,6 +2400,8 @@ id="\"
   ></path>
   <path
   fill="#49fb35"
+  id="Return-content"
+  className="keyContent"
   fillOpacity="1"
   fillRule="evenodd"
   stroke="none"
@@ -2408,6 +2479,8 @@ id="\"
       lineHeight: "125%",
     }}
     fill="#49fb35"
+    id="Shift-content"
+    className="keyContent"
     stroke="none"
     strokeWidth="1"
     fontFamily="Swis721 BT"
@@ -2439,7 +2512,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id=",-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2462,7 +2537,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id=".-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2485,7 +2562,9 @@ id="\"
     textAlign: "center",
     lineHeight: "125%",
   }}
-  fill="#49fb35"
+  fill="#49FB35"
+  id="/-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2509,6 +2588,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="Control-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2532,6 +2613,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="CommandLeft-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2555,6 +2638,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="CommandRight-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2578,6 +2663,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="OptionLeft-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2601,6 +2688,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="OptionRight-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   strokeLinecap="butt"
@@ -2647,6 +2736,8 @@ id="\"
     lineHeight: "125%",
   }}
   fill="#49fb35"
+  id="CommandRight-content"
+  className="keyContent"
   fillOpacity="1"
   stroke="none"
   d="M612.969 266.496l-1.594 4.899h3.195l-1.601-4.899m-1.375-2.305h2.734l4.149 11.508h-2.485l-.781-2.367h-4.461l-.758 2.367H607.5l4.094-11.508m7.945 11.508v-11.508h2.273V275.7h-2.273m8.102.063c-.209.005-.459.013-.75.023a13.73 13.73 0 01-.547.024c-.87 0-1.466-.162-1.79-.485-.317-.328-.476-.971-.476-1.93v-4.593h-1.125v-1.594h1.125v-2.32h2.25v2.32h1.313v1.594h-1.313v4.703c0 .224.05.372.149.445.099.068.302.102.609.102h.555v1.71"

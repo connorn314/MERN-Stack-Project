@@ -22,6 +22,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const [bindingsObject, setBindingsObject] = useState({});
     const [showMain, setShowMain] = useState(true);
     const [likeTotal, setLikeTotal] = useState();
+    const [selection, setSelection] = useState('');
 
     const history = useHistory();
     const gameTitle = (binding) =>{
@@ -94,6 +95,11 @@ const BindingIndexItem = ({ binding, gameId }) => {
         if (currentKey !== ''){
             let objCopy = { ...bindingsObject }
             objCopy[currentKey] = e.code
+            if (e.code === "Space"){
+                setSelection("space")
+            } else {
+                setSelection(e.key)
+            }
             setBindingsObject(bindingsObject => ({
                 ...objCopy
             }))
@@ -181,7 +187,7 @@ const BindingIndexItem = ({ binding, gameId }) => {
 
 
     const controllers = {
-        "pc": <Keyboard currentKey={currentKey} />,
+        "pc": <Keyboard selection={selection} />,
         "xbox-one": <XboxControllerTest  handleSelection={handleSelection}/>
     }
 
@@ -238,7 +244,6 @@ const BindingIndexItem = ({ binding, gameId }) => {
                     {controllers[binding.controller]}
                 {bindingsObject && (
                 <div className="move-set-container">
-                    {console.log(bindingsObject)}
                     <div className="individual-set-container1">
                         <div className="move-set-title-name">Moves</div>
                         <div className="move-set-title-binding">Bindings</div>

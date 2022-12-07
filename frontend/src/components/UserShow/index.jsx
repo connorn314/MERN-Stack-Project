@@ -70,8 +70,6 @@ const UserShow = () => {
                 </div> */}
                 <div id="show-username">{showUser.username}</div>
                 <div id="follower-container">
-                    {console.log(userFollowers, "followers")}
-                    {console.log(userFollowings, "following")}
                     <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
                     <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
                 </div>

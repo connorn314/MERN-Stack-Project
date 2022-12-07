@@ -12,7 +12,7 @@ import x from './green-X.png'
 import './ProfilePage.css'
 import LikedPage from "../LikedPage";
 import FollowsIndex from "../FollowsIndex/FollowsIndex";
-// import { getUserFollowingInstances } from "../../store/follows";
+
 
 
 export default function ProfilePage(){
@@ -41,7 +41,7 @@ export default function ProfilePage(){
         .then(dispatch(followActions.getUserFollowingInstances(user._id)))
     },[])
 
-    useEffect((e) => {
+    useEffect(() => {
         if (controller === 'pc'){
             document.addEventListener("keypress", handleKeyboardSelection, {once: true})
         } 
@@ -123,7 +123,11 @@ export default function ProfilePage(){
 
     const handleKeyboardSelection = (e) => {
         let objCopy = { ...bindingsObject }
-        setSelection(e.code)
+        if (e.code === "Space"){
+            setSelection("space")
+        } else {
+            setSelection(e.key)
+        }
         objCopy[currentKey] = e.code
         setBindingsObject(bindingsObject => ({
             ...objCopy
@@ -142,6 +146,7 @@ export default function ProfilePage(){
         e.preventDefault();
         setBindingsObject({})
         setCurrentKey('')
+        setSelection('')
         document.getElementById('profile-main-container').style.display = 'none'
         document.getElementById('dropdown-container').style.display = 'block'
     }
@@ -171,8 +176,6 @@ export default function ProfilePage(){
                     <div id="current-username">{user.username}</div>
                     <div id="current-email">{user.email}</div>
                     <div id="follower-container">
-                        {console.log(userFollowers, "followers")}
-                        {console.log(userFollowings, "following")}
                         <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
                         <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
                     </div>
