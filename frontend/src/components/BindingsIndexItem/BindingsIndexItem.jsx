@@ -5,7 +5,7 @@ import xboxController from './xbox-controller.png';
 import XboxControllerTest from '../XboxControllerTesting';
 import gamecubeController from './noun-video-game-controller-45094.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBinding, updateBinding } from '../../store/bindings';
+import { deleteBinding, updateBinding, removeAllBindings } from '../../store/bindings';
 import { createLike, deleteLike, getBindingLikeTotal} from '../../store/likes';
 import Keyboard from '../Keyboard';
 import x from '../ProfilePage/green-X.png'
@@ -63,7 +63,6 @@ const BindingIndexItem = ({ binding, gameId }) => {
     }, [])
 
     useEffect((e) => {
-        // dispatch(getGameLikes(gameId))
         if (binding.controller === 'pc'){
             document.addEventListener("keypress", handleKeyboardSelection, {once: true})
         } 
@@ -134,14 +133,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
     } 
 
     let liked = userLike ? true : false
-    // const strokeColor = liked ? "red" : "white"
 
     const handleLike = e => {
         e.preventDefault();
-        // console.log(bindingLike)
         if (!liked){
-            // const selectionTag = document.getElementById(`like-${binding._id}`)
-            // selectionTag.setAttribute("stroke", "red")
             let newLike = {
                 user: user._id,
                 binding: binding._id,
@@ -149,7 +144,6 @@ const BindingIndexItem = ({ binding, gameId }) => {
             }
             dispatch(createLike(newLike))
         } else {
-            // e.target.setAttribute("stroke", "white")
             dispatch(deleteLike(userLike))
         }
     }
@@ -164,7 +158,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
     const authorDiv = (author) ? ((user && (author._id === user._id)) ? (
         <div id='author-div'>Your Binding</div>
     ) : (
-        <div id='author-div' onClick={() => history.push(`/users/${author._id}`)}>{author.username}</div>
+        <div id='author-div' onClick={() => {
+            dispatch(removeAllBindings())
+            history.push(`/users/${author._id}`)
+        }}>{author.username}</div>
     )) : (
         <div>loading...</div>
     )
@@ -195,7 +192,10 @@ const BindingIndexItem = ({ binding, gameId }) => {
                 <div id="binding-item-container">
                     <div id="game-mini-thumbnail-container">
                         <div id='actual-mini-thumbnail'>
-                            <div id='author-div' onClick={() => history.push(`/games/${gameId}`)}>{game.title}</div>
+                            <div id='author-div' onClick={() => {
+                                dispatch(removeAllBindings())
+                                history.push(`/games/${gameId}`)
+                            }}>{game.title}</div>
                             <div id='a-spacer' />
                             {authorDiv}
                         </div>
