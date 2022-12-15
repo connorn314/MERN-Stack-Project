@@ -2,6 +2,4 @@ node_modules
 .DS_Store
 **/.DS_Store
 PORT = 5000 
-AWS_ACCESS_KEY_ID="AKIA6AGPDJJFU5UMQLPN"
-AWS_ACCESS_KEY_SECRET="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"
-AWS_BUCKET_NAME="keywi-app"
+

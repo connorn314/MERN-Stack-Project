@@ -1,5 +1,5 @@
 import jwtFetch from "./jwt";
-
+import {getCurrentUser, receiveCurrentUser } from './session'
 const POPULATE_USERS = "users/POPULATE_USERS"
 const RECEIVE_USER = "users/RECEIVE_USER"
 const RECEIVE_USERS = "users/RECEIVE_USERS"
@@ -39,23 +39,45 @@ export const getAllUsers = () => async (dispatch) => {
 
 export const ADD_PHOTO = 'users/ADD_PHOTO';
 
-export const uploadPhoto = (userId, photoForm) => async dispatch => {
 
-    const res = await jwtFetch(`/api/images/${userId}/upload`,{
-        method: "POST",
-        body: photoForm,
-        Headers: {"Accept":"application/json"}
-    })
-    const data = await res.json()
-    if(data){
-        dispatch(addUserPhoto)
-    }
-}
 
 export const addUserPhoto = (photo) => {
     return {
         type: ADD_PHOTO,
         payload: photo
+    }
+}
+
+export const addProfilePic = user => async dispatch => {
+    
+    
+    const res = await jwtFetch( `/api/users/${user._id}/images`,{
+        method: "POST",
+        body: JSON.stringify(user),
+        
+    })
+    const data = await res.json()
+    
+    if(data){
+        return dispatch(updateUser(data))
+    }else{
+        return null
+    }
+}
+
+const updateUser = user => async dispatch => {
+    console.log(user)
+    const res = await jwtFetch( `/api/users/${user._id}`,{
+        method: "PUT",
+        body: JSON.stringify(user),
+        
+    })
+    const data = await res.json()
+    user["photo"] = data["photo"]
+    if(data){
+        return dispatch(receiveCurrentUser(user))
+    }else{
+        return null
     }
 }
 
@@ -70,9 +92,7 @@ const userReducer = ( state = {}, action) => {
         case RECEIVE_USERS:
             nextState = { ...nextState, ...action.users}
             return nextState;
-        case ADD_PHOTO:
-            nextState = {...nextState, photos: action.payload}
-            return nextState
+
         default:
             return state;
     }

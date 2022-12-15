@@ -1,0 +1,23 @@
+#image-upload-container {
+    background-color: blue;
+}
+
+#profile-image {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+#profile-image-container {
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

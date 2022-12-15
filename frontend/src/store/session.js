@@ -34,6 +34,7 @@ const startSession = (userInfo, route) => async dispatch => {
       body: JSON.stringify(userInfo)
     });
     const { user, token } = await res.json();
+    console.log(user)
     localStorage.setItem('jwtToken', `Bearer ${token}`);
     return dispatch(receiveCurrentUser(user));
   } catch (err) {

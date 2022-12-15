@@ -45,14 +45,7 @@
   width: 100%;
 }
 
-#profile-image-container {
-  background-color: aquamarine;
-  border-radius: 10px;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .follow-button-on-item {
   border: 2px solid #49FB35;

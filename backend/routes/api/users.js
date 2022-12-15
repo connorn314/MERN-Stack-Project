@@ -7,7 +7,7 @@ const User = mongoose.model('User');
 const Like = mongoose.model('Like');
 const Follow = mongoose.model('Follow');
 const passport = require('passport');
-
+const aws = require('aws-sdk')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
@@ -35,11 +35,8 @@ router.get('/current', restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.email
-  });
+  console.log(req.user)
+  res.json(req.user);
 });
 
 // POST /api/users/register
@@ -65,7 +62,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -101,6 +99,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
 router.get('/:userId', async function (req, res, next) {
   try {
     const user = await User.findById(req.params.userId);
+    console.log(user)
     return res.json(user)
   }
   catch (err) {
@@ -153,6 +152,67 @@ router.get('/following/:userId', async (req, res, next) => {
 })
 
 
+
+async function uploadImage(req){
+  console.log(`${req.body._id}.${req.body.photoType}`)
+  const imageBufffer = Buffer.from(req.body.photo.replace(/^data:image\/\w+;base64,/, ""),'base64')
+  const reqParams = {
+    Bucket: process.env.AWS_BUCKET_NAME,     
+    Key:`${req.body._id}.${req.body.photoType}`,               
+    Body: imageBufffer,              
+    ACL:"public-read-write",               
+    ContentType:`image/${req.body.photoType}`,
+    ContentEncoding: 'base64'
+}
+
+
+const s3 = new aws.S3()
+s3.config.update({
+  accessKeyId:process.env.AWS_ACCESS_KEY_ID,            
+  secretAccessKey:process.env.AWS_SECRET_KEY,
+  region: "us-west-2",
+  signatureVersion: 'v4'})
+  const url = []
+  const s3Upload = await s3.upload(reqParams,(err,data) => {
+            if(err){
+                console.log(err)
+            }if(data){
+              return data
+            }
+        })
+    return s3Upload
+}
+
+router.post('/:userId/images', async function (req, res, next) {
+
+  try {
+    const upload = await uploadImage(req)
+    if(!upload.failed){
+    
+      const imageUrl = `https://${process.env.AWS_BUCKET_NAME}.s3-us-west-2.amazonaws.com/${req.body._id}.${req.body.photoType}`
+      const updatedUser = req.body
+      updatedUser["photo"] = imageUrl
+      return res.json(updatedUser)
+    }
+
+  }catch (err) {
+    console.log(err)
+    return res.json([])
+  }
+});
+
+router.put('/:userId', function(req, res, next){
+  try{
+    const user = User.findOneAndUpdate(req.body._id,{photo: req.body.photo})
+    console.log(Object.keys(user))
+    console.log(user._collection)
+    return res.json(user._update)
+  }catch(err){
+
+    return res.json(err)
+  }
+  
+})
 
 
 module.exports = router;
