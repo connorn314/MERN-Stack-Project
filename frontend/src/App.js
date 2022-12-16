@@ -17,6 +17,7 @@ import { Route } from 'react-router-dom';
 import XboxControllerTest from './components/XboxControllerTesting';
 import Footer from './components/Footer';
 import UserShow from './components/UserShow';
+import ImageUpload from './components/ImageUpload';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +39,7 @@ function App() {
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
         <Route exact path="/users/:userId" component={UserShow} />
+        <Route exact path="/test" component={ImageUpload} />
       </Switch>
       <Footer />
     </>

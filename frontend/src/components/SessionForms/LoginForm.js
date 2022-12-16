@@ -59,11 +59,10 @@ function LoginForm() {
             </label>
           </div>
           <div className='login-button-container'>
-            <input className='submit-button'
+            <button className='submit-button'
               type="submit"
-              value="Log In"
               disabled={!email || !password}
-            />
+            >Log In</button>
           </div>
         </form>
         <div> OR </div>

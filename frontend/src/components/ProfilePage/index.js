@@ -12,7 +12,7 @@ import x from './green-X.png'
 import './ProfilePage.css'
 import LikedPage from "../LikedPage";
 import FollowsIndex from "../FollowsIndex/FollowsIndex";
-
+import ImageUpload from "../ImageUpload/index";
 
 
 export default function ProfilePage(){
@@ -170,17 +170,22 @@ export default function ProfilePage(){
 
     return(
         <div className="background-div-profile">
-            <div id="personal-info-container">
-            {user && (
-                <div id='current-user-info'>
-                    <div id="current-username">{user.username}</div>
-                    <div id="current-email">{user.email}</div>
-                    <div id="follower-container">
-                        <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
-                        <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
+            <div id="to-level-user-detail-container">
+                <div id="personal-info-container">
+                {user && (
+                    <div id="personal-info-img-and-info-container">
+                        <ImageUpload id="working"/>
+                        <div id='current-user-info'>
+                            <div id="current-username">{user.username}</div>
+                            <div id="current-email">{user.email}</div>
+                            <div id="follower-container">
+                                <p>followers: {userFollowers === undefined ? 0 : `${userFollowers}`}  </p>
+                                <p>following: {userFollowings === undefined ? 0 : `${userFollowings}`} </p>
+                            </div>
+                        </div>
                     </div>
+                )}
                 </div>
-            )}
             </div>
             <div id="dropdown-container">
                 <ul>
