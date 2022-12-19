@@ -22,13 +22,13 @@ const FollowIndexItem = ({follow}) =>{
   return (
       // <div className="main-individual-follow-container">
         <div id="follow-item-container">
-          <div id="profile-image-container">
+          <div id="fii-profile-image-container">
             <div id="mini-thumbnail-follow-item">
-              <div>Img</div>
+              <img src={author.photo} alt="user profile pic" />
             </div>
           </div>
           <div id="follower-detail-container" onClick={() => history.push(`/users/${author._id}`)}>
-            {/* <div className="user-follow-info1">username:</div> */}
+
             <div className="user-follow-info2">{author.username}</div>
           </div>
           <div id="follow-button-container-profile">

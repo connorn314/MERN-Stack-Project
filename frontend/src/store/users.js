@@ -1,5 +1,5 @@
 import jwtFetch from "./jwt";
-import {getCurrentUser } from './session'
+import {getCurrentUser, receiveCurrentUser } from './session'
 
 const POPULATE_USERS = "users/POPULATE_USERS"
 const RECEIVE_USER = "users/RECEIVE_USER"
@@ -37,16 +37,6 @@ export const getAllUsers = () => async (dispatch) => {
     }
 }
 
-
-// export const ADD_PHOTO = 'users/ADD_PHOTO';
-
-// export const addUserPhoto = (photo) => {
-//     return {
-//         type: ADD_PHOTO,
-//         payload: photo
-//     }
-// }
-
 export const newProfilePic = (userId, file) => async (dispatch) => {
     try {
         const img = new FormData();
@@ -57,11 +47,12 @@ export const newProfilePic = (userId, file) => async (dispatch) => {
             body: img
         });
         const updatedUser = await res.json();
+        console.log(updatedUser)
         if (res.ok) {
-            console.log(updatedUser)
-            dispatch(getCurrentUser())
+            // console.log(res)
+            dispatch(receiveCurrentUser(updatedUser))
         }
-        return updatedUser
+        // return updatedUser
     } catch (err) {
         console.log(err)
         return err.json()

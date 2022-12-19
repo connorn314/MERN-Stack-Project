@@ -7,7 +7,7 @@ import './UserShow.css'
 import FollowButton from '../FollowButton';
 import { useState } from 'react';
 import * as followActions from '../../store/follows'
-const FormData = require('form-data');
+
 
 const UserShow = () => {
     const {userId} = useParams();

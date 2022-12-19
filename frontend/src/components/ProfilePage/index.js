@@ -13,6 +13,7 @@ import './ProfilePage.css'
 import LikedPage from "../LikedPage";
 import FollowsIndex from "../FollowsIndex/FollowsIndex";
 import ImageUpload from "../ImageUpload/index";
+import { getCurrentUser } from "../../store/session";
 
 
 export default function ProfilePage(){
@@ -35,6 +36,7 @@ export default function ProfilePage(){
     const [showFollowing, toggleShowFollowing] = useState(false)
 
     useEffect(() => {
+        dispatch(getCurrentUser())
         dispatch(fetchGames())
         .then(dispatch(followActions.getUserFollowerTotal(user._id)).then(res => setUserFollowers(Object.values(res).length)))
         .then(dispatch(followActions.getUserFollowingTotal(user._id)).then(res => setUserFollowings(Object.values(res).length)))

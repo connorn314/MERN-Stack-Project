@@ -15,8 +15,9 @@ export default function ImageUpload(){
     // }, currentUser)
     const handleSubmit = (e) => {
       e.preventDefault()
-      console.log(photo, "photo")
+      // console.log(photo, "photo")
       dispatch(newProfilePic(currentUser._id, photo))
+      .then(setShowUploadOption(false))
     }
 
     if(currentUser){

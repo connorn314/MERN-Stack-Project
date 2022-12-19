@@ -161,8 +161,10 @@ router.post('/:userId/images-z', async function (req, res, next) {
       successfulImage = req.file.location
       let changed = await User.findByIdAndUpdate(userId, {
         photo: successfulImage
-      })
-      return res.json();
+      }, {returnDocument: "after"})
+      // return res.json();
+      console.log(changed, "here")
+      res.json(changed)
     }
   })
 });
