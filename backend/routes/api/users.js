@@ -7,7 +7,7 @@ const User = mongoose.model('User');
 const Like = mongoose.model('Like');
 const Follow = mongoose.model('Follow');
 const passport = require('passport');
-
+const AWS = require('aws-sdk')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
@@ -35,11 +35,7 @@ router.get('/current', restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.email
-  });
+  res.json(req.user);
 });
 
 // POST /api/users/register
@@ -152,7 +148,51 @@ router.get('/following/:userId', async (req, res, next) => {
   }
 })
 
+const upload = require('./images');
 
+router.post('/:userId/images-z', async function (req, res, next) {
+  const userId = req.params.userId
+    
+  upload.single("image")(req, res, async function (err) {
+    if (err) {
+      console.log(err)
+      return res.json({success: false})
+    } else {
+      successfulImage = req.file.location
+      let changed = await User.findByIdAndUpdate(userId, {
+        photo: successfulImage
+      }, {returnDocument: "after"})
+      // return res.json();
+      console.log(changed, "here")
+      res.json(changed)
+    }
+  })
+});
+
+router.patch('/:userId', async function (req, res) {
+  try {
+    const updatedUser = User.findByIdAndUpdate(req.body._id, {
+      photo: req.body.photo
+    }, 
+    {new: true});
+    return res.json(updatedUser)
+  } catch (err) {
+    return res.json([err])
+  }
+})
+
+router.put('/:userId', function(req, res, next){
+  try{
+    const user = User.findOneAndUpdate(req.body._id,{photo: req.body.photo})
+    console.log(Object.keys(user))
+    console.log(user._collection)
+    return res.json(user._update)
+  }catch(err){
+
+    return res.json(err)
+  }
+  
+})
 
 
 module.exports = router;

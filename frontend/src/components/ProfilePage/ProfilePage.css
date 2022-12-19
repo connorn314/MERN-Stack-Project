@@ -22,10 +22,7 @@
   padding: 5px;
   color: #49FB35;
   font-family: Hermes-Regular;
-  width: 70%;
-  height: 200px;
-  border: 3px solid #49FB35;
-  border-radius: 15px;
+  
 }
 
 #current-username {
@@ -36,11 +33,22 @@
 #current-email {
   padding-left: 10px;
 }
+
+#to-level-user-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #personal-info-container {
-  padding-top: 5%;
+  margin-top: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 80%;
+  height: 300px;
+  border: 3px solid #49FB35;
+  border-radius: 15px;
 }
 
 .move-name{
@@ -258,4 +266,17 @@ ul li ul li:hover{
   cursor: pointer;
   background-color: black;
   color: #49FB35;
+}
+
+#personal-info-img-and-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-start;
+  width: 96%;
+  padding: 0% 2%;
+}
+
+#working {
+  grid-column-start: 1;
 }

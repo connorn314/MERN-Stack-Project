@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import {getCurrentUser, receiveCurrentUser } from './session'
 
 const POPULATE_USERS = "users/POPULATE_USERS"
 const RECEIVE_USER = "users/RECEIVE_USER"
@@ -36,26 +37,41 @@ export const getAllUsers = () => async (dispatch) => {
     }
 }
 
-
-export const ADD_PHOTO = 'users/ADD_PHOTO';
-
-export const uploadPhoto = (userId, photoForm) => async dispatch => {
-
-    const res = await jwtFetch(`/api/images/${userId}/upload`,{
-        method: "POST",
-        body: photoForm,
-        Headers: {"Accept":"application/json"}
-    })
-    const data = await res.json()
-    if(data){
-        dispatch(addUserPhoto)
+export const newProfilePic = (userId, file) => async (dispatch) => {
+    try {
+        const img = new FormData();
+        img.append("image", file);
+        console.log(img)
+        const res = await jwtFetch(`/api/users/${userId}/images-z`, {
+            method: "POST",
+            body: img
+        });
+        const updatedUser = await res.json();
+        console.log(updatedUser)
+        if (res.ok) {
+            // console.log(res)
+            dispatch(receiveCurrentUser(updatedUser))
+        }
+        // return updatedUser
+    } catch (err) {
+        console.log(err)
+        return err.json()
     }
 }
 
-export const addUserPhoto = (photo) => {
-    return {
-        type: ADD_PHOTO,
-        payload: photo
+const updateUser = user => async dispatch => {
+    console.log(user)
+    const res = await jwtFetch( `/api/users/${user._id}`,{
+        method: "PATCH",
+        body: JSON.stringify(user),
+        
+    })
+    const data = await res.json()
+    if(data){
+        dispatch(getCurrentUser())
+        return data
+    }else{
+        return null
     }
 }
 
@@ -70,9 +86,6 @@ const userReducer = ( state = {}, action) => {
         case RECEIVE_USERS:
             nextState = { ...nextState, ...action.users}
             return nextState;
-        case ADD_PHOTO:
-            nextState = {...nextState, photos: action.payload}
-            return nextState
         default:
             return state;
     }

@@ -96,11 +96,10 @@ function SignupForm() {
           </label>
 
         </div>
-          <input className='submit-button'
+          <button className='submit-button'
             type="submit"
-            value="Sign Up"
             disabled={!email || !username || !password || password !== password2}
-          />
+          >Sign Up</button>
       </form>
 
     </div>

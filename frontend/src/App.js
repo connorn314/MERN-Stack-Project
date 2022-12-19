@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
-
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 import ProfilePage from './components/ProfilePage';
@@ -9,14 +8,13 @@ import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import GameIndex from './components/GamesIndex/GamesIndex';
-import Keyboard from './components/Keyboard'
 import { getCurrentUser } from './store/session';
-import XboxController from './components/XboxController';
 import GameShowPage from './components/GameShowPage/GameShowPage';
 import { Route } from 'react-router-dom';
 import XboxControllerTest from './components/XboxControllerTesting';
 import Footer from './components/Footer';
 import UserShow from './components/UserShow';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +36,7 @@ function App() {
         <ProtectedRoute path="/profile" component={ProfilePage} />
         <ProtectedRoute path="/profile/:game_id" component={ProfilePage} />
         <Route exact path="/users/:userId" component={UserShow} />
+
       </Switch>
       <Footer />
     </>

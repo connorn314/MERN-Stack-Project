@@ -12,13 +12,18 @@ function NavBar() {
   const history = useHistory();
 
   const handleProfileRedirect = e => {
-    dispatch(removeAllBindings());
-    history.push('/profile')
+    if (history.location.pathname !== '/profile') {
+      dispatch(removeAllBindings());
+      history.push('/profile')
+    }
   }
 
   const handleGamesRedirect = e => {
+    if (history.location.pathname !== '/games') {
+
     dispatch(removeAllBindings());
     history.push('/games')
+    }
   }
 
   const logoutUser = e => {

@@ -1,0 +1,93 @@
+
+
+#profile-image {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    border-radius: 10%;
+    color: white;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+#profile-image > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#profile-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: aquamarine;
+    width: 260px;
+    height: 260px;
+    border-radius: 10%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-upload-container {
+    width: 90%;
+    position: absolute;
+    left: 110%;
+    bottom: 10%;
+}
+
+#upload-new-photo {
+    font-size: 80px;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #49FB35;
+}
+
+#upload-new-photo:hover {
+    cursor: pointer;
+}
+
+#new-prof-pic-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#add-prof-pic-buttons-container {
+    font-family: Hermes-Regular;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+#input-file-prof {
+    background-color: #49FB35;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#new-prof-pic-submit {
+    background-color: #49FB35;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#nevermind {
+    background-color: black;
+    color: #49FB35;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#nevermind:hover, #input-file-prof:hover {
+    cursor: pointer;
+}
