@@ -1,13 +1,7 @@
-#xbox-container-test {
+#controller-container-ppp {
+    height: 60vh;
+    width: 80vh;
     display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-}
-
-#xbox-container-test svg {
-    width: 50%;
-    height: 0%;
-    background-color: transparent;
+    align-items: center;
 }
 
