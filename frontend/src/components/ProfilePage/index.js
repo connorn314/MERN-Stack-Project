@@ -6,7 +6,7 @@ import { fetchGames } from "../../store/games";
 import * as followActions from '../../store/follows';
 import Keyboard from "../Keyboard";
 import { useHistory } from "react-router-dom";
-import XboxControllerTest from "../XboxControllerTesting";
+import XboxControllerTest from "../XboxControllerTesting/index";
 import BindingIndex from "../BindingsIndex/BindingsIndex";
 import x from './green-X.png'
 import './ProfilePage.css'
