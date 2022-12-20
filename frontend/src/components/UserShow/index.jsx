@@ -38,7 +38,7 @@ const UserShow = () => {
                 ) : (
                     <div id='user-actual-prof-pic'>
                         <div id="prof-pic-user-show">
-                            User has no prof pic
+                            User has no profile picture
 
                         </div>
                     </div>
