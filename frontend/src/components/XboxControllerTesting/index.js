@@ -31,7 +31,8 @@ export default function XboxControllerTest({handleSelection}){
     }
 
     return (
-    <div id="xbox-container-test">
+
+    <>
         <svg
             xmlns="http://www.w3.org/2000/svg"
             imageRendering="optimizeQuality"
@@ -212,7 +213,8 @@ export default function XboxControllerTest({handleSelection}){
                 </g>
             </g>
         </svg>
-    </div>
+
+    </>
 
 
     );
